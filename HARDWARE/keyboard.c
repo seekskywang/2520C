@@ -324,7 +324,7 @@ u8 Key_Read_WithTimeOut(u8 ticks)
     else
         if(GPIO_ReadInputDataBit(GPIOD, GPIO_Pin_13)==0)
         {
-            return Key_TRIG;
+//            return 116;
         
         
         }
