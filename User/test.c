@@ -590,7 +590,14 @@ void Setup_Process(void)
                                 Jk516save.Set_Data.Range=0;
                             Range=Jk516save.Set_Data.Range;
 							break;
-
+						case 8:
+							if(Jk516save.Set_Data.openbeep==0)
+							{
+								Jk516save.Set_Data.openbeep=1;
+							}else{
+								Jk516save.Set_Data.openbeep=0;
+							}
+							break;
 						
 						default:
 							break;					
@@ -729,6 +736,13 @@ void Setup_Process(void)
 //==========================================================
 void Test_Process(void)
 {   
+	static float RemoteR,RemoteV;
+	static u8 Extrigflag = 0;
+	static u8 skipkey;
+	static u32 oldskip;
+	u32 sendE;
+	char sendbuf[24];
+	u8 csendlen;
 	vu8 key;
     vu16 USB_Count=0;
     UINT fnum;
@@ -817,6 +831,25 @@ void Test_Process(void)
             Disp_R_V();
 					
 		}  
+		
+		Extrigflag = Read_ExtTrig();
+		if(Jk516save.Set_Data.trip==1)
+		{
+			
+			if(Extrigflag == 0)
+			{
+				skipkey = 1;
+			}else{
+				skipkey = 0;
+			}
+		}
+		if(Jk516save.Set_Data.trip==2)
+		{
+			if(Extrigflag == 0)
+			{
+				test_start = 1;
+			}
+		}
          if(Disp_usbflag||Disp_Flag)
         {
             Disp_Usbflag(USB_Openflag);
@@ -824,6 +857,7 @@ void Test_Process(void)
             Disp_usbflag=0;
             
         }
+		
 		
 		OpenRangflag=read_cpld();//判断是否开路
         if(OpenRangflag)
@@ -1025,7 +1059,7 @@ void Test_Process(void)
                {
                
                }
-               if(Jk516save.Set_Data.Range_Set!=1)
+               if(Jk516save.Set_Data.Range_Set == 0)
                Range_Control(Range,V_Range);
                    i=0;
                    range_flag=0;
@@ -1035,11 +1069,40 @@ void Test_Process(void)
 		   if(Jk516save.Set_Data.trip==0)
 			{
 				Disp_Open();
+				if(Jk516save.Set_Data.openbeep == 1)
+				{
+					Colour.black=LCD_COLOR_RED;
+					Beep_Out(1);
+					Led_Fail_On();
+					memcpy(DispBuf,"RV FL",5);
+					Send_ComBuff.comp=3;                                   
+					memcpy((void *)Send_To_U.comp,DispBuf,5);
+					DispBuf[5]=0;
+					LCD_DrawFullRect(SORTING_XDISP, SORTING_Y_DISP, 60, 22);
+					WriteString_16(SORTING_XDISP, SORTING_Y_DISP, DispBuf,  0);
+				}
 			}
 			if(test_start == 1)
 			{
 				Disp_Open();
+				if(Jk516save.Set_Data.openbeep == 1)
+				{
+					Colour.black=LCD_COLOR_RED;
+					Beep_Out(1);
+					Led_Fail_On();
+					memcpy(DispBuf,"RV FL",5);
+					Send_ComBuff.comp=3;
+                               
+					memcpy((void *)Send_To_U.comp,DispBuf,5);
+					DispBuf[5]=0;
+					LCD_DrawFullRect(SORTING_XDISP, SORTING_Y_DISP, 60, 22);
+					WriteString_16(SORTING_XDISP, SORTING_Y_DISP, DispBuf,  0);
+				}
 				test_start = 0;
+				if(Jk516save.Set_Data.trip == 3)
+			    {
+				    uart1SendChars("+0.0000E+0,+0.0000E+0+",22);
+			    }
 			}
         }
             
@@ -1070,10 +1133,14 @@ void Test_Process(void)
                    open_flag=1;
            
                     Disp_Open();
-				  if(Jk516save.Set_Data.trip==1)
-					{
-						test_start = 0;
-					}
+				  if(Jk516save.Set_Data.trip != 0)
+				  {
+					  test_start = 0;
+					  if(Jk516save.Set_Data.trip == 3)
+					  {
+						  uart1SendChars("+0.0000E+0,+0.0000E+0+",22);
+					  }
+				  }
                }
                 V_ad=V_ad-Jk516save.Clear_V[V_Range];
                 if(V_ad<0)
@@ -1110,6 +1177,25 @@ void Test_Process(void)
                         Test_Value=Datacov(I_ad,Range);
                         
                         Disp_Testvalue(Test_Value,Test_Value_V,0);//显示电阻和电压
+						
+						if(Jk516save.Set_Data.trip==3)//若远程触发，发送数据到上位机
+						{
+							RemoteR = (float)Test_Value.res/pow(10,Test_Value.dot);
+							RemoteV = (float)Test_Value_V.res/10000;
+						
+							if(Test_Value.uint == 0)
+							{
+								sendE = 0;
+							}else if(Test_Value.uint == 1){
+								sendE = 3;
+							}else if(Test_Value.uint == 2){
+								sendE = 6;
+							}
+							
+							
+							sprintf(sendbuf,"+%.4fE+%d,+%.4fE+0+",RemoteR,sendE,RemoteV);
+							uart1SendChars(sendbuf,sizeof(sendbuf));
+						}
 						
                         if(Jk516save.Set_Data.V_comp)
                         {
@@ -1332,254 +1418,271 @@ void Test_Process(void)
 		Uart_Process();//串口处理
         if(Keyboard.state==TRUE)
         {
-            Disp_Flag=1;
-            key=Key_Read();
-            if(key!=KEY_NONE)
-            switch(key)
-            {
-                    case Key_F1:
-                        
-                        switch(keynum)
-                        {
-                            case 0:
-                                keynum=0;
-                                    //SetSystemStatus(SYS_STATUS_TEST);
-                                break;
-                            case 1:
-                                Jk516save.Set_Data.trip=0;
-                            
-                            
-    
-                                
-                                break;
-                            case 2:
-                                
-                                Coordinates.xpos=LIST1+88;
-                                Coordinates.ypos=FIRSTLINE+SPACE1*1;
-                                Coordinates.lenth=76;
-                                Jk516save.Set_Data.High_Res=Disp_Set_Num(&Coordinates);
-                            break;
-                            case 3:
-                                Coordinates.xpos=LIST1+88;
-                                Coordinates.ypos=FIRSTLINE+SPACE1*2;
-                                Coordinates.lenth=76;
-                                Jk516save.Set_Data.Res_low=Disp_Set_Num(&Coordinates);
-                                
-                            break;
-    						case 4:
-                                Jk516save.Set_Data.Range=RANGE_MAX;//0  自动  10   最佳量程
-                                Jk516save.Set_Data.Range_Set=0;
-   
-                                break;
-                            case 5:
-                                Coordinates.xpos=LIST2+88;
-                                Coordinates.ypos=FIRSTLINE+SPACE1*1;
-                                Coordinates.lenth=76;
-                                Jk516save.Set_Data.V_high=Disp_Set_CompNum(&Coordinates);
-                                
-                            break;
-                            
-                            
-                            case 6:
-                                Coordinates.xpos=LIST2+88;
-                                Coordinates.ypos=FIRSTLINE+SPACE1*2;
-                                Coordinates.lenth=76;
-                                Jk516save.Set_Data.V_low=Disp_Set_CompNum(&Coordinates);
-                                
-                            break;
+			if(skipkey == 0)
+			{
+				Disp_Flag=1;
+				key=Key_Read();
+				if(key!=KEY_NONE)
+				switch(key)
+				{
+						case Key_F1:
+							
+							switch(keynum)
+							{
+								case 0:
+									keynum=0;
+										//SetSystemStatus(SYS_STATUS_TEST);
+									break;
+								case 1:
+									Jk516save.Set_Data.trip=0;
+								
+								
+		
+									
+									break;
+								case 2:
+									
+									Coordinates.xpos=LIST1+88;
+									Coordinates.ypos=FIRSTLINE+SPACE1*1;
+									Coordinates.lenth=76;
+									Jk516save.Set_Data.High_Res=Disp_Set_Num(&Coordinates);
+								break;
+								case 3:
+									Coordinates.xpos=LIST1+88;
+									Coordinates.ypos=FIRSTLINE+SPACE1*2;
+									Coordinates.lenth=76;
+									Jk516save.Set_Data.Res_low=Disp_Set_Num(&Coordinates);
+									
+								break;
+								case 4:
+									Jk516save.Set_Data.Range=RANGE_MAX;//0  自动  10   最佳量程
+									Jk516save.Set_Data.Range_Set=0;
+	   
+									break;
+								case 5:
+									Coordinates.xpos=LIST2+88;
+									Coordinates.ypos=FIRSTLINE+SPACE1*1;
+									Coordinates.lenth=76;
+									Jk516save.Set_Data.V_high=Disp_Set_CompNum(&Coordinates);
+									
+								break;
+								
+								
+								case 6:
+									Coordinates.xpos=LIST2+88;
+									Coordinates.ypos=FIRSTLINE+SPACE1*2;
+									Coordinates.lenth=76;
+									Jk516save.Set_Data.V_low=Disp_Set_CompNum(&Coordinates);
+									
+								break;
+							
+								default:
+									break;
+							
+							
+							}
+		//					Savetoeeprom();
+						break;
+						case Key_F2:
+							switch(keynum)
+							{
+								case 0:
+									
+										SetSystemStatus(SYS_STATUS_SETUP);
+									break;
+								case 1:
+									Jk516save.Set_Data.trip=1;
+									
+									break;
 						
-                            default:
-                                break;
-                        
-                        
-                        }
-    //					Savetoeeprom();
-                    break;
-                    case Key_F2:
-                        switch(keynum)
-                        {
-                            case 0:
-                                
-    								SetSystemStatus(SYS_STATUS_SETUP);
-                                break;
-                            case 1:
-    							Jk516save.Set_Data.trip=1;
-                                
-                                break;
-  					
-    						case 4:
-    							//Jk516save.Set_Data.Range=10;//0  自动  10   最佳量程
-                                Jk516save.Set_Data.Range_Set=1;
-                                Jk516save.Set_Data.Range=Range;
-                            //Range=
+								case 4:
+									//Jk516save.Set_Data.Range=10;//0  自动  10   最佳量程
+									Jk516save.Set_Data.Range_Set=1;
+									Jk516save.Set_Data.Range=Range;
+								//Range=
 
-    							break;
- 
-                            
-                            default:
-                                break;
-                        
-                        
-                        }
-    //					Savetoeeprom();
-                    break;
-                    case Key_F3:
-                        switch(keynum)
-                        {
-                            case 0:
-    								SetSystemStatus(SYS_STATUS_SYSSET);
-                                break;
-					
-    						case 4://MAX_R_RANGE
-                                //Jk516save.Set_Data.Range=Jk516save.Set_Data.Range>=RANGE_MAX? 0:Jk516save.Set_Data.Range++;
-                                Jk516save.Set_Data.Range_Set=2;//增加档位选择的计算
-                                Range=Jisuan_Range(Jk516save.Set_Data.Nominal_Res);
-                                Jk516save.Set_Data.Range=Range;
-                                Range_Control(Range,V_Range);
-                                
+									break;
+	 
+								
+								default:
+									break;
+							
+							
+							}
+		//					Savetoeeprom();
+						break;
+						case Key_F3:
+							switch(keynum)
+							{
+								case 0:
+										SetSystemStatus(SYS_STATUS_SYSSET);
+									break;
+								case 1:
+									Jk516save.Set_Data.trip=2;
+									
+									break;
+						
+								case 4://MAX_R_RANGE
+									//Jk516save.Set_Data.Range=Jk516save.Set_Data.Range>=RANGE_MAX? 0:Jk516save.Set_Data.Range++;
+									Jk516save.Set_Data.Range_Set=2;//增加档位选择的计算
+									Range=Jisuan_Range(Jk516save.Set_Data.Nominal_Res);
+									Jk516save.Set_Data.Range=Range;
+									Range_Control(Range,V_Range);
+									
 
-    							break;
+									break;
 
-                            
-                            default:
-                                break;
-                        
-                        
-                        }
-    //					Savetoeeprom();
-                    break;
-                    case Key_F4:
-                        switch(keynum)//
-                        {
-                           case 0:
-    								SetSystemStatus(SYS_STATUS_SYS);
-                                break;
-                            case 4:
-                                //Jk516save.Set_Data.Range=Jk516save.Set_Data.Range>0? Jk516save.Set_Data.Range--:RANGE_MAX;
-                                if(Range>=RANGE_MAX)
-                                    Range=0;
-                                else
-                                    Range++;
-                                Jk516save.Set_Data.Range_Set=1;
-                                Jk516save.Set_Data.Range=Range;
-                                Range_Control(Range,V_Range);
-                                
-                            break;
-  
-                            default:
-                                break;
-                        
-                        
-                        }	
-    //					Savetoeeprom();
-                    break;
-                    case Key_F5:
-                        switch(keynum)
-                        {
-                            case 0:
-                                //if(page==1)
-    							//	SetSystemStatus(SYS_STATUS_DEBUG);
-                                break;
-                            default:
-                                break;
-                        }
-  
-                    break;
-                    case Key_Disp:
-                        //SetSystemStatus(SYS_STATUS_TEST);
-                    break;
-                    case Key_SETUP:
-                        keynum=0;
-                        SetSystemStatus(SYS_STATUS_SETUP);
-                    break;
-                    case Key_FAST:
-                    break;
-                    case Key_LEFT:
-                        if(keynum<1)
-                            keynum=6;
-                        else
-                            keynum--;
-                      
-                    break;
-                    case Key_RIGHT:
-                        if(keynum>5)
-                            keynum=0;
-                        else
-                            keynum++;
-                       
-                 
-                            
-                    break;
-                    case  Key_UP:
-                        if(keynum<1)
-                            keynum=6;
-                        else
-                            keynum--;
-                        
-                    break;
-                    case Key_DOWN:
-                        if(keynum>5)
-                            keynum=0;
-                        else
-                            keynum++;
-                    break;
-                    
-                    case Key_NUM1:
-                    //break;
-                    case Key_NUM2:
-                    //break;
-                    case Key_NUM3:
-                    //break;
-                    case Key_NUM4:
-                    //break;
-                    case Key_NUM5:
-                    //break;
-                    case Key_NUM6:
-                    //break;
-                    case Key_NUM7:
-                    //break;
-                    case Key_NUM8:
-                    //break;
-                    case Key_NUM9:
-                    //break;
-                    case Key_NUM0:
-                    break;
-                    case Key_DOT:
+								
+								default:
+									break;
+							
+							
+							}
+		//					Savetoeeprom();
+						break;
+						case Key_F4:
+							switch(keynum)//
+							{
+							   case 0:
+										SetSystemStatus(SYS_STATUS_SYS);
+									break;
+							   case 1:
+									Jk516save.Set_Data.trip=3;
+									
+								break;
+							   
+								case 4:
+									//Jk516save.Set_Data.Range=Jk516save.Set_Data.Range>0? Jk516save.Set_Data.Range--:RANGE_MAX;
+									if(Range>=RANGE_MAX)
+										Range=0;
+									else
+										Range++;
+									Jk516save.Set_Data.Range_Set=1;
+									Jk516save.Set_Data.Range=Range;
+									Range_Control(Range,V_Range);
+									
+								break;
+	  
+								default:
+									break;
+							
+							
+							}	
+		//					Savetoeeprom();
+						break;
+						case Key_F5:
+							switch(keynum)
+							{
+								case 0:
+									//if(page==1)
+									//	SetSystemStatus(SYS_STATUS_DEBUG);
+									break;
+								default:
+									break;
+							}
+	  
+						break;
+						case Key_Disp:
+							//SetSystemStatus(SYS_STATUS_TEST);
+						break;
+						case Key_SETUP:
+							keynum=0;
+							SetSystemStatus(SYS_STATUS_SETUP);
+						break;
+						case Key_FAST:
+						break;
+						case Key_LEFT:
+							if(keynum<1)
+								keynum=6;
+							else
+								keynum--;
+						  
+						break;
+						case Key_RIGHT:
+							if(keynum>5)
+								keynum=0;
+							else
+								keynum++;
+						   
+					 
+								
+						break;
+						case  Key_UP:
+							if(keynum<1)
+								keynum=6;
+							else
+								keynum--;
+							
+						break;
+						case Key_DOWN:
+							if(keynum>5)
+								keynum=0;
+							else
+								keynum++;
+						break;
+						
+						case Key_NUM1:
+						//break;
+						case Key_NUM2:
+						//break;
+						case Key_NUM3:
+						//break;
+						case Key_NUM4:
+						//break;
+						case Key_NUM5:
+						//break;
+						case Key_NUM6:
+						//break;
+						case Key_NUM7:
+						//break;
+						case Key_NUM8:
+						//break;
+						case Key_NUM9:
+						//break;
+						case Key_NUM0:
+						break;
+						case Key_DOT:
 
-                    break;
-                    case Key_BACK:
-                        
-                    break;
-                    case Key_LOCK:
+						break;
+						case Key_BACK:
+							
+						break;
+						case Key_LOCK:
 
-    //					if(lock_flag)
-    //					{
-    //						Lock_Control_On();
-    //						Lock_LedOn();
-    //						
-    //					}
-    //					else
-    //					{
-    //						Lock_LedOff();
-    //						Lock_Control_Off();
-    //					
-    //					
-    //					}
-                    break;
-                    case Key_BIAS:
-                        SetSystemStatus(SYS_STATUS_CLEAR);
-                    break;
-                    case Key_REST:
-                    break;
-                    case Key_TRIG:
-                        test_start=1;
-                        
-                    break;
-                    default:
-                        SetSystemStatus(SYS_STATUS_TEST);
-                    break;
-                        
-                }
+		//					if(lock_flag)
+		//					{
+		//						Lock_Control_On();
+		//						Lock_LedOn();
+		//						
+		//					}
+		//					else
+		//					{
+		//						Lock_LedOff();
+		//						Lock_Control_Off();
+		//					
+		//					
+		//					}
+						break;
+						case Key_BIAS:
+							SetSystemStatus(SYS_STATUS_CLEAR);
+						break;
+						case Key_REST:
+						break;
+						case Key_TRIG:
+							if(Jk516save.Set_Data.trip == 1 && Extrigflag == 1)
+							{
+								test_start=1;
+							}
+							
+						break;
+						default:
+							SetSystemStatus(SYS_STATUS_TEST);
+						break;
+							
+					}
+				}else{
+//					skipkey = 0;
+				}
          }
      }
     Store_set_flash();

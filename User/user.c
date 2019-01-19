@@ -193,13 +193,17 @@ const uint8_t	Set_testitem_E[][9+1]=
 const uint8_t Test_Tirpvalue[][6+1]=
 {
 	{"自动"},
-	{"手动"}
+	{"手动"},
+	{"外部"},
+	{"远程"}
 
 };
 const uint8_t Test_Tirpvalue_E[][6+1]=
 {
 	{"AUTO"},
-	{"MAN"}
+	{"MAN"},
+	{"EXT"},
+	{"REMOTE"}
 
 };
 const uint8_t Test_Speedvalue[][6+1]=
@@ -236,14 +240,28 @@ const uint8_t Setup_Beep[][6+1]=
 	"关闭  ",
 	"合格  ",
 	"不合格",
-
+	"开路ON"
+};
+const uint8_t Setup_Beep1[][7+1]=
+{
+	"关闭  ",
+	"合格  ",
+	"不合格",
+	"开路OFF"
 };
 const uint8_t Setup_Beep_E[][6+1]=
 {
 	"CLOSE ",
 	"PASS  ",
 	"FAIL ",
-
+	"OPENON"
+};
+const uint8_t Setup_Beep_E1[][7+1]=
+{
+	"CLOSE ",
+	"PASS  ",
+	"FAIL ",
+	"OPENOFF"
 };
 const uint8_t INPUT[][7]={"输入"};
 const uint8_t INPUT_E[][7]={"INPUT"};
@@ -346,7 +364,7 @@ const uint8_t BiasButton_Tip[][7+1]=  //频率选择时候的下面的提示符号
 const uint8_t Sys_Sys[][20+1]=
 {
 	{"仪器型号  JK2520C"},
-	{"软件版本  Ver:1.2"},
+	{"软件版本  Ver:1.4"},
 	{"硬件版本  Ver:1.1"},
 	{"仪器编号"},
 //	{"账号    "},
@@ -357,7 +375,7 @@ const uint8_t Sys_Sys[][20+1]=
 const uint8_t Sys_Sys_E[][20+1]=
 {
 	{"INST MODEL  JK2520C"},
-	{"SOFT VER   Ver:1.2"},
+	{"SOFT VER   Ver:1.3"},
 	{"HARD VER   Ver:1.1"},
 	{"SERIALNO"},
 //	{"账号    "},
@@ -554,7 +572,7 @@ void Parameter_valuecomp(void)
 //		if(*pt>ParameterLimit[i][0])
 //            *pt=ParameterLimit[i][1];
 //	}
-    if(Jk516save.Set_Data.trip>2)
+    if(Jk516save.Set_Data.trip>3)
         Jk516save.Set_Data.trip=0;
     if(Jk516save.Set_Data.speed>3)
         Jk516save.Set_Data.speed=0;
@@ -1807,6 +1825,7 @@ void Disp_Open(void)
     u32 colour;
     colour= Colour.black;
     Colour.black=LCD_COLOR_TEST_MID;
+	V_POS();
     if(Jk516save.Set_Data.speed!=3)
     {
         if(Jk516save.Set_Data.speed==0)
@@ -1828,10 +1847,16 @@ void Disp_Open(void)
     
     
     }
-    Close_Compled();
-    Beep_Out(0);
-    LCD_DrawFullRect(SORTING_XDISP, SORTING_Y_DISP, 60, 22);
-    LCD_ShowFontCN_40_55(60+40*6,92,40,55, (uint8_t*)Out_Assic+14*40*55/8);
+	Test_Value.res = 0;
+	Test_Value_V.res = 0;
+	if(Jk516save.Set_Data.openbeep == 0)
+	{
+		Close_Compled();
+		Beep_Off();
+	//    Beep_Out(0);
+		LCD_DrawFullRect(SORTING_XDISP, SORTING_Y_DISP, 60, 22);
+		LCD_ShowFontCN_40_55(60+40*6,92,40,55, (uint8_t*)Out_Assic+14*40*55/8);
+	}
     //WriteString_16 ( TESTVALUE_X, SORTING_Y_DISP+30, "RV_OPEN",0 ); 
     Colour.black=colour;
     Disp_Range(Jk516save.Set_Data.Range_Set,Range);
@@ -1958,13 +1983,13 @@ void Disp_Testvalue(Test_ValueTypedef value,Test_ValueTypedef value_v,u8 speed)
      {
          Send_ComBuff.send_V[0]=' ';
          Send_To_U.Send_V[0]=' ';
-         
+         V_POS();
      }
      else
      {
          Send_ComBuff.send_V[0]='-';
          Send_To_U.Send_V[0]='-';
-         
+         V_NEG();
      }
      Send_ComBuff.send_res[6]=Test_Value.uint;
          
@@ -2016,43 +2041,72 @@ void Disp_Button_value1(uint32_t value)
 		Colour.black=LCD_COLOR_TEST_BUTON;
         if(Jk516save.Sys_Setvalue.lanage)
         {
-            WriteString_16(84, 271-40, "MEAS",  0);
-            WriteString_16(84, 271-20, "DISP",  0);
-            WriteString_16(84+80, 271-40, "MEAS",  0);
-            WriteString_16(84+80, 271-20, "SETUP",  0);
-            WriteString_16(84+80+80, 271-40, " SYS",  0);
-            WriteString_16(84+80+80, 271-20, "SETUP",  0);
-            WriteString_16(84+80+80+80, 271-40, "SYS",  0);
-            WriteString_16(84+80+80+80, 271-20, "INFO",  0);
-        
+            WriteString_16(84+18, 271-40, "MEAS",  0);
+            WriteString_16(84+18, 271-20, "DISP",  0);
+            WriteString_16(84+80+18, 271-40, "MEAS",  0);
+            WriteString_16(84+80+18, 271-20, "SETUP",  0);
+            WriteString_16(84+80+80+18, 271-40, " SYS",  0);
+            WriteString_16(84+80+80+18, 271-20, "SETUP",  0);
+            WriteString_16(84+80+80+80+18, 271-40, "SYS",  0);
+            WriteString_16(84+80+80+80+18, 271-20, "INFO",  0);
+//			WriteString_16(84+80+80+80+80+18, 271-40, "SYS",  0);
+//            WriteString_16(84+80+80+80+80+18, 271-20, "UPDATE",  0);
         
         }
         else
         {
-            WriteString_16(84, 271-40, "测量",  0);
-            WriteString_16(84, 271-20, "显示",  0);
-            WriteString_16(84+80, 271-40, "测量",  0);
-            WriteString_16(84+80, 271-20, "设置",  0);
-            WriteString_16(84+80+80, 271-40, "系统",  0);
-            WriteString_16(84+80+80, 271-20, "设置",  0);
-            WriteString_16(84+80+80+80, 271-40, "系统",  0);
-            WriteString_16(84+80+80+80, 271-20, "信息",  0);
-//		WriteString_16(84+80+80+80+80, 271-40, "更多",  0);
-//		WriteString_16(84+80+80+80+80, 271-20, " 1/2",  0);
+            WriteString_16(84+18, 271-40, "测量",  0);
+            WriteString_16(84+18, 271-20, "显示",  0);
+            WriteString_16(84+80+18, 271-40, "测量",  0);
+            WriteString_16(84+80+18, 271-20, "设置",  0);
+            WriteString_16(84+80+80+18, 271-40, "系统",  0);
+            WriteString_16(84+80+80+18, 271-20, "设置",  0);
+            WriteString_16(84+80+80+80+18, 271-40, "系统",  0);
+            WriteString_16(84+80+80+80+18, 271-20, "信息",  0);
+//			WriteString_16(84+80+80+80+80+18, 271-40, "固件",  0);
+//			WriteString_16(84+80+80+80+80+18, 271-20, "升级",  0);
         }
 	}
     else if(value==1)
     {
         Colour.Fword=White;
 		Colour.black=LCD_COLOR_TEST_BUTON;
-		WriteString_16(84, 271-40, "文件",  0);
-		WriteString_16(84, 271-20, "管理",  0);
-		WriteString_16(84+80, 271-40, "保存",  0);
-		WriteString_16(84+80, 271-20, "数据",  0);
-        WriteString_16(84+80+80+80+80, 271-40, "更多",  0);
-		WriteString_16(84+80+80+80+80, 271-20, " 2/2",  0);
+		WriteString_16(84+18, 271-40, "文件",  0);
+		WriteString_16(84+18, 271-20, "管理",  0);
+		WriteString_16(84+80+18, 271-40, "保存",  0);
+		WriteString_16(84+80+18, 271-20, "数据",  0);
+        WriteString_16(84+80+80+80+80+18, 271-40, "更多",  0);
+		WriteString_16(84+80+80+80+80+18, 271-20, " 2/2",  0);
     
-    }
+    }else if(value==2){
+		if(Jk516save.Sys_Setvalue.lanage)
+        {
+            WriteString_16(84+18, 271-40, "MEAS",  0);
+            WriteString_16(84+18, 271-20, "DISP",  0);
+            WriteString_16(84+80+18, 271-40, "MEAS",  0);
+            WriteString_16(84+80+18, 271-20, "SETUP",  0);
+            WriteString_16(84+80+80+18, 271-40, " SYS",  0);
+            WriteString_16(84+80+80+18, 271-20, "SETUP",  0);
+            WriteString_16(84+80+80+80+18, 271-40, "SYS",  0);
+            WriteString_16(84+80+80+80+18, 271-20, "INFO",  0);
+			WriteString_16(84+80+80+80+80+18, 271-40, "SYS",  0);
+            WriteString_16(84+80+80+80+80+18, 271-20, "UPDATE",  0);
+        
+        }
+        else
+        {
+            WriteString_16(84+18, 271-40, "测量",  0);
+            WriteString_16(84+18, 271-20, "显示",  0);
+            WriteString_16(84+80+18, 271-40, "测量",  0);
+            WriteString_16(84+80+18, 271-20, "设置",  0);
+            WriteString_16(84+80+80+18, 271-40, "系统",  0);
+            WriteString_16(84+80+80+18, 271-20, "设置",  0);
+            WriteString_16(84+80+80+80+18, 271-40, "系统",  0);
+            WriteString_16(84+80+80+80+18, 271-20, "信息",  0);
+			WriteString_16(84+80+80+80+80+18, 271-40, "固件",  0);
+			WriteString_16(84+80+80+80+80+18, 271-20, "升级",  0);
+        }
+	}
 
 }
 void Disp_Button_TestSet(uint32_t value)
@@ -2062,14 +2116,14 @@ void Disp_Button_TestSet(uint32_t value)
 	{
 		Colour.Fword=White;
 		Colour.black=LCD_COLOR_TEST_BUTON;
-		WriteString_16(84, 271-40, "测量",  0);
-		WriteString_16(84, 271-20, "显示",  0);
-		WriteString_16(84+80, 271-40, "测量",  0);
-		WriteString_16(84+80, 271-20, "设置",  0);
-		WriteString_16(84+80+80, 271-40, "系统",  0);
-		WriteString_16(84+80+80, 271-20, "设置",  0);
-		WriteString_16(84+80+80+80, 271-40, "系统",  0);
-		WriteString_16(84+80+80+80, 271-20, "信息",  0);
+		WriteString_16(84+18, 271-40, "测量",  0);
+		WriteString_16(84+18, 271-20, "显示",  0);
+		WriteString_16(84+80+18, 271-40, "测量",  0);
+		WriteString_16(84+80+18, 271-20, "设置",  0);
+		WriteString_16(84+80+80+18, 271-40, "系统",  0);
+		WriteString_16(84+80+80+18, 271-20, "设置",  0);
+		WriteString_16(84+80+80+80+18, 271-40, "系统",  0);
+		WriteString_16(84+80+80+80+18, 271-20, "信息",  0);
 //		WriteString_16(84+80+80+80+80, 271-40, "更多",  0);
 //		WriteString_16(84+80+80+80+80, 271-20, " 1/2",  0);
 	}
@@ -2077,14 +2131,14 @@ void Disp_Button_TestSet(uint32_t value)
     {
         Colour.Fword=White;
 		Colour.black=LCD_COLOR_TEST_BUTON;
-		WriteString_16(84, 271-40, "文件",  0);
-		WriteString_16(84, 271-20, "管理",  0);
-		WriteString_16(84+80, 271-40, "系统",  0);
-		WriteString_16(84+80, 271-20, "设置",  0);
-        WriteString_16(84+80+80, 271-30, "工具",  0);
+		WriteString_16(84+18, 271-40, "文件",  0);
+		WriteString_16(84+18, 271-20, "管理",  0);
+		WriteString_16(84+8+180, 271-40, "系统",  0);
+		WriteString_16(84+80+18, 271-20, "设置",  0);
+        WriteString_16(84+80+80+18, 271-30, "工具",  0);
 //		WriteString_16(84+80+80, 271-20, "设置",  0);
-        WriteString_16(84+80+80+80+80, 271-40, "更多",  0);
-		WriteString_16(84+80+80+80+80, 271-20, " 2/2",  0);
+        WriteString_16(84+80+80+80+80+18, 271-40, "更多",  0);
+		WriteString_16(84+80+80+80+80+18, 271-20, " 2/2",  0);
     
     
     }
@@ -2310,7 +2364,7 @@ void Disp_Test_value(u8 num)
                     pt=Test_Tirpvalue;
                 
                 }
-				for(i=0;i<2;i++)
+				for(i=0;i<4;i++)
 				WriteString_16(BUTTOM_X_VALUE+i*BUTTOM_MID_VALUE, BUTTOM_Y_VALUE, pt[i],  0);
 				
 				
@@ -2484,6 +2538,7 @@ void DispSet_value(u8 keynum)
 {
 	vu32 i;
     const u8 (*pt)[7];
+	const u8 (*pt1)[8];
     const u8 (*ppt)[11];
 	vu32 Black_Select;
 	Black_Select=(keynum==1)?1:0;
@@ -2759,7 +2814,7 @@ void DispSet_value(u8 keynum)
 	switch(keynum)
 	{
 		case 0:
-				Disp_Button_value1(0);
+				Disp_Button_value1(2);
 			break;
 		case 1:
 			
@@ -2775,7 +2830,7 @@ void DispSet_value(u8 keynum)
                     pt=Test_Tirpvalue;
                 
                 }
-				for(i=0;i<2;i++)
+				for(i=0;i<4;i++)
 				WriteString_16(BUTTOM_X_VALUE+i*BUTTOM_MID_VALUE, BUTTOM_Y_VALUE, pt[i],  0);
 				
 //				
@@ -2901,18 +2956,38 @@ void DispSet_value(u8 keynum)
 			Colour.black=LCD_COLOR_TEST_BUTON;
             if(Jk516save.Sys_Setvalue.lanage)
             {
-                pt=Setup_Beep_E;
+				if(Jk516save.Set_Data.openbeep==1)
+				{
+					pt=Setup_Beep_E;
+				}else{
+					pt1=Setup_Beep_E1;
+				}
             
             }
             else
             {
-                pt=Setup_Beep;
+				if(Jk516save.Set_Data.openbeep==1)
+				{
+					pt=Setup_Beep;
+				}else{
+					pt1=Setup_Beep1;
+				}
+                
             
             }
-			for(i=0;i<3;i++)
+			if(Jk516save.Set_Data.openbeep==1)
 			{
-				
-				WriteString_16(BUTTOM_X_VALUE+i*BUTTOM_MID_VALUE, BUTTOM_Y_VALUE, pt[i],  0);
+				for(i=0;i<4;i++)
+				{
+					
+					WriteString_16(BUTTOM_X_VALUE+i*BUTTOM_MID_VALUE, BUTTOM_Y_VALUE, pt[i],  0);
+				}
+			}else{
+				for(i=0;i<4;i++)
+				{
+					
+					WriteString_16(BUTTOM_X_VALUE+i*BUTTOM_MID_VALUE, BUTTOM_Y_VALUE, pt1[i],  0);
+				}
 			}
 			break;
 		case 9:

@@ -527,6 +527,7 @@ typedef struct
 	vu8 Range;
     vu8 Range_Set;
 	vu8 beep;
+	vu8 openbeep;
 	Sort_TypeDef Nominal_Res;
 	Sort_TypeDef High_Res;
 	Sort_TypeDef Nominal_V;

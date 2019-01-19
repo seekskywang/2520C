@@ -45,6 +45,7 @@ u32 Tick_10ms=0;
 extern void USB_OTG_BSP_TimerIRQ (void);
 static void MODS_03H(void);
 static void MODS_06H(void);
+static void RemTrig(void);
 //extern void Read__Convert_read(void);
 /** @addtogroup STM32F429I_DISCOVERY_Examples
   * @{
@@ -421,6 +422,10 @@ void RecHandle(void)
         {
             MODS_06H();
         }break;
+		case 0x54:
+		{
+			RemTrig();
+		}
         default:break;
     }
 }
@@ -544,6 +549,11 @@ static uint8_t MODS_ReadRegValue(uint16_t reg_addr, uint8_t *reg_value)
 	reg_value[1] = value;
 
 	return 1;											/* ???? */
+}
+
+static void RemTrig(void)
+{
+	test_start = 1;
 }
 
 static void MODS_03H(void)
