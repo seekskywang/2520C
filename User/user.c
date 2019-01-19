@@ -1060,16 +1060,54 @@ void Check_Parameter_Limit(void)
 u8 Pga_value[]={0x30,0x34,0x32,0x20,0x28,0x08,0x09};
 void Range_Control(u8 dat,u8 V_Range)
 {
+//    u8 buff;
+//    RangeChange_Flag=1;
+//    cpld_buff[0]=0xaa;
+//    if(dat>RANGE_MAX)
+//        dat=RANGE_MAX;
+//    buff=Pga_value[dat];
+//    if(open_flag==1||dat==6)
+//       buff|=0x01;
+//    else
+//        buff&=0xfe;
+//  
+//    if(dat<5)
+//        buff|=0x40;    
+//    if(V_Range)
+//    {
+//        buff|=0x20;
+//    
+//    }
+//    else
+//        buff&=0xdf;
+//    if(open_flag)   //开路 
+//        buff|=0x80;
+//    else
+//        buff&=0x7f;
+//    cpld_buff[1]=buff;
+//    Send_To_Cpld(cpld_buff,2);
+//    delay_ms(120);
     u8 buff;
     RangeChange_Flag=1;
     cpld_buff[0]=0xaa;
     if(dat>RANGE_MAX)
         dat=RANGE_MAX;
     buff=Pga_value[dat];
+    if(Jk516save.Set_Data.Range_Set==0)//自动
+    {
     if(open_flag==1||dat==6)
        buff|=0x01;
     else
         buff&=0xfe;
+    }
+    else
+    {
+        if(dat==6)
+           buff|=0x01;
+        else
+            buff&=0xfe;
+    
+    }
   
     if(dat<5)
         buff|=0x40;    
@@ -1080,10 +1118,10 @@ void Range_Control(u8 dat,u8 V_Range)
     }
     else
         buff&=0xdf;
-    if(open_flag)   //开路 
-        buff|=0x80;
-    else
-        buff&=0x7f;
+//    if(open_flag)   //开路 
+//        buff|=0x80;
+//    else
+//        buff&=0x7f;
     cpld_buff[1]=buff;
     Send_To_Cpld(cpld_buff,2);
     delay_ms(120);
