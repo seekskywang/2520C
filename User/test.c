@@ -517,7 +517,7 @@ void Setup_Process(void)
 								SetSystemStatus(SYS_STATUS_SYSSET);
 							break;
 						case 1:
-                           // Jk516save.Set_Data.trip=2;//快速
+                            Jk516save.Set_Data.trip=2;//快速
 							break;
 						case 2:
                             Jk516save.Set_Data.speed=2;
@@ -561,7 +561,7 @@ void Setup_Process(void)
 								SetSystemStatus(SYS_STATUS_SYS);
 							break;
 						case 1:
-                            //Jk516save.Set_Data.trip=3;//极速
+                            Jk516save.Set_Data.trip=3;//极速
 							
 									
 							break;
