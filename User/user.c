@@ -363,8 +363,8 @@ const uint8_t BiasButton_Tip[][7+1]=  //频率选择时候的下面的提示符号
 
 const uint8_t Sys_Sys[][20+1]=
 {
-	{"仪器型号  JK2520C"},
-	{"软件版本  Ver:1.5"},
+	{"仪器型号  JK18650"},
+	{"软件版本  Ver:1.0"},
 	{"硬件版本  Ver:1.1"},
 	{"仪器编号"},
 //	{"账号    "},
@@ -374,8 +374,8 @@ const uint8_t Sys_Sys[][20+1]=
 };
 const uint8_t Sys_Sys_E[][20+1]=
 {
-	{"INST MODEL  JK2520C"},
-	{"SOFT VER   Ver:1.5"},
+	{"INST MODEL  JK18650"},
+	{"SOFT VER   Ver:1.0"},
 	{"HARD VER   Ver:1.1"},
 	{"SERIALNO"},
 //	{"账号    "},
@@ -1893,7 +1893,7 @@ void Disp_Open(void)
 		Beep_Off();
 	//    Beep_Out(0);
 		LCD_DrawFullRect(SORTING_XDISP, SORTING_Y_DISP, 60, 22);
-		LCD_ShowFontCN_40_55(60+40*6,92,40,55, (uint8_t*)Out_Assic+14*40*55/8);
+		LCD_ShowFontCN_40_55(60+40*6,92,40,55, (uint8_t*)Out_Assic+17*40*55/8);
 	}
     //WriteString_16 ( TESTVALUE_X, SORTING_Y_DISP+30, "RV_OPEN",0 ); 
     Colour.black=colour;
@@ -4181,8 +4181,8 @@ void Disp_button_Num_time(void)
 	Colour.black=LCD_COLOR_TEST_BUTON;
 	Colour.Fword=White;
 	WriteString_16(84, 271-30, " mΩ  ",  0);
-	WriteString_16(84+80, 271-30, " Ω ",  0);
-    WriteString_16(84+80+80, 271-30, "kΩ ",  0);
+//	WriteString_16(84+80, 271-30, " Ω ",  0);
+//    WriteString_16(84+80+80, 271-30, "kΩ ",  0);
 
 
 }
@@ -4597,9 +4597,9 @@ Sort_TypeDef Time_Set_Cov(Sort_TypeDef *Time)
 	
 	}else if(value>=(float)3e6)
 	{
-		Time->Num=value/(float)1000;
-		Time->Dot=4;
-		Time->Unit=1;
+		Time->Num=30000000/(float)1000;
+		Time->Dot=2;
+		Time->Unit=0;
 	
 	
 	}else if(value>=(float)3e5)
@@ -4660,9 +4660,9 @@ Sort_TypeDef Input_Set_Cov(Sort_TypeDef *Input_Ref)//
 //	}
 	value=(float)Input_Ref->Num*1000000;
 	value/=(pow(10,7-Input_Ref->Dot));
-	if(value>12000000)
+	if(value>600000)
 	{
-		value=12000000;
+		value=600000;
 		
 		
 	}

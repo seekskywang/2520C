@@ -538,7 +538,7 @@ void Setup_Process(void)
                             
                             Jk516save.Set_Data.Range_Set=2;//增加档位选择的计算
                             Range=Jisuan_Range(Jk516save.Set_Data.Nominal_Res);
-                            Jk516save.Set_Data.Range=Range;
+                            Jk516save.Set_Data.Range=1;
                             Range_Control(Range,V_Range);
 							//Jk516save.Set_Data.Range=11;//当前量程计算量程位置
 							break;
@@ -584,7 +584,7 @@ void Setup_Process(void)
 							break;
 						case 7:
                             Jk516save.Set_Data.Range_Set=1;
-                            if(Jk516save.Set_Data.Range<RANGE_MAX)
+                            if(Jk516save.Set_Data.Range<1)
                                 Jk516save.Set_Data.Range++;
                             else
                                 Jk516save.Set_Data.Range=0;
@@ -615,7 +615,7 @@ void Setup_Process(void)
                             if(Jk516save.Set_Data.Range)
 							Jk516save.Set_Data.Range--;
                             else
-                                Jk516save.Set_Data.Range=RANGE_MAX;
+                                Jk516save.Set_Data.Range=1;
                                 
                             Range=Jk516save.Set_Data.Range;
 						break;
@@ -1052,7 +1052,7 @@ void Test_Process(void)
            {
                if(Jk516save.Set_Data.Range_Set==0)
                {
-                   Range=6;
+                   Range=1;
                     
                }
                else
@@ -1175,13 +1175,21 @@ void Test_Process(void)
                         test_start=0;
                         Test_Value_V=V_Datacov(V_ad ,V_Range);//把数据的小数点和单位 和极性都加上
                         Test_Value=Datacov(I_ad,Range);
+						
+                        RemoteR = (float)Test_Value.res/pow(10,Test_Value.dot);
+						RemoteV = (float)Test_Value_V.res/10000;
+						if((Range == 1 && RemoteR > 300) || RemoteV > 6 || Range > 1)
+						{
+							Disp_Open();
+							open_flag=1;
+						}else{
+							Disp_Testvalue(Test_Value,Test_Value_V,0);//显示电阻和电压
+						}
                         
-                        Disp_Testvalue(Test_Value,Test_Value_V,0);//显示电阻和电压
 						
 						if(Jk516save.Set_Data.trip==3)//若远程触发，发送数据到上位机
 						{
-							RemoteR = (float)Test_Value.res/pow(10,Test_Value.dot);
-							RemoteV = (float)Test_Value_V.res/10000;
+							
 						
 							if(Test_Value.uint == 0)
 							{
@@ -1212,7 +1220,7 @@ void Test_Process(void)
                         color=Colour.black;
                         //下面是分选
                        
-                        if(Jk516save.Set_Data.Res_comp==1&&Jk516save.Set_Data.V_comp==1)
+                        if(Jk516save.Set_Data.Res_comp==1&&Jk516save.Set_Data.V_comp==1 && open_flag == 0)
                         {
                              
                             Colour.black=LCD_COLOR_RED;
@@ -1256,7 +1264,7 @@ void Test_Process(void)
                          Colour.black=color;
                         }
                         else
-                            if(Jk516save.Set_Data.Res_comp==1)
+                            if(Jk516save.Set_Data.Res_comp==1 && open_flag == 0)
                             {
                                 if(test_Rsorting)//不合格
                                 {
@@ -1281,7 +1289,7 @@ void Test_Process(void)
                             LCD_DrawFullRect(SORTING_XDISP, SORTING_Y_DISP, 60, 22);    
                             WriteString_16(SORTING_XDISP, SORTING_Y_DISP, DispBuf,  0);
                             
-                            }else if(Jk516save.Set_Data.V_comp==1)
+                            }else if(Jk516save.Set_Data.V_comp==1 && open_flag == 0)
                             {
                                 if(test_Vsorting)//不合格
                                 {
@@ -1498,7 +1506,7 @@ void Test_Process(void)
 								case 4:
 									//Jk516save.Set_Data.Range=10;//0  自动  10   最佳量程
 									Jk516save.Set_Data.Range_Set=1;
-									Jk516save.Set_Data.Range=Range;
+									Jk516save.Set_Data.Range=1;
 								//Range=
 
 									break;
@@ -1526,7 +1534,7 @@ void Test_Process(void)
 									//Jk516save.Set_Data.Range=Jk516save.Set_Data.Range>=RANGE_MAX? 0:Jk516save.Set_Data.Range++;
 									Jk516save.Set_Data.Range_Set=2;//增加档位选择的计算
 									Range=Jisuan_Range(Jk516save.Set_Data.Nominal_Res);
-									Jk516save.Set_Data.Range=Range;
+									Jk516save.Set_Data.Range=1;
 									Range_Control(Range,V_Range);
 									
 
@@ -1553,7 +1561,7 @@ void Test_Process(void)
 							   
 								case 4:
 									//Jk516save.Set_Data.Range=Jk516save.Set_Data.Range>0? Jk516save.Set_Data.Range--:RANGE_MAX;
-									if(Range>=RANGE_MAX)
+									if(Range>=1)
 										Range=0;
 									else
 										Range++;
