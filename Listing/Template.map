@@ -906,6 +906,7 @@ Section Cross References
     gpio.o(i.All_LedOff) refers to gpio.o(i.Trip_Off) for Trip_Off
     gpio.o(i.Beep_Off) refers to stm32f4xx_gpio.o(i.GPIO_ResetBits) for GPIO_ResetBits
     gpio.o(i.Beep_On) refers to stm32f4xx_gpio.o(i.GPIO_SetBits) for GPIO_SetBits
+    gpio.o(i.Close_Compled) refers to stm32f4xx_gpio.o(i.GPIO_SetBits) for GPIO_SetBits
     gpio.o(i.Close_Compled) refers to stm32f4xx_gpio.o(i.GPIO_ResetBits) for GPIO_ResetBits
     gpio.o(i.Disable_Extiint) refers to stm32f4xx_exti.o(i.EXTI_Init) for EXTI_Init
     gpio.o(i.EXTI_Ads1251_Config) refers to stm32f4xx_gpio.o(i.GPIO_Init) for GPIO_Init
