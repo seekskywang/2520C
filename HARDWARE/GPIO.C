@@ -310,10 +310,19 @@ void Led_Fail_On(void)//ºÏ¸ñµÆ
 }
 void Close_Compled(void)
 {
+//    GPIO_ResetBits(GPIOH,GPIO_Pin_10);
+//    GPIO_ResetBits(GPIOC,GPIO_Pin_13);
+//	GPIO_ResetBits(GPIOE,GPIO_Pin_2);
+//    GPIO_ResetBits(GPIOA,GPIO_Pin_0);
+	//	GPIO_SetBits(GPIOH,GPIO_Pin_10);
+    GPIO_SetBits(GPIOC,GPIO_Pin_13);
+//	GPIO_SetBits(GPIOE,GPIO_Pin_2);
+    GPIO_SetBits(GPIOA,GPIO_Pin_0);
     GPIO_ResetBits(GPIOH,GPIO_Pin_10);
-    GPIO_ResetBits(GPIOC,GPIO_Pin_13);
+//    GPIO_ResetBits(GPIOC,GPIO_Pin_13);
 	GPIO_ResetBits(GPIOE,GPIO_Pin_2);
-    GPIO_ResetBits(GPIOA,GPIO_Pin_0);
+//    GPIO_ResetBits(GPIOA,GPIO_Pin_0);
+
 
 
 }

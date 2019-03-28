@@ -27,29 +27,43 @@ Project File Date:  01/08/2019
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target '¹¤³ÌÄ£°å'
-compiling test.c...
-..\..\User\test.c(118): error:  #20: identifier "gImage_open" is undefined
-      lcd_image((uint8_t *)gImage_open);
-..\..\User\test.c(835): warning:  #223-D: function "Read_ExtTrig" declared implicitly
-                Extrigflag = Read_ExtTrig();
-..\..\User\test.c(1104): warning:  #223-D: function "uart1SendChars" declared implicitly
-                                    uart1SendChars("+0.0000E+0,+0.0000E+0+",22);
-..\..\User\test.c(1141): warning:  #223-D: function "uart1SendChars" declared implicitly
-                                                  uart1SendChars("+0.0000E+0,+0.0000E+0+",22);
-..\..\User\test.c(1197): warning:  #223-D: function "uart1SendChars" declared implicitly
-                                                        uart1SendChars(sendbuf,sizeof(sendbuf));
-..\..\User\test.c(742): warning:  #177-D: variable "oldskip"  was declared but never referenced
-        static u32 oldskip;
-..\..\User\test.c(745): warning:  #177-D: variable "csendlen"  was declared but never referenced
-        u8 csendlen;
-..\..\User\test.c: 6 warnings, 1 error
-compiling bsp_lcd.c...
-..\..\User\hzk.h(1100): warning:  #375-D: declaration requires a typedef name
-  };
-..\..\HARDWARE\lcd\bsp_lcd.c(759): error:  #75: operand of "*" must be a pointer
-        *pDst = color; 
-..\..\HARDWARE\lcd\bsp_lcd.c: 1 warning, 1 error
-"..\..\Output\Template.axf" - 2 Error(s), 7 Warning(s).
+compiling stm32f4xx_it.c...
+..\..\User\stm32f4xx_it.c(328): warning:  #177-D: variable "dat"  was declared but never referenced
+        u8 dat;
+..\..\User\stm32f4xx_it.c(407): warning:  #177-D: variable "crec"  was declared but never referenced
+      u8 crec[6];
+..\..\User\stm32f4xx_it.c(408): warning:  #177-D: variable "csend"  was declared but never referenced
+      u8 *csend;
+..\..\User\stm32f4xx_it.c(409): warning:  #177-D: variable "sendbuf"  was declared but never referenced
+      static u8 *sendbuf;
+..\..\User\stm32f4xx_it.c(410): warning:  #177-D: variable "sendlen"  was declared but never referenced
+      u8 sendlen;
+..\..\User\stm32f4xx_it.c(411): warning:  #177-D: variable "recrc"  was declared but never referenced
+      static u16 recrc;
+..\..\User\stm32f4xx_it.c(412): warning:  #177-D: variable "scrc"  was declared but never referenced
+      static u16 scrc;
+..\..\User\stm32f4xx_it.c(413): warning:  #177-D: variable "i"  was declared but never referenced
+      u8 i;
+..\..\User\stm32f4xx_it.c(647): warning:  #550-D: variable "reg"  was set but never used
+      uint16_t reg;
+..\..\User\stm32f4xx_it.c(648): warning:  #550-D: variable "value"  was set but never used
+        uint16_t value;
+..\..\User\stm32f4xx_it.c(721): warning:  #223-D: function "MODS_Poll" declared implicitly
+          MODS_Poll();
+..\..\User\stm32f4xx_it.c(586): warning:  #177-D: function "MODS_03H"  was declared but never referenced
+  static void MODS_03H(void)
+..\..\User\stm32f4xx_it.c(645): warning:  #177-D: function "MODS_06H"  was declared but never referenced
+  static void MODS_06H(void)
+..\..\User\stm32f4xx_it.c(172): warning:  #177-D: function "MODS_SendAckErr"  was declared but never referenced
+  static void MODS_SendAckErr(uint8_t _ucErrCode)
+..\..\User\stm32f4xx_it.c(192): warning:  #177-D: function "MODS_SendAckOk"  was declared but never referenced
+  static void MODS_SendAckOk(void)
+..\..\User\stm32f4xx_it.c: 15 warnings, 0 errors
+linking...
+Program Size: Code=66348 RO-data=593356 RW-data=480 ZI-data=29744  
+FromELF: creating hex file...
+After Build - User command #1: D:\Keil_v5\ARM\ARMCC\bin\fromelf.exe --bin -o ..\..\Output\Template.bin ..\..\Output\Template.axf
+"..\..\Output\Template.axf" - 0 Error(s), 15 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -63,8 +77,7 @@ Package Vendor: Keil
   D:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.12.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
 
 <h2>Collection of Component Files used:</h2>
-Target not created.
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:03
 </pre>
 </body>
 </html>

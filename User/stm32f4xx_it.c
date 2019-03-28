@@ -412,22 +412,54 @@ void RecHandle(void)
     static u16 scrc;
     u8 i;
     
-    switch(g_tModS.RxBuf[1])
-    {
-        case 0x03:
-        {
-            MODS_03H();
-        }break;
-        case 0x06:
-        {
-            MODS_06H();
-        }break;
-		case 0x54:
-		{
-			RemTrig();
-		}
-        default:break;
-    }
+	if(g_tModS.RxBuf[0] == '*' && g_tModS.RxBuf[1] == 'T' && g_tModS.RxBuf[2] == 'R' && g_tModS.RxBuf[3] == 'G')
+	{
+		RemTrig();//触发并返回数据命令
+	}else if(g_tModS.RxBuf[0] == '*' && g_tModS.RxBuf[1] == 'D' && g_tModS.RxBuf[2] == 'I' && g_tModS.RxBuf[3] == 'S'
+	    && g_tModS.RxBuf[4] == 'P' && g_tModS.RxBuf[5] == ':' && g_tModS.RxBuf[6] == 'M' && g_tModS.RxBuf[7] == 'E'
+	    && g_tModS.RxBuf[8] == 'A' && g_tModS.RxBuf[9] == 'S')
+	{
+		SetSystemStatus(SYS_STATUS_TEST);//测量显示界面
+	}else if(g_tModS.RxBuf[0] == '*' && g_tModS.RxBuf[1] == 'D' && g_tModS.RxBuf[2] == 'I' && g_tModS.RxBuf[3] == 'S'
+	    && g_tModS.RxBuf[4] == 'P' && g_tModS.RxBuf[5] == ':' && g_tModS.RxBuf[6] == 'S' && g_tModS.RxBuf[7] == 'E'
+	    && g_tModS.RxBuf[8] == 'T' && g_tModS.RxBuf[9] == 'U')
+	{
+		SetSystemStatus(SYS_STATUS_SETUP);//测量设置界面
+	}else if(g_tModS.RxBuf[0] == '*' && g_tModS.RxBuf[1] == 'D' && g_tModS.RxBuf[2] == 'I' && g_tModS.RxBuf[3] == 'S'
+	    && g_tModS.RxBuf[4] == 'P' && g_tModS.RxBuf[5] == ':' && g_tModS.RxBuf[6] == 'S' && g_tModS.RxBuf[7] == 'S'
+	    && g_tModS.RxBuf[8] == 'E' && g_tModS.RxBuf[9] == 'T')
+	{
+		SetSystemStatus(SYS_STATUS_SYSSET);//系统设置界面
+	}else if(g_tModS.RxBuf[0] == '*' && g_tModS.RxBuf[1] == 'D' && g_tModS.RxBuf[2] == 'I' && g_tModS.RxBuf[3] == 'S'
+	    && g_tModS.RxBuf[4] == 'P' && g_tModS.RxBuf[5] == ':' && g_tModS.RxBuf[6] == 'S' && g_tModS.RxBuf[7] == 'I'
+	    && g_tModS.RxBuf[8] == 'N' && g_tModS.RxBuf[9] == 'F')
+	{
+		Sys_Process();//系统信息界面
+	}else if(g_tModS.RxBuf[0] == '*' && g_tModS.RxBuf[1] == 'D' && g_tModS.RxBuf[2] == 'I' && g_tModS.RxBuf[3] == 'S'
+	    && g_tModS.RxBuf[4] == 'P' && g_tModS.RxBuf[5] == ':' && g_tModS.RxBuf[6] == 'S' && g_tModS.RxBuf[7] == 'I'
+	    && g_tModS.RxBuf[8] == 'N' && g_tModS.RxBuf[9] == 'F')
+	{
+		Sys_Process();//系统信息界面
+	}
+	
+	
+	
+//    switch(g_tModS.RxBuf[1])
+//    {
+//        case 0x03:
+//        {
+//            MODS_03H();
+//        }break;
+//        case 0x06:
+//        {
+//            MODS_06H();
+//        }break;
+//		case 0x54:
+//		{
+//			RemTrig();
+//		}
+//        default:break;
+//    }
 }
 
 static uint8_t MODS_ReadRegValue(uint16_t reg_addr, uint8_t *reg_value)
