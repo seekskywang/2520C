@@ -1887,14 +1887,35 @@ void Disp_Open(void)
     }
 	Test_Value.res = 0;
 	Test_Value_V.res = 0;
-	if(Jk516save.Set_Data.openbeep == 0)
+	if(Jk516save.Set_Data.V_comp==1 || Jk516save.Set_Data.Res_comp==1)
 	{
+		if(Jk516save.Set_Data.openbeep == 0)
+		{
+			Close_Compled();
+			Beep_Off();
+		//    Beep_Out(0);
+			LCD_DrawFullRect(SORTING_XDISP, SORTING_Y_DISP, 60, 22);
+			LCD_ShowFontCN_40_55(60+40*6,92,40,55, (uint8_t*)Out_Assic+14*40*55/8);
+		}else{
+			Colour.black=LCD_COLOR_RED;
+			Beep_Out(1);
+			Led_Fail_On();
+			memcpy(DispBuf,"RV FL",5);
+			Send_ComBuff.comp=3;                                   
+			memcpy((void *)Send_To_U.comp,DispBuf,5);
+			DispBuf[5]=0;
+			LCD_DrawFullRect(SORTING_XDISP, SORTING_Y_DISP, 60, 22);
+			WriteString_16(SORTING_XDISP, SORTING_Y_DISP, DispBuf,  0);
+		}
+	}else{
 		Close_Compled();
-		Beep_Off();
-	//    Beep_Out(0);
 		LCD_DrawFullRect(SORTING_XDISP, SORTING_Y_DISP, 60, 22);
 		LCD_ShowFontCN_40_55(60+40*6,92,40,55, (uint8_t*)Out_Assic+14*40*55/8);
 	}
+//	if(Jk516save.Set_Data.V_comp==0)
+//	{
+//		Close_Compled();
+//	}
     //WriteString_16 ( TESTVALUE_X, SORTING_Y_DISP+30, "RV_OPEN",0 ); 
     Colour.black=colour;
     Disp_Range(Jk516save.Set_Data.Range_Set,Range);

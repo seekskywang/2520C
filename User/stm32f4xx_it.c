@@ -412,122 +412,122 @@ void RecHandle(void)
     static u16 scrc;
     u8 i;
     
-	if(g_tModS.RxBuf[0] == 'T' && g_tModS.RxBuf[1] == 'R' && g_tModS.RxBuf[2] == 'G')
-	{
-		RemTrig();//触发并返回数据命令
-	}else if(g_tModS.RxBuf[0] == 'D' && g_tModS.RxBuf[1] == 'I' && g_tModS.RxBuf[2] == 'S'
-	    && g_tModS.RxBuf[3] == 'P' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'M' && g_tModS.RxBuf[6] == 'E'
-	    && g_tModS.RxBuf[7] == 'A' && g_tModS.RxBuf[8] == 'S')
-	{
-		SetSystemStatus(SYS_STATUS_TEST);//测量显示界面
-	}else if(g_tModS.RxBuf[0] == 'D' && g_tModS.RxBuf[1] == 'I' && g_tModS.RxBuf[2] == 'S'
-	    && g_tModS.RxBuf[3] == 'P' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'S' && g_tModS.RxBuf[6] == 'E'
-	    && g_tModS.RxBuf[7] == 'T' && g_tModS.RxBuf[8] == 'U')
-	{
-		SetSystemStatus(SYS_STATUS_SETUP);//测量设置界面
-	}else if(g_tModS.RxBuf[0] == 'D' && g_tModS.RxBuf[1] == 'I' && g_tModS.RxBuf[2] == 'S'
-	    && g_tModS.RxBuf[3] == 'P' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'S' && g_tModS.RxBuf[6] == 'Y'
-	    && g_tModS.RxBuf[7] == 'S' && g_tModS.RxBuf[8] == 'T')
-	{
-		SetSystemStatus(SYS_STATUS_SYSSET);//系统设置界面
-	}else if(g_tModS.RxBuf[0] == 'D' && g_tModS.RxBuf[1] == 'I' && g_tModS.RxBuf[2] == 'S'
-	    && g_tModS.RxBuf[3] == 'P' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'S' && g_tModS.RxBuf[6] == 'I'
-	    && g_tModS.RxBuf[7] == 'N' && g_tModS.RxBuf[8] == 'F')
-	{
-		Sys_Process();//系统信息界面
-	}else if(g_tModS.RxBuf[0] == 'D' && g_tModS.RxBuf[1] == 'I' && g_tModS.RxBuf[2] == 'S'
-	    && g_tModS.RxBuf[3] == 'P' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'P' && g_tModS.RxBuf[6] == 'A'
-	    && g_tModS.RxBuf[7] == 'G' && g_tModS.RxBuf[8] == 'E' && g_tModS.RxBuf[9] == '?')
-	{
-		if(GetSystemStatus() == SYS_STATUS_TEST)
-		{
-			uart1SendChars("meas",4);
-		}else if(GetSystemStatus() == SYS_STATUS_SETUP){
-			uart1SendChars("setu",4);
-		}else if(GetSystemStatus() == SYS_STATUS_SYSSET){
-			uart1SendChars("syst",4);
-		}else if(GetSystemStatus() == SYS_STATUS_SYS){
-			uart1SendChars("sinf",4);
-		}//查询当前页面
-	}else if(g_tModS.RxBuf[0] == 'F' && g_tModS.RxBuf[1] == 'U' && g_tModS.RxBuf[2] == 'N'
-	     && g_tModS.RxBuf[3] == 'C' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'R' && g_tModS.RxBuf[6] == 'A'
-		 && g_tModS.RxBuf[7] == 'N' && g_tModS.RxBuf[8] == 'G' && g_tModS.RxBuf[9] == ':' && g_tModS.RxBuf[10] == 'M'
-		 && g_tModS.RxBuf[11] == 'O' && g_tModS.RxBuf[12] == 'D' && g_tModS.RxBuf[13] == 'E' && g_tModS.RxBuf[14] == ' '
-		 && g_tModS.RxBuf[15] == 'A' && g_tModS.RxBuf[16] == 'U' && g_tModS.RxBuf[17] == 'T' && g_tModS.RxBuf[18] == 'O')
-	{
-		Jk516save.Set_Data.Range_Set=0;
-		Jk516save.Set_Data.Range=0;//设置量程为自动
-		if(GetSystemStatus() == SYS_STATUS_TEST)
-		{
-			Disp_Test_value(4);
-		}else if(GetSystemStatus() == SYS_STATUS_SETUP){
-			DispSet_value(7);
-		}
-	}else if(g_tModS.RxBuf[0] == 'F' && g_tModS.RxBuf[1] == 'U' && g_tModS.RxBuf[2] == 'N'
-	     && g_tModS.RxBuf[3] == 'C' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'R' && g_tModS.RxBuf[6] == 'A'
-		 && g_tModS.RxBuf[7] == 'N' && g_tModS.RxBuf[8] == 'G' && g_tModS.RxBuf[9] == ':' && g_tModS.RxBuf[10] == 'M'
-		 && g_tModS.RxBuf[11] == 'O' && g_tModS.RxBuf[12] == 'D' && g_tModS.RxBuf[13] == 'E' && g_tModS.RxBuf[14] == ' '
-		 && g_tModS.RxBuf[15] == 'H' && g_tModS.RxBuf[16] == 'O' && g_tModS.RxBuf[17] == 'L' && g_tModS.RxBuf[18] == 'D')
-	{
-		Jk516save.Set_Data.Range_Set=1;
-		Jk516save.Set_Data.Range=Range;//设置量程为手动
-		if(GetSystemStatus() == SYS_STATUS_TEST)
-		{
-			Disp_Test_value(4);
-		}else if(GetSystemStatus() == SYS_STATUS_SETUP){
-			DispSet_value(7);
-		}
-	}else if(g_tModS.RxBuf[0] == 'F' && g_tModS.RxBuf[1] == 'U' && g_tModS.RxBuf[2] == 'N'
-	     && g_tModS.RxBuf[3] == 'C' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'R' && g_tModS.RxBuf[6] == 'A'
-		 && g_tModS.RxBuf[7] == 'N' && g_tModS.RxBuf[8] == 'G' && g_tModS.RxBuf[9] == ':' && g_tModS.RxBuf[10] == 'M'
-		 && g_tModS.RxBuf[11] == 'O' && g_tModS.RxBuf[12] == 'D' && g_tModS.RxBuf[13] == 'E' && g_tModS.RxBuf[14] == ' '
-		 && g_tModS.RxBuf[15] == 'N' && g_tModS.RxBuf[16] == 'O' && g_tModS.RxBuf[17] == 'M')
-	{
-		Jk516save.Set_Data.Range_Set=2;//增加档位选择的计算
-		Range=Jisuan_Range(Jk516save.Set_Data.Nominal_Res);
-		Jk516save.Set_Data.Range=Range;
-		Range_Control(Range,V_Range);//设置量程为标称
-		if(GetSystemStatus() == SYS_STATUS_TEST)
-		{
-			Disp_Test_value(4);
-		}else if(GetSystemStatus() == SYS_STATUS_SETUP){
-			DispSet_value(7);
-		}
-	}else if(g_tModS.RxBuf[0] == 'F' && g_tModS.RxBuf[1] == 'U' && g_tModS.RxBuf[2] == 'N'
-	     && g_tModS.RxBuf[3] == 'C' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'R' && g_tModS.RxBuf[6] == 'A'
-		 && g_tModS.RxBuf[7] == 'N' && g_tModS.RxBuf[8] == 'G' && g_tModS.RxBuf[9] == ' ' && g_tModS.RxBuf[10] == '0'
-		 )
-	{
-		Jk516save.Set_Data.Range_Set=2;//增加档位选择的计算
-		Range=Jisuan_Range(Jk516save.Set_Data.Nominal_Res);
-		Jk516save.Set_Data.Range=Range;
-		Range_Control(Range,V_Range);//设置量程为标称
-		if(GetSystemStatus() == SYS_STATUS_TEST)
-		{
-			Disp_Test_value(4);
-		}else if(GetSystemStatus() == SYS_STATUS_SETUP){
-			DispSet_value(7);
-		}
-	}
-	
-	
-	
-//    switch(g_tModS.RxBuf[1])
-//    {
-//        case 0x03:
-//        {
-//            MODS_03H();
-//        }break;
-//        case 0x06:
-//        {
-//            MODS_06H();
-//        }break;
-//		case 0x54:
+//	if(g_tModS.RxBuf[0] == 'T' && g_tModS.RxBuf[1] == 'R' && g_tModS.RxBuf[2] == 'G')
+//	{
+//		RemTrig();//触发并返回数据命令
+//	}else if(g_tModS.RxBuf[0] == 'D' && g_tModS.RxBuf[1] == 'I' && g_tModS.RxBuf[2] == 'S'
+//	    && g_tModS.RxBuf[3] == 'P' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'M' && g_tModS.RxBuf[6] == 'E'
+//	    && g_tModS.RxBuf[7] == 'A' && g_tModS.RxBuf[8] == 'S')
+//	{
+//		SetSystemStatus(SYS_STATUS_TEST);//测量显示界面
+//	}else if(g_tModS.RxBuf[0] == 'D' && g_tModS.RxBuf[1] == 'I' && g_tModS.RxBuf[2] == 'S'
+//	    && g_tModS.RxBuf[3] == 'P' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'S' && g_tModS.RxBuf[6] == 'E'
+//	    && g_tModS.RxBuf[7] == 'T' && g_tModS.RxBuf[8] == 'U')
+//	{
+//		SetSystemStatus(SYS_STATUS_SETUP);//测量设置界面
+//	}else if(g_tModS.RxBuf[0] == 'D' && g_tModS.RxBuf[1] == 'I' && g_tModS.RxBuf[2] == 'S'
+//	    && g_tModS.RxBuf[3] == 'P' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'S' && g_tModS.RxBuf[6] == 'Y'
+//	    && g_tModS.RxBuf[7] == 'S' && g_tModS.RxBuf[8] == 'T')
+//	{
+//		SetSystemStatus(SYS_STATUS_SYSSET);//系统设置界面
+//	}else if(g_tModS.RxBuf[0] == 'D' && g_tModS.RxBuf[1] == 'I' && g_tModS.RxBuf[2] == 'S'
+//	    && g_tModS.RxBuf[3] == 'P' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'S' && g_tModS.RxBuf[6] == 'I'
+//	    && g_tModS.RxBuf[7] == 'N' && g_tModS.RxBuf[8] == 'F')
+//	{
+//		Sys_Process();//系统信息界面
+//	}else if(g_tModS.RxBuf[0] == 'D' && g_tModS.RxBuf[1] == 'I' && g_tModS.RxBuf[2] == 'S'
+//	    && g_tModS.RxBuf[3] == 'P' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'P' && g_tModS.RxBuf[6] == 'A'
+//	    && g_tModS.RxBuf[7] == 'G' && g_tModS.RxBuf[8] == 'E' && g_tModS.RxBuf[9] == '?')
+//	{
+//		if(GetSystemStatus() == SYS_STATUS_TEST)
 //		{
-//			RemTrig();
+//			uart1SendChars("meas",4);
+//		}else if(GetSystemStatus() == SYS_STATUS_SETUP){
+//			uart1SendChars("setu",4);
+//		}else if(GetSystemStatus() == SYS_STATUS_SYSSET){
+//			uart1SendChars("syst",4);
+//		}else if(GetSystemStatus() == SYS_STATUS_SYS){
+//			uart1SendChars("sinf",4);
+//		}//查询当前页面
+//	}else if(g_tModS.RxBuf[0] == 'F' && g_tModS.RxBuf[1] == 'U' && g_tModS.RxBuf[2] == 'N'
+//	     && g_tModS.RxBuf[3] == 'C' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'R' && g_tModS.RxBuf[6] == 'A'
+//		 && g_tModS.RxBuf[7] == 'N' && g_tModS.RxBuf[8] == 'G' && g_tModS.RxBuf[9] == ':' && g_tModS.RxBuf[10] == 'M'
+//		 && g_tModS.RxBuf[11] == 'O' && g_tModS.RxBuf[12] == 'D' && g_tModS.RxBuf[13] == 'E' && g_tModS.RxBuf[14] == ' '
+//		 && g_tModS.RxBuf[15] == 'A' && g_tModS.RxBuf[16] == 'U' && g_tModS.RxBuf[17] == 'T' && g_tModS.RxBuf[18] == 'O')
+//	{
+//		Jk516save.Set_Data.Range_Set=0;
+//		Jk516save.Set_Data.Range=0;//设置量程为自动
+//		if(GetSystemStatus() == SYS_STATUS_TEST)
+//		{
+//			Disp_Test_value(4);
+//		}else if(GetSystemStatus() == SYS_STATUS_SETUP){
+//			DispSet_value(7);
 //		}
-//        default:break;
-//    }
+//	}else if(g_tModS.RxBuf[0] == 'F' && g_tModS.RxBuf[1] == 'U' && g_tModS.RxBuf[2] == 'N'
+//	     && g_tModS.RxBuf[3] == 'C' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'R' && g_tModS.RxBuf[6] == 'A'
+//		 && g_tModS.RxBuf[7] == 'N' && g_tModS.RxBuf[8] == 'G' && g_tModS.RxBuf[9] == ':' && g_tModS.RxBuf[10] == 'M'
+//		 && g_tModS.RxBuf[11] == 'O' && g_tModS.RxBuf[12] == 'D' && g_tModS.RxBuf[13] == 'E' && g_tModS.RxBuf[14] == ' '
+//		 && g_tModS.RxBuf[15] == 'H' && g_tModS.RxBuf[16] == 'O' && g_tModS.RxBuf[17] == 'L' && g_tModS.RxBuf[18] == 'D')
+//	{
+//		Jk516save.Set_Data.Range_Set=1;
+//		Jk516save.Set_Data.Range=Range;//设置量程为手动
+//		if(GetSystemStatus() == SYS_STATUS_TEST)
+//		{
+//			Disp_Test_value(4);
+//		}else if(GetSystemStatus() == SYS_STATUS_SETUP){
+//			DispSet_value(7);
+//		}
+//	}else if(g_tModS.RxBuf[0] == 'F' && g_tModS.RxBuf[1] == 'U' && g_tModS.RxBuf[2] == 'N'
+//	     && g_tModS.RxBuf[3] == 'C' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'R' && g_tModS.RxBuf[6] == 'A'
+//		 && g_tModS.RxBuf[7] == 'N' && g_tModS.RxBuf[8] == 'G' && g_tModS.RxBuf[9] == ':' && g_tModS.RxBuf[10] == 'M'
+//		 && g_tModS.RxBuf[11] == 'O' && g_tModS.RxBuf[12] == 'D' && g_tModS.RxBuf[13] == 'E' && g_tModS.RxBuf[14] == ' '
+//		 && g_tModS.RxBuf[15] == 'N' && g_tModS.RxBuf[16] == 'O' && g_tModS.RxBuf[17] == 'M')
+//	{
+//		Jk516save.Set_Data.Range_Set=2;//增加档位选择的计算
+//		Range=Jisuan_Range(Jk516save.Set_Data.Nominal_Res);
+//		Jk516save.Set_Data.Range=Range;
+//		Range_Control(Range,V_Range);//设置量程为标称
+//		if(GetSystemStatus() == SYS_STATUS_TEST)
+//		{
+//			Disp_Test_value(4);
+//		}else if(GetSystemStatus() == SYS_STATUS_SETUP){
+//			DispSet_value(7);
+//		}
+//	}else if(g_tModS.RxBuf[0] == 'F' && g_tModS.RxBuf[1] == 'U' && g_tModS.RxBuf[2] == 'N'
+//	     && g_tModS.RxBuf[3] == 'C' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'R' && g_tModS.RxBuf[6] == 'A'
+//		 && g_tModS.RxBuf[7] == 'N' && g_tModS.RxBuf[8] == 'G' && g_tModS.RxBuf[9] == ' ' && g_tModS.RxBuf[10] == '0'
+//		 )
+//	{
+//		Jk516save.Set_Data.Range_Set=2;//增加档位选择的计算
+//		Range=Jisuan_Range(Jk516save.Set_Data.Nominal_Res);
+//		Jk516save.Set_Data.Range=Range;
+//		Range_Control(Range,V_Range);//设置量程为标称
+//		if(GetSystemStatus() == SYS_STATUS_TEST)
+//		{
+//			Disp_Test_value(4);
+//		}else if(GetSystemStatus() == SYS_STATUS_SETUP){
+//			DispSet_value(7);
+//		}
+//	}
+	
+	
+	
+    switch(g_tModS.RxBuf[1])
+    {
+        case 0x03:
+        {
+            MODS_03H();
+        }break;
+        case 0x06:
+        {
+            MODS_06H();
+        }break;
+		case 0x54:
+		{
+			RemTrig();
+		}
+        default:break;
+    }
 }
 
 static uint8_t MODS_ReadRegValue(uint16_t reg_addr, uint8_t *reg_value)
@@ -535,6 +535,7 @@ static uint8_t MODS_ReadRegValue(uint16_t reg_addr, uint8_t *reg_value)
     uint16_t value;
 	static u32 sendunit;
 	static u32 sendrvalue;
+	static u32 sendvvalue;
 	
 	switch(Range)
 	{
@@ -575,6 +576,12 @@ static uint8_t MODS_ReadRegValue(uint16_t reg_addr, uint8_t *reg_value)
 		}break;
 		
 	}
+	sendvvalue = Test_Value_V.res;
+	if(open_flag == 1)
+	{
+		sendrvalue = 0xffffffff;	
+		sendvvalue = 0xffffffff;
+	}
 //	lock = 1;
 	switch (reg_addr)									/* ??????? */
 	{
@@ -586,14 +593,14 @@ static uint8_t MODS_ReadRegValue(uint16_t reg_addr, uint8_t *reg_value)
 			break;
 
 		case SLAVE_REG_P02:
-			value = (u16)(Test_Value_V.res >> 16);
+			value = (u16)(sendvvalue >> 16);
 			break;
 		case SLAVE_REG_P03: 
-			value = (u16)(Test_Value_V.res);
+			value = (u16)(sendvvalue);
 			break;
 
 		case SLAVE_REG_P04:
-			value = 0;		/* ??????? */
+			value = Test_Value_V.polar;		/* ??????? */
 			break;
 		case SLAVE_REG_P05:
 			value = sendunit;
