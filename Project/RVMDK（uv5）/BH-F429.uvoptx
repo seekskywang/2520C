@@ -119,6 +119,11 @@
       <TargetDriverDllRegistry>
         <SetRegEntry>
           <Number>0</Number>
+          <Key>PWSTATINFO</Key>
+          <Name>200,50,700</Name>
+        </SetRegEntry>
+        <SetRegEntry>
+          <Number>0</Number>
           <Key>UL2CM3</Key>
           <Name>UL2CM3(-S0 -C0 -P0 ) -FN1 -FC1000 -FD20000000 -FF0STM32F4xx_1024 -FL0100000 -FS08000000 -FP0($$Device:STM32F429IGTx$CMSIS\Flash\STM32F4xx_1024.FLM)</Name>
         </SetRegEntry>
@@ -255,7 +260,6 @@
           <WinNumber>1</WinNumber>
           <ItemText>skipkey</ItemText>
         </Ww>
-<<<<<<< HEAD
         <Ww>
           <count>22</count>
           <WinNumber>1</WinNumber>
@@ -276,8 +280,6 @@
           <WinNumber>1</WinNumber>
           <ItemText>buff</ItemText>
         </Ww>
-=======
->>>>>>> parent of 1d36312... 0411
       </WatchWindow1>
       <MemoryWindow1>
         <Mm>
