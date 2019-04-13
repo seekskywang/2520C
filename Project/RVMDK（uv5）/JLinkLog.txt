@@ -1,21 +1,28 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 T21DC 2904:187 SEGGER J-Link V6.30h Log File (0001ms, 52034ms total)
 T21DC 2904:187 DLL Compiled: Mar 16 2018 18:02:51 (0001ms, 52034ms total)
 T21DC 2904:187 Logging started @ 2019-04-13 16:36 (0001ms, 52034ms total)
 T21DC 2904:188 JLINK_SetWarnOutHandler(...) (0000ms, 52034ms total)
 T21DC 2904:188 JLINK_OpenEx(...)
 =======
+=======
+>>>>>>> parent of 7fd73e5... 1
 T1188 5355:642 SEGGER J-Link V6.30h Log File (0001ms, 79365ms total)
 T1188 5355:642 DLL Compiled: Mar 16 2018 18:02:51 (0001ms, 79365ms total)
 T1188 5355:642 Logging started @ 2019-04-11 13:55 (0001ms, 79365ms total)
 T1188 5355:643 JLINK_SetWarnOutHandler(...) (0000ms, 79365ms total)
 T1188 5355:643 JLINK_OpenEx(...)
+<<<<<<< HEAD
+>>>>>>> parent of 7fd73e5... 1
+=======
 >>>>>>> parent of 7fd73e5... 1
 Firmware: J-Link V9 compiled Apr 20 2018 16:47:26
 Hardware: V9.40
 S/N: 59401576
 Feature(s): RDI, GDB, FlashDL, FlashBP, JFlash
 TELNET listener socket opened on port 19021WEBSRV 
+<<<<<<< HEAD
 <<<<<<< HEAD
 Starting webserver (0099ms, 52133ms total)
 T21DC 2904:188 WEBSRV Webserver running on local port 19080 (0100ms, 52134ms total)
@@ -32938,6 +32945,8 @@ T21DC 2932:584 JLINK_Close() -- CPU is running -- CPU_WriteMem(4 bytes @ 0xE0002
 T21DC 2932:584  (0039ms, 58107ms total)
 T21DC 2932:584 Closed (0039ms, 58107ms total)
 =======
+=======
+>>>>>>> parent of 7fd73e5... 1
 Starting webserver (0096ms, 79461ms total)
 T1188 5355:643 WEBSRV Webserver running on local port 19080 (0096ms, 79461ms total)
 T1188 5355:643   returns O.K. (0097ms, 79462ms total)
@@ -35082,4 +35091,7 @@ T233C 5428:210 JLINK_ReadMemU32(0xE0001058, 0x0001 Items, ...) -- CPU_ReadMem(4 
 T1188 5428:935 JLINK_Close() -- CPU_ReadMem(4 bytes @ 0xE0001000) >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x28 TIF> >0x0D TIF> >0x21 TIF> >0x0D TIF> >0x28 TIF> (0033ms, 81384ms total)
 T1188 5428:935  (0033ms, 81384ms total)
 T1188 5428:935 Closed (0033ms, 81384ms total)
+<<<<<<< HEAD
+>>>>>>> parent of 7fd73e5... 1
+=======
 >>>>>>> parent of 7fd73e5... 1
