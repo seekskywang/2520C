@@ -1069,40 +1069,39 @@ void Test_Process(void)
 		   if(Jk516save.Set_Data.trip==0)
 			{
 				Disp_Open();
-//				if(Jk516save.Set_Data.openbeep == 1)
-//				{
-//					Colour.black=LCD_COLOR_RED;
-//					Beep_Out(1);
-//					Led_Fail_On();
-//					memcpy(DispBuf,"RV FL",5);
-//					Send_ComBuff.comp=3;                                   
-//					memcpy((void *)Send_To_U.comp,DispBuf,5);
-//					DispBuf[5]=0;
-//					LCD_DrawFullRect(SORTING_XDISP, SORTING_Y_DISP, 60, 22);
-//					WriteString_16(SORTING_XDISP, SORTING_Y_DISP, DispBuf,  0);
-//				}
+				if(Jk516save.Set_Data.openbeep == 1)
+				{
+					Colour.black=LCD_COLOR_RED;
+					Beep_Out(1);
+					Led_Fail_On();
+					memcpy(DispBuf,"RV FL",5);
+					Send_ComBuff.comp=3;                                   
+					memcpy((void *)Send_To_U.comp,DispBuf,5);
+					DispBuf[5]=0;
+					LCD_DrawFullRect(SORTING_XDISP, SORTING_Y_DISP, 60, 22);
+					WriteString_16(SORTING_XDISP, SORTING_Y_DISP, DispBuf,  0);
+				}
 			}
 			if(test_start == 1)
 			{
 				Disp_Open();
-//				if(Jk516save.Set_Data.openbeep == 1)
-//				{
-//					Colour.black=LCD_COLOR_RED;
-//					Beep_Out(1);
-//					Led_Fail_On();
-//					memcpy(DispBuf,"RV FL",5);
-//					Send_ComBuff.comp=3;
-//                               
-//					memcpy((void *)Send_To_U.comp,DispBuf,5);
-//					DispBuf[5]=0;
-//					LCD_DrawFullRect(SORTING_XDISP, SORTING_Y_DISP, 60, 22);
-//					WriteString_16(SORTING_XDISP, SORTING_Y_DISP, DispBuf,  0);
-//				}
+				if(Jk516save.Set_Data.openbeep == 1)
+				{
+					Colour.black=LCD_COLOR_RED;
+					Beep_Out(1);
+					Led_Fail_On();
+					memcpy(DispBuf,"RV FL",5);
+					Send_ComBuff.comp=3;
+                               
+					memcpy((void *)Send_To_U.comp,DispBuf,5);
+					DispBuf[5]=0;
+					LCD_DrawFullRect(SORTING_XDISP, SORTING_Y_DISP, 60, 22);
+					WriteString_16(SORTING_XDISP, SORTING_Y_DISP, DispBuf,  0);
+				}
 				test_start = 0;
 				if(Jk516save.Set_Data.trip == 3)
 			    {
-//				    uart1SendChars("+0.0000E+0,+0.0000E+0+",22);
-					uart1SendChars("OPEN",4);
+				    uart1SendChars("+0.0000E+0,+0.0000E+0+",22);
 			    }
 			}
         }
@@ -1139,8 +1138,7 @@ void Test_Process(void)
 					  test_start = 0;
 					  if(Jk516save.Set_Data.trip == 3)
 					  {
-//						  uart1SendChars("+0.0000E+0,+0.0000E+0+",22);
-						  uart1SendChars("OPEN",4);
+						  uart1SendChars("+0.0000E+0,+0.0000E+0+",22);
 					  }
 				  }
                }
@@ -1194,12 +1192,8 @@ void Test_Process(void)
 								sendE = 6;
 							}
 							
-							if(Test_Value_V.polar)
-							{
-								sprintf(sendbuf,"+%.4fE+%d,+%.4fE+0+",RemoteR,sendE,RemoteV);
-							}else{
-								sprintf(sendbuf,"+%.4fE+%d,-%.4fE+0+",RemoteR,sendE,RemoteV);
-							}
+							
+							sprintf(sendbuf,"+%.4fE+%d,+%.4fE+0+",RemoteR,sendE,RemoteV);
 							uart1SendChars(sendbuf,sizeof(sendbuf));
 						}
 						
@@ -1314,7 +1308,7 @@ void Test_Process(void)
                             else
                             {
                                 Close_Compled();
-//                                Beep_Out(0);
+                                Beep_Out(0);
                                 Colour.black=LCD_COLOR_TEST_MID;
                                 LCD_DrawFullRect(SORTING_XDISP, SORTING_Y_DISP, 60, 22);
                             
@@ -1554,7 +1548,7 @@ void Test_Process(void)
 									break;
 							   case 1:
 									Jk516save.Set_Data.trip=3;
-									test_start = 0;
+									
 								break;
 							   
 								case 4:

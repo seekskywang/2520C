@@ -48,23 +48,31 @@ compiling stm32f4xx_it.c...
       static u16 scrc;
 ..\..\User\stm32f4xx_it.c(413): warning:  #177-D: variable "i"  was declared but never referenced
       u8 i;
-..\..\User\stm32f4xx_it.c(727): warning:  #550-D: variable "reg"  was set but never used
+..\..\User\stm32f4xx_it.c(720): warning:  #550-D: variable "reg"  was set but never used
       uint16_t reg;
-..\..\User\stm32f4xx_it.c(728): warning:  #550-D: variable "value"  was set but never used
+..\..\User\stm32f4xx_it.c(721): warning:  #550-D: variable "value"  was set but never used
         uint16_t value;
-..\..\User\stm32f4xx_it.c(801): warning:  #223-D: function "MODS_Poll" declared implicitly
+..\..\User\stm32f4xx_it.c(794): warning:  #223-D: function "MODS_Poll" declared implicitly
           MODS_Poll();
+..\..\User\stm32f4xx_it.c(659): warning:  #177-D: function "MODS_03H"  was declared but never referenced
+  static void MODS_03H(void)
+..\..\User\stm32f4xx_it.c(718): warning:  #177-D: function "MODS_06H"  was declared but never referenced
+  static void MODS_06H(void)
 ..\..\User\stm32f4xx_it.c(172): warning:  #177-D: function "MODS_SendAckErr"  was declared but never referenced
   static void MODS_SendAckErr(uint8_t _ucErrCode)
 ..\..\User\stm32f4xx_it.c(192): warning:  #177-D: function "MODS_SendAckOk"  was declared but never referenced
   static void MODS_SendAckOk(void)
-..\..\User\stm32f4xx_it.c: 13 warnings, 0 errors
+..\..\User\stm32f4xx_it.c: 15 warnings, 0 errors
 linking...
+<<<<<<< HEAD
 Program Size: Code=66644 RO-data=593868 RW-data=492 ZI-data=29748  
 >>>>>>> parent of 7fd73e5... 1
+=======
+Program Size: Code=67308 RO-data=593356 RW-data=480 ZI-data=29744  
+>>>>>>> parent of 1d36312... 0411
 FromELF: creating hex file...
 After Build - User command #1: D:\Keil_v5\ARM\ARMCC\bin\fromelf.exe --bin -o ..\..\Output\Template.bin ..\..\Output\Template.axf
-"..\..\Output\Template.axf" - 0 Error(s), 13 Warning(s).
+"..\..\Output\Template.axf" - 0 Error(s), 15 Warning(s).
 
 <h2>Software Packages used:</h2>
 
