@@ -3794,9 +3794,9 @@
       </Doc>
       <Doc>
         <Name>..\..\User\stm32f4xx_it.c</Name>
-        <ColumnNumber>23</ColumnNumber>
-        <TopLine>510</TopLine>
-        <CurrentLine>523</CurrentLine>
+        <ColumnNumber>40</ColumnNumber>
+        <TopLine>579</TopLine>
+        <CurrentLine>602</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>
