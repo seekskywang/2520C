@@ -1382,10 +1382,10 @@ void Test_Process(void)
                     vu8 copybuff[100];
                     memset((void *)copybuff,0,100);
                     
-                    memcpy ((void *)copybuff,"0:/Testdada/",6);
+                    memcpy ((void *)copybuff,"0:/JK/",6);
                     strcat((char *)copybuff,(char *)Jk516save.Sys_Setvalue.textname);
                     strcat((char *)copybuff,(char *)".xls");
-                    result=f_mkdir("0://Testdada");
+                    result=f_mkdir("0://JK");
                     result = f_open(&file, (char *)copybuff,FA_CREATE_NEW | FA_WRITE );
                          if ( result == FR_OK ) 
                          {
