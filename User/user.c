@@ -363,8 +363,8 @@ const uint8_t BiasButton_Tip[][7+1]=  //频率选择时候的下面的提示符号
 
 const uint8_t Sys_Sys[][20+1]=
 {
-	{"仪器型号  JK2520B+"},
-	{"软件版本  Ver:1.5"},
+	{"仪器型号  JK2520C"},
+	{"软件版本  Ver:1.6"},
 	{"硬件版本  Ver:1.1"},
 	{"仪器编号"},
 //	{"账号    "},
@@ -374,8 +374,8 @@ const uint8_t Sys_Sys[][20+1]=
 };
 const uint8_t Sys_Sys_E[][20+1]=
 {
-	{"INST MODEL  JK2520B+"},
-	{"SOFT VER   Ver:1.5"},
+	{"INST MODEL  JK2520C"},
+	{"SOFT VER   Ver:1.6"},
 	{"HARD VER   Ver:1.1"},
 	{"SERIALNO"},
 //	{"账号    "},
@@ -1291,6 +1291,115 @@ void Range_Changecomp(void)
 			ffit_data1=0;
 			count_ffit=0;
 		}
+//        if(Range_Value_V>RANGE_LIMIT_VHIGH)//高于量程上限Ad_value
+//        {
+//            V_upper=TRUE;//量程过压标志
+//            V_below=FALSE;//量程欠压标志
+//            
+//        }
+//        else if(Range_Value_V<RANGE_LIMIT_VLOW)//低于量程下限
+//        {
+//            V_below=TRUE;//量程低压标志
+//            V_upper=FALSE;//量程欠压标志
+//        }
+//        else
+//        {
+//            V_upper=FALSE;//量程过压标志
+//            V_below=FALSE;//量程欠压标志
+//        }
+//        V_switch=FALSE;//量程切换标志
+//        //f_switch=TRUE;
+//        
+//        if((V_Range<RANGE_V_MAX)&&(V_upper==TRUE))//量程非最高且低压
+//        {
+//            V_Range++;
+//            V_switch=TRUE;//量程切换标志
+//            
+//        } 
+//        else
+//        if((V_Range>0)&&(V_below==TRUE))//量程非最低且过压
+//        {
+//            V_Range--;
+//            V_switch=TRUE;//量程切换标志
+//           
+//        }
+    }
+	if((f_switch==TRUE)||(V_switch==TRUE))//量程切换标志
+	{
+        range_over=1;//增加不换档标志，用于查看是否在稳定的量程测量的
+//        Range=0;
+		Range_Control(Range,V_Range);//量程控制
+        f_switch=FALSE;
+        V_switch=FALSE;
+	}
+//    V_Range_Control(0);
+    else
+        range_over=0;
+        
+}
+//==========================================================
+//函数名称：Range_Changecomp
+//函数功能：电阻测试换挡
+//入口参数：无
+//出口参数：无
+//创建日期：2015.10.26 
+//修改日期：2015.10.29 13:35
+//备注说明：无
+//==========================================================
+void VRange_Changecomp(void)
+{
+	
+//	bool f_disp=FALSE;//显示标志
+	bool f_upper=FALSE;//量程过压标志
+	bool f_below=FALSE;//量程欠压标志
+	bool f_switch=FALSE;//量程切换标志
+    bool V_upper=FALSE;//量程过压标志
+	bool V_below=FALSE;//量程欠压标志
+	bool V_switch=FALSE;//量程切换标志
+	u8 i;
+//	//量程自动换挡处?
+//	if(Range_value>RANGR_LIMIT_HIGH)//高于量程上限Ad_value
+//	{
+//		f_upper=TRUE;//量程过压标志
+//		f_below=FALSE;//量程欠压标志
+//		for(i=0;i<FIT_INUM;i++)
+//			i_buff[i]=0;
+//			ffit_data1=0;
+//			count_ffit=0;
+//	}
+//	else if(Range_value<RANGR_LIMIT_LOW)//低于量程下限
+//	{
+//		f_below=TRUE;//量程低压标志
+//		f_upper=FALSE;//量程欠压标志
+//	}
+//	else
+//	{
+//		f_upper=FALSE;//量程过压标志
+//		f_below=FALSE;//量程欠压标志
+//	}
+//	f_switch=FALSE;//量程切换标志
+	//f_switch=TRUE;
+	if(Jk516save.Set_Data.Range_Set==0)
+	{
+//		if((Range<RANGE_MAX)&&(f_upper==TRUE))//量程非最高且低压
+//		{
+//			Range++;
+//			f_switch=TRUE;//量程切换标志
+//			for(i=0;i<FIT_INUM;i++)
+//			i_buff[i]=0;
+//			ffit_data1=0;
+//			count_ffit=0;
+//		} 
+//        else
+//		if((Range>0)&&(f_below==TRUE))//量程非最低且过压
+//		{
+//			Range--;
+//			f_switch=TRUE;//量程切换标志
+//			for(i=0;i<FIT_INUM;i++)
+//			i_buff[i]=0;
+//			ffit_data1=0;
+//			count_ffit=0;
+//		}
         if(Range_Value_V>RANGE_LIMIT_VHIGH)//高于量程上限Ad_value
         {
             V_upper=TRUE;//量程过压标志

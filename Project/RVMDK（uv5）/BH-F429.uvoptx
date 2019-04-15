@@ -119,6 +119,10 @@
       <TargetDriverDllRegistry>
         <SetRegEntry>
           <Number>0</Number>
+          <Key>DLGUARM</Key>
+        </SetRegEntry>
+        <SetRegEntry>
+          <Number>0</Number>
           <Key>PWSTATINFO</Key>
           <Name>200,50,700</Name>
         </SetRegEntry>
@@ -148,7 +152,120 @@
           <Name></Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint/>
+      <Breakpoint>
+        <Bp>
+          <Number>0</Number>
+          <Type>0</Type>
+          <LineNumber>905</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>134248110</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>F:\2520C\Project\User\test.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\Template\../../User/test.c\905</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>906</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>134248114</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>F:\2520C\Project\User\test.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\Template\../../User/test.c\906</Expression>
+        </Bp>
+        <Bp>
+          <Number>2</Number>
+          <Type>0</Type>
+          <LineNumber>907</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>134248138</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>F:\2520C\Project\User\test.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\Template\../../User/test.c\907</Expression>
+        </Bp>
+        <Bp>
+          <Number>3</Number>
+          <Type>0</Type>
+          <LineNumber>1158</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>134249124</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>F:\2520C\Project\User\test.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\Template\../../User/test.c\1158</Expression>
+        </Bp>
+        <Bp>
+          <Number>4</Number>
+          <Type>0</Type>
+          <LineNumber>887</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>134247968</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>F:\2520C\Project\User\test.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\Template\../../User/test.c\887</Expression>
+        </Bp>
+        <Bp>
+          <Number>5</Number>
+          <Type>0</Type>
+          <LineNumber>910</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>134248260</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>F:\2520C\Project\User\test.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\Template\../../User/test.c\910</Expression>
+        </Bp>
+        <Bp>
+          <Number>6</Number>
+          <Type>0</Type>
+          <LineNumber>893</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>134248064</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>F:\2520C\Project\User\test.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\Template\../../User/test.c\893</Expression>
+        </Bp>
+      </Breakpoint>
       <WatchWindow1>
         <Ww>
           <count>0</count>
