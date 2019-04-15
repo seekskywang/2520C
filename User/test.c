@@ -934,10 +934,10 @@ void Test_Process(void)
                         
                         read_adV_2();
                         Range_Value_V=V_ad;
-                        Range_Changecomp();	//换挡 比较
+                        VRange_Changecomp();	//换挡 比较
                         while(range_over)
                         {
-                            Range_Changecomp();	//换挡 比较
+                            VRange_Changecomp();	//换挡 比较
                             
                             read_adV_2();//
                            Range_Value_V=V_ad;
@@ -964,10 +964,10 @@ void Test_Process(void)
                         
                         read_adV_3();
                         Range_Value_V=V_ad;
-                        Range_Changecomp();	//换挡 比较
+                        VRange_Changecomp();	//换挡 比较
                         while(range_over)
                         {
-                            Range_Changecomp();	//换挡 比较
+                            VRange_Changecomp();	//换挡 比较
                             
                             read_adV_3();//
                            Range_Value_V=V_ad;
@@ -994,10 +994,10 @@ void Test_Process(void)
                         
                         read_adV_4();
                         Range_Value_V=V_ad;
-                        Range_Changecomp();	//换挡 比较
+                        VRange_Changecomp();	//换挡 比较
                         while(range_over)
                         {
-                            Range_Changecomp();	//换挡 比较
+                            VRange_Changecomp();	//换挡 比较
                             
                             read_adV_4();//
                            Range_Value_V=V_ad;
@@ -1023,10 +1023,10 @@ void Test_Process(void)
                         
                         read_adV_1();
                         Range_Value_V=V_ad;
-                        Range_Changecomp();	//换挡 比较
+                        VRange_Changecomp();	//换挡 比较
                         while(range_over)
                         {
-                            Range_Changecomp();	//换挡 比较
+                            VRange_Changecomp();	//换挡 比较
                             
                             read_adV_1();//
                            Range_Value_V=V_ad;
