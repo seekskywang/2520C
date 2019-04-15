@@ -115,7 +115,7 @@ void Power_Process(void)
 
 	InitGlobalValue();//初始化全局变量
 	Read_set_flash();
-    lcd_image((uint8_t *)gImage_open);
+//    lcd_image((uint8_t *)gImage_open);
 	Parameter_valuecomp();//比较读出的数据
 
     TIM6_Configuration();//定时器6定时10ms
@@ -1382,10 +1382,10 @@ void Test_Process(void)
                     vu8 copybuff[100];
                     memset((void *)copybuff,0,100);
                     
-                    memcpy ((void *)copybuff,"0:/JK/",6);
+                    memcpy ((void *)copybuff,"0:/Testdada/",6);
                     strcat((char *)copybuff,(char *)Jk516save.Sys_Setvalue.textname);
                     strcat((char *)copybuff,(char *)".xls");
-                    result=f_mkdir("0://JK");
+                    result=f_mkdir("0://Testdada");
                     result = f_open(&file, (char *)copybuff,FA_CREATE_NEW | FA_WRITE );
                          if ( result == FR_OK ) 
                          {
