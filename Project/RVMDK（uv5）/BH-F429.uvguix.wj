@@ -3605,18 +3605,18 @@
       </Doc>
       <Doc>
         <Name>..\..\User\test.c</Name>
-        <ColumnNumber>45</ColumnNumber>
-        <TopLine>999</TopLine>
-        <CurrentLine>1029</CurrentLine>
+        <ColumnNumber>43</ColumnNumber>
+        <TopLine>1005</TopLine>
+        <CurrentLine>1017</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>
       </Doc>
       <Doc>
         <Name>..\..\User\user.c</Name>
-        <ColumnNumber>9</ColumnNumber>
-        <TopLine>1325</TopLine>
-        <CurrentLine>1250</CurrentLine>
+        <ColumnNumber>0</ColumnNumber>
+        <TopLine>366</TopLine>
+        <CurrentLine>367</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>
