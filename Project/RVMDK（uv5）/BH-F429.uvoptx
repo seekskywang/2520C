@@ -119,6 +119,10 @@
       <TargetDriverDllRegistry>
         <SetRegEntry>
           <Number>0</Number>
+          <Key>DLGUARM</Key>
+        </SetRegEntry>
+        <SetRegEntry>
+          <Number>0</Number>
           <Key>PWSTATINFO</Key>
           <Name>200,50,700</Name>
         </SetRegEntry>
@@ -154,7 +158,7 @@
           <Type>0</Type>
           <LineNumber>905</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134248110</Address>
+          <Address>134251290</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -170,7 +174,7 @@
           <Type>0</Type>
           <LineNumber>906</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134248114</Address>
+          <Address>134251294</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -186,7 +190,7 @@
           <Type>0</Type>
           <LineNumber>907</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134248138</Address>
+          <Address>134251318</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -200,25 +204,9 @@
         <Bp>
           <Number>3</Number>
           <Type>0</Type>
-          <LineNumber>1158</LineNumber>
-          <EnabledFlag>0</EnabledFlag>
-          <Address>134249124</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>F:\2520C\Project\User\test.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\Template\../../User/test.c\1158</Expression>
-        </Bp>
-        <Bp>
-          <Number>4</Number>
-          <Type>0</Type>
           <LineNumber>887</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134247968</Address>
+          <Address>134251148</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -230,11 +218,11 @@
           <Expression>\\Template\../../User/test.c\887</Expression>
         </Bp>
         <Bp>
-          <Number>5</Number>
+          <Number>4</Number>
           <Type>0</Type>
           <LineNumber>910</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134248260</Address>
+          <Address>134251440</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -246,11 +234,11 @@
           <Expression>\\Template\../../User/test.c\910</Expression>
         </Bp>
         <Bp>
-          <Number>6</Number>
+          <Number>5</Number>
           <Type>0</Type>
           <LineNumber>893</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134248064</Address>
+          <Address>134251244</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -260,6 +248,22 @@
           <Filename>F:\2520C\Project\User\test.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\Template\../../User/test.c\893</Expression>
+        </Bp>
+        <Bp>
+          <Number>6</Number>
+          <Type>0</Type>
+          <LineNumber>1159</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>..\..\User\test.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -392,6 +396,11 @@
           <count>25</count>
           <WinNumber>1</WinNumber>
           <ItemText>buff</ItemText>
+        </Ww>
+        <Ww>
+          <count>26</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>g_tModS.RxCount,0x0A</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>

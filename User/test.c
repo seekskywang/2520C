@@ -1103,6 +1103,7 @@ void Test_Process(void)
 			    {
 //				    uart1SendChars("+0.0000E+0,+0.0000E+0+",22);
 					uart1SendChars("OPEN",4);
+					test_start = 0;
 			    }
 			}
         }
