@@ -41,6 +41,7 @@ extern USBH_HOST                    USB_Host;
 struct MODS_T g_tModS;
 u8 g_mods_timeout = 0;
 u32 Tick_10ms=0;
+char scpinum[20];
 /* Private function prototypes -----------------------------------------------*/
 extern void USB_OTG_BSP_TimerIRQ (void);
 static void MODS_03H(void);
@@ -405,14 +406,14 @@ static void GetScpiNum(u8 count)
 {
 	u8 i;
 	u8 num = 0;
-	char data[20];
+	memset(scpinum, 0, sizeof(scpinum));  
 	for(i = count;i < g_tModS.RxCount;i++)
 	{
-		if(g_tModS.RxBuf[i] >= '0' && g_tModS.RxBuf[i] <= '9')
+		if((g_tModS.RxBuf[i] >= '0' && g_tModS.RxBuf[i] <= '9') || g_tModS.RxBuf[i] == '.')
 		{
-			data[num] = g_tModS.RxBuf[i];
+			scpinum[num] = g_tModS.RxBuf[i];
 			num++;
-		}	
+		}
 	}
 }
 
@@ -795,10 +796,7 @@ void RecHandle(void)
 		 && g_tModS.RxBuf[7] == 'L' && g_tModS.RxBuf[8] == ':' && g_tModS.RxBuf[9] == 'N' && g_tModS.RxBuf[10] == 'O'
 		 && g_tModS.RxBuf[11] == 'M')//ÉèÖÃ±ê³Æµç×è
 	{
-		for(i=12;i<g_tModS.RxCount;i++)
-		{
-			
-		}
+		GetScpiNum(11);
 	}
 	
 	

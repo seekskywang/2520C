@@ -158,7 +158,7 @@
           <Type>0</Type>
           <LineNumber>905</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134251290</Address>
+          <Address>134251422</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -174,7 +174,7 @@
           <Type>0</Type>
           <LineNumber>906</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134251294</Address>
+          <Address>134251426</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -190,7 +190,7 @@
           <Type>0</Type>
           <LineNumber>907</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134251318</Address>
+          <Address>134251450</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -206,7 +206,7 @@
           <Type>0</Type>
           <LineNumber>887</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134251148</Address>
+          <Address>134251280</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -222,7 +222,7 @@
           <Type>0</Type>
           <LineNumber>910</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134251440</Address>
+          <Address>134251572</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -238,7 +238,7 @@
           <Type>0</Type>
           <LineNumber>893</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134251244</Address>
+          <Address>134251376</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -401,6 +401,31 @@
           <count>26</count>
           <WinNumber>1</WinNumber>
           <ItemText>g_tModS.RxCount,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>27</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>scpinum</ItemText>
+        </Ww>
+        <Ww>
+          <count>28</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>Jk516save.Set_Data.Nominal_V.Num,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>29</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>Jk516save.Set_Data.Nominal_V,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>30</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>Jk516save.Set_Data.Nominal_V.Num,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>31</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>Jk516save.Set_Data.Nominal_Res,0x0A</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>
