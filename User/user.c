@@ -2792,7 +2792,7 @@ void DispSet_value(u8 keynum)
 	if(Black_Select)
 	{
 		Colour.black=LCD_COLOR_SELECT;
-	
+		
 	}
 	else
 	{

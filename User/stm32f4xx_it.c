@@ -35,6 +35,7 @@
 #include "usbh_core.h"
 #include    "bsp_exti.h"
 #include "./tim/bsp_basic_tim.h"
+#include "stdlib.h"
 
 extern USB_OTG_CORE_HANDLE          USB_OTG_Core;
 extern USBH_HOST                    USB_Host;
@@ -405,14 +406,33 @@ void USART3_IRQHandler(void)
 static void GetScpiNum(u8 count)
 {
 	u8 i;
+	static u8 scpidot;
 	u8 num = 0;
+	u8 unitnum = 0;
 	memset(scpinum, 0, sizeof(scpinum));  
 	for(i = count;i < g_tModS.RxCount;i++)
 	{
 		if((g_tModS.RxBuf[i] >= '0' && g_tModS.RxBuf[i] <= '9') || g_tModS.RxBuf[i] == '.')
 		{
+			if(g_tModS.RxBuf[i] == '.')
+			{
+				scpidot = num;
+			}
 			scpinum[num] = g_tModS.RxBuf[i];
 			num++;
+		}else{
+			continue;
+		}
+	}
+	scpidot = num - scpidot - 1;
+//	Jk516save.Set_Data.Nominal_Res.Num = atoi(scpinum);
+	if(g_tModS.RxBuf[count+num] == 'E' && g_tModS.RxBuf[count+num] == 'e')
+	{
+		if(g_tModS.RxBuf[count+num+1] == '-' && g_tModS.RxBuf[count+num+2] == '3')
+		{
+			Jk516save.Set_Data.Nominal_Res.Unit = 0;
+		}else if(g_tModS.RxBuf[count+num+1] == '+' && g_tModS.RxBuf[count+num+2] == '3'){
+			Jk516save.Set_Data.Nominal_Res.Unit = 2;
 		}
 	}
 }

@@ -120,6 +120,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
+          <Name>猬iw??趏揚</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -158,7 +159,7 @@
           <Type>0</Type>
           <LineNumber>905</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134251422</Address>
+          <Address>134251446</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -174,7 +175,7 @@
           <Type>0</Type>
           <LineNumber>906</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134251426</Address>
+          <Address>134251450</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -190,7 +191,7 @@
           <Type>0</Type>
           <LineNumber>907</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134251450</Address>
+          <Address>134251474</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -206,7 +207,7 @@
           <Type>0</Type>
           <LineNumber>887</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134251280</Address>
+          <Address>134251304</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -222,7 +223,7 @@
           <Type>0</Type>
           <LineNumber>910</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134251572</Address>
+          <Address>134251596</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -238,7 +239,7 @@
           <Type>0</Type>
           <LineNumber>893</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134251376</Address>
+          <Address>134251400</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -248,22 +249,6 @@
           <Filename>F:\2520C\Project\User\test.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\Template\../../User/test.c\893</Expression>
-        </Bp>
-        <Bp>
-          <Number>6</Number>
-          <Type>0</Type>
-          <LineNumber>1159</LineNumber>
-          <EnabledFlag>0</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>..\..\User\test.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -426,6 +411,11 @@
           <count>31</count>
           <WinNumber>1</WinNumber>
           <ItemText>Jk516save.Set_Data.Nominal_Res,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>32</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>scpidot</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>

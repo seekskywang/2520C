@@ -74,3 +74,4 @@
 ..\..\output\stm32f4xx_it.o: ..\..\Libraries\STM32_USB_HOST_Library\Core\inc\usbh_core.h
 ..\..\output\stm32f4xx_it.o: ..\..\Libraries\STM32_USB_HOST_Library\Core\inc\usbh_def.h
 ..\..\output\stm32f4xx_it.o: ..\..\User\APP\usbh_conf.h
+..\..\output\stm32f4xx_it.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
