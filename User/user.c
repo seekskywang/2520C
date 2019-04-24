@@ -32,6 +32,9 @@
 //#include "Com.h"
 //#include "User.h"
 u8 DispBuf[DISP_MAX_LEN];//显示缓冲区定义
+extern char scpinum[20];
+extern u8 scpidot;
+extern u8 scpnum;
 //==========================================================
 const u32 Port_Select[16][16]=//pos(x,y)x0-15 y0-15
 {
@@ -4783,6 +4786,63 @@ Sort_TypeDef Disp_Set_Num(Disp_Coordinates_Typedef *Coordinates)
 	return Sort_num1;
 
 }
+
+//电阻设置
+Sort_TypeDef SCPI_SET_R(void)
+{
+	u8 i;
+	static Sort_TypeDef Scpi_num,Scpi_num1;
+	Scpi_num.Dot=0;
+	Scpi_num.Num=0;
+	Scpi_num.Unit=0;
+	
+	Scpi_num1.Dot=0;
+	Scpi_num1.Num=0;
+	Scpi_num1.Unit=0;
+	
+	
+	Scpi_num.Unit=0;
+	scpinum[scpnum]='.';
+	scpidot = scpnum;
+	for(i=scpnum+1;i<6;i++)
+		scpinum[i]='0';
+	
+	for(i=0;i<6;i++)
+	{
+		if(scpinum[0]>='0'&&(scpinum[0]<='9'))
+		{
+			if(scpinum[i]>='0'&&(scpinum[i]<='9'))
+			{
+			
+				if(scpidot>i)
+				{
+					Scpi_num.Num*=10;
+					Scpi_num.Num+=scpinum[i]-'0';
+				
+				}
+				else
+				{
+					Scpi_num.Num*=10;
+					Scpi_num.Num+=scpinum[i]-'0';
+				
+				
+				}
+			}
+			
+			
+			//Sort_set.Num+=(Disp_buff[key_count-1]-'0');
+		
+		
+		}			
+	}
+	Scpi_num.Dot=scpidot;
+	Scpi_num1=Time_Set_Cov(&Scpi_num);
+		
+		
+	return Scpi_num1;
+
+}
+
 Sort_TypeDef Input_Set_Cov(Sort_TypeDef *Input_Ref)//
 {
 //	vu8 i;
@@ -4799,8 +4859,6 @@ Sort_TypeDef Input_Set_Cov(Sort_TypeDef *Input_Ref)//
 	if(value>12000000)
 	{
 		value=12000000;
-		
-		
 	}
 	if(value>=(float)1e7)
 	{

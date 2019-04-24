@@ -44,6 +44,9 @@ struct MODS_T g_tModS;
 u8 g_mods_timeout = 0;
 u32 Tick_10ms=0;
 char scpinum[20],scpiunit[20];
+u8 scpidot;
+u8 scpnum = 0;
+extern Sort_TypeDef SCPI_SET_R(void);
 /* Private function prototypes -----------------------------------------------*/
 extern void USB_OTG_BSP_TimerIRQ (void);
 static void MODS_03H(void);
@@ -406,49 +409,62 @@ void USART3_IRQHandler(void)
 
 static void GetScpiNum(u8 count)
 {
-	u8 i,eflag;
+	u8 i,eflag,unflag;
 	static u8 scpidot;
-	u8 scpnum = 0;
 	u8 unitnum = 0;
 	char unbuf[10];
 	
 	memset(scpinum, 0, sizeof(scpinum));
 	memset(scpiunit, 0, sizeof(scpiunit));
+	scpnum = 0;
 	for(i = count;i < g_tModS.RxCount;i++)
 	{
-//		if((g_tModS.RxBuf[i] >= '0' && g_tModS.RxBuf[i] <= '9') || g_tModS.RxBuf[i] == '.')
+		if((g_tModS.RxBuf[i] >= '0' && g_tModS.RxBuf[i] <= '9') || g_tModS.RxBuf[i] == '.')
+		{
+//			if(g_tModS.RxBuf[i] == 'E' || g_tModS.RxBuf[i] == 'e')
+//			{
+//				eflag = 1;
+//			}
+//			Jk516save.Set_Data.Nominal_Res.Unit = 1;
+//			if(g_tModS.RxBuf[i] == 'm')
+//			{
+//				Jk516save.Set_Data.Nominal_Res.Unit = 0;
+//			}else if(g_tModS.RxBuf[i] == 'k'){
+//				Jk516save.Set_Data.Nominal_Res.Unit = 2;
+//			}
+//			if(g_tModS.RxBuf[i] == '.')
+//			{
+//				scpidot = scpnum;
+//			}
+			scpinum[scpnum] = g_tModS.RxBuf[i];
+			scpnum ++;
+	//		}
+		}
+	}
+	Jk516save.Set_Data.Nominal_Res=SCPI_SET_R();
+//	if(scpidot == 0)
+//	{
+//		Jk516save.Set_Data.Nominal_Res.Num = atoi(scpinum);
+//	}else{
+//		Jk516save.Set_Data.Nominal_Res.Dot = scpinum[scpnum-1] - 48;
+//		Jk516save.Set_Data.Nominal_Res.Num = atof(scpinum);
+//	}
+//	
+//	if(eflag == 1)
+//	{
+//		if(scpinum[scpnum-2] == '-' && scpinum[scpnum-1] == '3')
 //		{
-		if(g_tModS.RxBuf[i] == 'E' || g_tModS.RxBuf[i] == 'e')
-		{
-			eflag = 1;
-		}
-		scpinum[scpnum] = g_tModS.RxBuf[i];
-		scpnum ++;
+//			Jk516save.Set_Data.Nominal_Res.Unit = 0;
+//		}else if(scpinum[scpnum-2] == '+' && scpinum[scpnum-1] == '3'){
+//			Jk516save.Set_Data.Nominal_Res.Unit = 2;
+//		}else if(scpinum[scpnum-2] == '+' && scpinum[scpnum-1] == '0'){
+//			Jk516save.Set_Data.Nominal_Res.Unit = 1;
 //		}
-	}
-	if(scpidot == 0)
-	{
-		Jk516save.Set_Data.Nominal_Res.Num = atof(scpinum);
-	}else{
-		Jk516save.Set_Data.Nominal_Res.Dot = scpinum[scpnum-1] - 48;
-		Jk516save.Set_Data.Nominal_Res.Num = atof(scpinum);
-	}
+//	}else{
+//		
+//	}
 	
-	if(eflag == 1)
-	{
-		if(scpinum[scpnum-2] == '-' && scpinum[scpnum-1] == '3')
-		{
-			Jk516save.Set_Data.Nominal_Res.Unit = 0;
-		}else if(scpinum[scpnum-2] == '+' && scpinum[scpnum-1] == '3'){
-			Jk516save.Set_Data.Nominal_Res.Unit = 2;
-		}else if(scpinum[scpnum-2] == '+' && scpinum[scpnum-1] == '0'){
-			Jk516save.Set_Data.Nominal_Res.Unit = 1;
-		}
-	}else{
-		
-	}
 	
-	scpnum = 0;
 //	if(scpiunit[0] == '-' && scpiunit[1] == '3')
 //	{
 //		Jk516save.Set_Data.Nominal_Res.Unit = 0;
