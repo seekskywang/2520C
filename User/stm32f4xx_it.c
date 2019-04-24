@@ -416,24 +416,34 @@ static void GetScpiNum(u8 count)
 	memset(scpiunit, 0, sizeof(scpiunit));
 	for(i = count;i < g_tModS.RxCount;i++)
 	{
-		if((g_tModS.RxBuf[i] >= '0' && g_tModS.RxBuf[i] <= '9') || g_tModS.RxBuf[i] == '.')
-		{
-//			if(g_tModS.RxBuf[i] == '.')
-//			{
-//				scpidot = num;
-//			}
+//		if((g_tModS.RxBuf[i] >= '0' && g_tModS.RxBuf[i] <= '9') || g_tModS.RxBuf[i] == '.')
+//		{
+			if(g_tModS.RxBuf[i] == 'E' || g_tModS.RxBuf[i] == 'e')
+			{
+				eflag = 1;
+			}
 			scpinum[scpnum] = g_tModS.RxBuf[i];
 			scpnum ++;
-		}
+//		}
 	}
 	if(scpidot == 0)
 	{
 		Jk516save.Set_Data.Nominal_Res.Num = atof(scpinum);
 	}else{
-		
+		Jk516save.Set_Data.Nominal_Res.Dot = scpinum[scpnum-1] - 48;
+		Jk516save.Set_Data.Nominal_Res.Num = atof(scpinum);
 	}
-//	Jk516save.Set_Data.Nominal_Res.Dot = num - scpidot - 1;
-	Jk516save.Set_Data.Nominal_Res.Num = atof(scpinum) * pow(10,Jk516save.Set_Data.Nominal_Res.Dot);
+	
+	if(eflag == 1)
+	{
+		if(scpinum[scpnum-2] == '-' && scpinum[scpnum-1] == '3')
+		{
+			Jk516save.Set_Data.Nominal_Res.Unit = 0;
+		}else if(scpinum[scpnum-2] == '+' && scpinum[scpnum-1] == '3'){
+			Jk516save.Set_Data.Nominal_Res.Unit = 2;
+		}
+	}
+	
 	scpnum = 0;
 //	if(scpiunit[0] == '-' && scpiunit[1] == '3')
 //	{

@@ -120,7 +120,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name>猬秝剏?剏?趏淯</Name>
+          <Name>猬遷琭?琭?趏&lt;Z</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -345,22 +345,6 @@
           <Filename>F:\2520C\Project\User\user.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\Template\../../User/user.c\4696</Expression>
-        </Bp>
-        <Bp>
-          <Number>12</Number>
-          <Type>0</Type>
-          <LineNumber>422</LineNumber>
-          <EnabledFlag>0</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>..\..\User\stm32f4xx_it.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
