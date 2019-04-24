@@ -418,12 +418,12 @@ static void GetScpiNum(u8 count)
 	{
 //		if((g_tModS.RxBuf[i] >= '0' && g_tModS.RxBuf[i] <= '9') || g_tModS.RxBuf[i] == '.')
 //		{
-			if(g_tModS.RxBuf[i] == 'E' || g_tModS.RxBuf[i] == 'e')
-			{
-				eflag = 1;
-			}
-			scpinum[scpnum] = g_tModS.RxBuf[i];
-			scpnum ++;
+		if(g_tModS.RxBuf[i] == 'E' || g_tModS.RxBuf[i] == 'e')
+		{
+			eflag = 1;
+		}
+		scpinum[scpnum] = g_tModS.RxBuf[i];
+		scpnum ++;
 //		}
 	}
 	if(scpidot == 0)
@@ -441,7 +441,11 @@ static void GetScpiNum(u8 count)
 			Jk516save.Set_Data.Nominal_Res.Unit = 0;
 		}else if(scpinum[scpnum-2] == '+' && scpinum[scpnum-1] == '3'){
 			Jk516save.Set_Data.Nominal_Res.Unit = 2;
+		}else if(scpinum[scpnum-2] == '+' && scpinum[scpnum-1] == '0'){
+			Jk516save.Set_Data.Nominal_Res.Unit = 1;
 		}
+	}else{
+		
 	}
 	
 	scpnum = 0;
