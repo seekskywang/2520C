@@ -120,7 +120,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name>猬iw??趏揚</Name>
+          <Name>猬秝剏?剏?趏淯</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -159,7 +159,7 @@
           <Type>0</Type>
           <LineNumber>905</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134251446</Address>
+          <Address>134252750</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -175,7 +175,7 @@
           <Type>0</Type>
           <LineNumber>906</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134251450</Address>
+          <Address>134252754</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -191,7 +191,7 @@
           <Type>0</Type>
           <LineNumber>907</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134251474</Address>
+          <Address>134252778</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -207,7 +207,7 @@
           <Type>0</Type>
           <LineNumber>887</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134251304</Address>
+          <Address>134252608</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -223,7 +223,7 @@
           <Type>0</Type>
           <LineNumber>910</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134251596</Address>
+          <Address>134252900</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -239,7 +239,7 @@
           <Type>0</Type>
           <LineNumber>893</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134251400</Address>
+          <Address>134252704</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -249,6 +249,118 @@
           <Filename>F:\2520C\Project\User\test.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\Template\../../User/test.c\893</Expression>
+        </Bp>
+        <Bp>
+          <Number>6</Number>
+          <Type>0</Type>
+          <LineNumber>4743</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>134258016</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>F:\2520C\Project\User\user.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\Template\../../User/user.c\4743</Expression>
+        </Bp>
+        <Bp>
+          <Number>7</Number>
+          <Type>0</Type>
+          <LineNumber>4736</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>134257980</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>F:\2520C\Project\User\user.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\Template\../../User/user.c\4736</Expression>
+        </Bp>
+        <Bp>
+          <Number>8</Number>
+          <Type>0</Type>
+          <LineNumber>4730</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>134257950</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>F:\2520C\Project\User\user.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\Template\../../User/user.c\4730</Expression>
+        </Bp>
+        <Bp>
+          <Number>9</Number>
+          <Type>0</Type>
+          <LineNumber>4722</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>134257916</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>F:\2520C\Project\User\user.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\Template\../../User/user.c\4722</Expression>
+        </Bp>
+        <Bp>
+          <Number>10</Number>
+          <Type>0</Type>
+          <LineNumber>4689</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>134257718</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>F:\2520C\Project\User\user.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\Template\../../User/user.c\4689</Expression>
+        </Bp>
+        <Bp>
+          <Number>11</Number>
+          <Type>0</Type>
+          <LineNumber>4696</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>134257812</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>F:\2520C\Project\User\user.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\Template\../../User/user.c\4696</Expression>
+        </Bp>
+        <Bp>
+          <Number>12</Number>
+          <Type>0</Type>
+          <LineNumber>422</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>..\..\User\stm32f4xx_it.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -416,6 +528,21 @@
           <count>32</count>
           <WinNumber>1</WinNumber>
           <ItemText>scpidot</ItemText>
+        </Ww>
+        <Ww>
+          <count>33</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>buf</ItemText>
+        </Ww>
+        <Ww>
+          <count>34</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>unbuf</ItemText>
+        </Ww>
+        <Ww>
+          <count>35</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>scpiunit</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>

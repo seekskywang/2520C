@@ -36,13 +36,14 @@
 #include    "bsp_exti.h"
 #include "./tim/bsp_basic_tim.h"
 #include "stdlib.h"
+#include "math.h"
 
 extern USB_OTG_CORE_HANDLE          USB_OTG_Core;
 extern USBH_HOST                    USB_Host;
 struct MODS_T g_tModS;
 u8 g_mods_timeout = 0;
 u32 Tick_10ms=0;
-char scpinum[20];
+char scpinum[20],scpiunit[20];
 /* Private function prototypes -----------------------------------------------*/
 extern void USB_OTG_BSP_TimerIRQ (void);
 static void MODS_03H(void);
@@ -405,36 +406,43 @@ void USART3_IRQHandler(void)
 
 static void GetScpiNum(u8 count)
 {
-	u8 i;
+	u8 i,eflag;
 	static u8 scpidot;
-	u8 num = 0;
+	u8 scpnum = 0;
 	u8 unitnum = 0;
-	memset(scpinum, 0, sizeof(scpinum));  
+	char unbuf[10];
+	
+	memset(scpinum, 0, sizeof(scpinum));
+	memset(scpiunit, 0, sizeof(scpiunit));
 	for(i = count;i < g_tModS.RxCount;i++)
 	{
 		if((g_tModS.RxBuf[i] >= '0' && g_tModS.RxBuf[i] <= '9') || g_tModS.RxBuf[i] == '.')
 		{
-			if(g_tModS.RxBuf[i] == '.')
-			{
-				scpidot = num;
-			}
-			scpinum[num] = g_tModS.RxBuf[i];
-			num++;
-		}else{
-			continue;
+//			if(g_tModS.RxBuf[i] == '.')
+//			{
+//				scpidot = num;
+//			}
+			scpinum[scpnum] = g_tModS.RxBuf[i];
+			scpnum ++;
 		}
 	}
-	scpidot = num - scpidot - 1;
-//	Jk516save.Set_Data.Nominal_Res.Num = atoi(scpinum);
-	if(g_tModS.RxBuf[count+num] == 'E' && g_tModS.RxBuf[count+num] == 'e')
+	if(scpidot == 0)
 	{
-		if(g_tModS.RxBuf[count+num+1] == '-' && g_tModS.RxBuf[count+num+2] == '3')
-		{
-			Jk516save.Set_Data.Nominal_Res.Unit = 0;
-		}else if(g_tModS.RxBuf[count+num+1] == '+' && g_tModS.RxBuf[count+num+2] == '3'){
-			Jk516save.Set_Data.Nominal_Res.Unit = 2;
-		}
+		Jk516save.Set_Data.Nominal_Res.Num = atof(scpinum);
+	}else{
+		
 	}
+//	Jk516save.Set_Data.Nominal_Res.Dot = num - scpidot - 1;
+	Jk516save.Set_Data.Nominal_Res.Num = atof(scpinum) * pow(10,Jk516save.Set_Data.Nominal_Res.Dot);
+	scpnum = 0;
+//	if(scpiunit[0] == '-' && scpiunit[1] == '3')
+//	{
+//		Jk516save.Set_Data.Nominal_Res.Unit = 0;
+//	}else if(scpiunit[0] == '+' && scpiunit[1] == '3'){
+//		Jk516save.Set_Data.Nominal_Res.Unit = 2;
+//	}
+//	Jk516save.Set_Data.Nominal_Res.Num = atoi(scpinum);
+	
 }
 
 void RecHandle(void)
@@ -816,7 +824,7 @@ void RecHandle(void)
 		 && g_tModS.RxBuf[7] == 'L' && g_tModS.RxBuf[8] == ':' && g_tModS.RxBuf[9] == 'N' && g_tModS.RxBuf[10] == 'O'
 		 && g_tModS.RxBuf[11] == 'M')//ÉèÖÃ±ê³Æµç×è
 	{
-		GetScpiNum(11);
+		GetScpiNum(13);
 	}
 	
 	

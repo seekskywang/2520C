@@ -4755,7 +4755,7 @@ Sort_TypeDef Time_Set_Cov(Sort_TypeDef *Time)
         else
         {
         Time->Num=value;
-		Time->Dot=3;
+		Time->Dot=4;
 		Time->Unit=0;
         
         }
