@@ -32,9 +32,9 @@
 //#include "Com.h"
 //#include "User.h"
 u8 DispBuf[DISP_MAX_LEN];//显示缓冲区定义
-extern char scpinum[20];
-extern u8 scpidot;
-extern u8 scpnum;
+extern char scpinum[20],scpinum1[20];
+extern u8 scpidot,scpiunit,scpidot1,scpiunit1;
+extern u8 scpnum,scpnum1;
 //==========================================================
 const u32 Port_Select[16][16]=//pos(x,y)x0-15 y0-15
 {
@@ -3763,6 +3763,7 @@ void Use_SysSetProcess(void)
 							break;
 						case 2:
 							Jk516save.Sys_Setvalue.buard=0;
+							Debug_USART_Config(2400);
 							break;
 						case 3:
                             Jk516save.Sys_Setvalue.u_flag=0;
@@ -3883,6 +3884,7 @@ void Use_SysSetProcess(void)
 							break;
 						case 2:
 							Jk516save.Sys_Setvalue.buard=1;
+							Debug_USART_Config(4800);
 							break;
 						case 3:
 							Jk516save.Sys_Setvalue.u_flag=1;
@@ -3958,7 +3960,7 @@ void Use_SysSetProcess(void)
 							break;
 						case 2:
 							Jk516save.Sys_Setvalue.buard=2;
-							
+							Debug_USART_Config(9600);
 						break;
 						default:
 						break;
@@ -3974,7 +3976,7 @@ void Use_SysSetProcess(void)
 							break;
 						case 2:
 							Jk516save.Sys_Setvalue.buard=3;
-							
+							Debug_USART_Config(14400);
 						break;
 						default:
 						break;
@@ -3988,7 +3990,7 @@ void Use_SysSetProcess(void)
 							break;//恢复系统复位
 						case 2:
 							Jk516save.Sys_Setvalue.buard=4;
-							
+							Debug_USART_Config(19200);
 						break;
 						default:
 						break;
@@ -4801,11 +4803,18 @@ Sort_TypeDef SCPI_SET_R(void)
 	Scpi_num1.Unit=0;
 	
 	
-	Scpi_num.Unit=0;
-	scpinum[scpnum]='.';
-	scpidot = scpnum;
-	for(i=scpnum+1;i<6;i++)
+	Scpi_num.Unit=scpiunit;
+	if(scpidot == 0)
+	{
+		scpinum[scpnum]='.';
+		scpidot = scpnum;
+		for(i=scpnum+1;i<6;i++)
 		scpinum[i]='0';
+	}else{
+		for(i=scpnum;i<6;i++)
+		scpinum[i]='0';
+	}
+	
 	
 	for(i=0;i<6;i++)
 	{
@@ -4837,11 +4846,74 @@ Sort_TypeDef SCPI_SET_R(void)
 	}
 	Scpi_num.Dot=scpidot;
 	Scpi_num1=Time_Set_Cov(&Scpi_num);
-		
+	scpidot = 0;	
 		
 	return Scpi_num1;
 
 }
+//电阻设置
+Sort_TypeDef SCPI_SET_R1(void)
+{
+	u8 i;
+	static Sort_TypeDef Scpi_num,Scpi_num1;
+	Scpi_num.Dot=0;
+	Scpi_num.Num=0;
+	Scpi_num.Unit=0;
+	
+	Scpi_num1.Dot=0;
+	Scpi_num1.Num=0;
+	Scpi_num1.Unit=0;
+	
+	
+	Scpi_num.Unit=scpiunit1;
+	if(scpidot1 == 0)
+	{
+		scpinum1[scpnum1]='.';
+		scpidot1 = scpnum1;
+		for(i=scpnum1+1;i<6;i++)
+		scpinum1[i]='0';
+	}else{
+		for(i=scpnum1;i<6;i++)
+		scpinum1[i]='0';
+	}
+	
+	
+	for(i=0;i<6;i++)
+	{
+		if(scpinum1[0]>='0'&&(scpinum1[0]<='9'))
+		{
+			if(scpinum1[i]>='0'&&(scpinum1[i]<='9'))
+			{
+			
+				if(scpidot1>i)
+				{
+					Scpi_num.Num*=10;
+					Scpi_num.Num+=scpinum1[i]-'0';
+				
+				}
+				else
+				{
+					Scpi_num.Num*=10;
+					Scpi_num.Num+=scpinum1[i]-'0';
+				
+				
+				}
+			}
+			
+			
+			//Sort_set.Num+=(Disp_buff[key_count-1]-'0');
+		
+		
+		}			
+	}
+	Scpi_num.Dot=scpidot1;
+	Scpi_num1=Time_Set_Cov(&Scpi_num);
+	scpidot1 = 0;	
+		
+	return Scpi_num1;
+
+}
+
 
 Sort_TypeDef Input_Set_Cov(Sort_TypeDef *Input_Ref)//
 {
@@ -4934,6 +5006,132 @@ Sort_TypeDef Disp_Set_CompNum(Disp_Coordinates_Typedef *Coordinates)
 	}
 		
 	return Sort_num1;
+
+}
+
+//电压设置
+Sort_TypeDef SCPI_SET_V(void)
+{
+	u8 i;
+	static Sort_TypeDef ScpiV_num,ScpiV_num1;
+	ScpiV_num.Dot=0;
+	ScpiV_num.Num=0;
+	ScpiV_num.Unit=0;
+	
+	ScpiV_num1.Dot=0;
+	ScpiV_num1.Num=0;
+	ScpiV_num1.Unit=0;
+	
+	
+	ScpiV_num.Unit=0;
+	if(scpidot == 0)
+	{
+		scpinum[scpnum]='.';
+		scpidot = scpnum;
+		for(i=scpnum+1;i<7;i++)
+		scpinum[i]='0';
+	}else{
+		for(i=scpnum;i<7;i++)
+		scpinum[i]='0';
+	}
+	
+	
+	for(i=0;i<7;i++)
+	{
+		if(scpinum[0]>='0'&&(scpinum[0]<='9'))
+		{
+			if(scpinum[i]>='0'&&(scpinum[i]<='9'))
+			{
+			
+				if(scpidot>i)
+				{
+					ScpiV_num.Num*=10;
+					ScpiV_num.Num+=scpinum[i]-'0';
+				
+				}
+				else
+				{
+					ScpiV_num.Num*=10;
+					ScpiV_num.Num+=scpinum[i]-'0';
+				
+				
+				}
+			}
+			
+			
+			//Sort_set.Num+=(Disp_buff[key_count-1]-'0');
+		
+		
+		}			
+	}
+	ScpiV_num.Dot=scpidot;
+	ScpiV_num1=Input_Set_Cov(&ScpiV_num);
+	scpidot = 0;	
+		
+	return ScpiV_num1;
+
+}
+
+//电压设置
+Sort_TypeDef SCPI_SET_V1(void)
+{
+	u8 i;
+	static Sort_TypeDef ScpiV_num,ScpiV_num1;
+	ScpiV_num.Dot=0;
+	ScpiV_num.Num=0;
+	ScpiV_num.Unit=0;
+	
+	ScpiV_num1.Dot=0;
+	ScpiV_num1.Num=0;
+	ScpiV_num1.Unit=0;
+	
+	
+	ScpiV_num.Unit=0;
+	if(scpidot1 == 0)
+	{
+		scpinum1[scpnum1]='.';
+		scpidot1 = scpnum1;
+		for(i=scpnum1+1;i<7;i++)
+		scpinum1[i]='0';
+	}else{
+		for(i=scpnum1;i<7;i++)
+		scpinum1[i]='0';
+	}
+	
+	
+	for(i=0;i<7;i++)
+	{
+		if(scpinum1[0]>='0'&&(scpinum1[0]<='9'))
+		{
+			if(scpinum1[i]>='0'&&(scpinum1[i]<='9'))
+			{
+			
+				if(scpidot1>i)
+				{
+					ScpiV_num.Num*=10;
+					ScpiV_num.Num+=scpinum1[i]-'0';
+				
+				}
+				else
+				{
+					ScpiV_num.Num*=10;
+					ScpiV_num.Num+=scpinum1[i]-'0';
+				
+				
+				}
+			}
+			
+			
+			//Sort_set.Num+=(Disp_buff[key_count-1]-'0');
+		
+		
+		}			
+	}
+	ScpiV_num.Dot=scpidot1;
+	ScpiV_num1=Input_Set_Cov(&ScpiV_num);
+	scpidot1 = 0;	
+		
+	return ScpiV_num1;
 
 }
 void Disp_Range(u8 hand,u8 range)

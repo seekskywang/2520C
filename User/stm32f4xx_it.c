@@ -43,10 +43,11 @@ extern USBH_HOST                    USB_Host;
 struct MODS_T g_tModS;
 u8 g_mods_timeout = 0;
 u32 Tick_10ms=0;
-char scpinum[20],scpiunit[20];
-u8 scpidot;
+char scpinum[20],scpinum1[20];
+u8 scpidot,scpiunit,scpidot1,scpiunit1;
 u8 scpnum = 0;
-extern Sort_TypeDef SCPI_SET_R(void);
+u8 scpnum1 = 0;
+extern Sort_TypeDef SCPI_SET_R(void),SCPI_SET_V(void),SCPI_SET_R1(void),SCPI_SET_V1(void);
 /* Private function prototypes -----------------------------------------------*/
 extern void USB_OTG_BSP_TimerIRQ (void);
 static void MODS_03H(void);
@@ -407,72 +408,95 @@ void USART3_IRQHandler(void)
 //	}	
 } 
 
-static void GetScpiNum(u8 count)
+static void GetScpiNum(u8 count,u8 data)
 {
-	u8 i,eflag,unflag;
-	static u8 scpidot;
-	u8 unitnum = 0;
-	char unbuf[10];
+	u8 i;
+	u8 dflag = 0;
 	
 	memset(scpinum, 0, sizeof(scpinum));
-	memset(scpiunit, 0, sizeof(scpiunit));
+	memset(scpinum1, 0, sizeof(scpinum1));
 	scpnum = 0;
+	scpnum1 = 0;
 	for(i = count;i < g_tModS.RxCount;i++)
 	{
-		if((g_tModS.RxBuf[i] >= '0' && g_tModS.RxBuf[i] <= '9') || g_tModS.RxBuf[i] == '.')
+		if(g_tModS.RxBuf[i] == ',')
 		{
-//			if(g_tModS.RxBuf[i] == 'E' || g_tModS.RxBuf[i] == 'e')
-//			{
-//				eflag = 1;
-//			}
-//			Jk516save.Set_Data.Nominal_Res.Unit = 1;
-//			if(g_tModS.RxBuf[i] == 'm')
-//			{
-//				Jk516save.Set_Data.Nominal_Res.Unit = 0;
-//			}else if(g_tModS.RxBuf[i] == 'k'){
-//				Jk516save.Set_Data.Nominal_Res.Unit = 2;
-//			}
-//			if(g_tModS.RxBuf[i] == '.')
-//			{
-//				scpidot = scpnum;
-//			}
-			scpinum[scpnum] = g_tModS.RxBuf[i];
-			scpnum ++;
-	//		}
+			dflag = i;
 		}
 	}
-	Jk516save.Set_Data.Nominal_Res=SCPI_SET_R();
-//	if(scpidot == 0)
-//	{
-//		Jk516save.Set_Data.Nominal_Res.Num = atoi(scpinum);
-//	}else{
-//		Jk516save.Set_Data.Nominal_Res.Dot = scpinum[scpnum-1] - 48;
-//		Jk516save.Set_Data.Nominal_Res.Num = atof(scpinum);
-//	}
-//	
-//	if(eflag == 1)
-//	{
-//		if(scpinum[scpnum-2] == '-' && scpinum[scpnum-1] == '3')
-//		{
-//			Jk516save.Set_Data.Nominal_Res.Unit = 0;
-//		}else if(scpinum[scpnum-2] == '+' && scpinum[scpnum-1] == '3'){
-//			Jk516save.Set_Data.Nominal_Res.Unit = 2;
-//		}else if(scpinum[scpnum-2] == '+' && scpinum[scpnum-1] == '0'){
-//			Jk516save.Set_Data.Nominal_Res.Unit = 1;
-//		}
-//	}else{
-//		
-//	}
-	
-	
-//	if(scpiunit[0] == '-' && scpiunit[1] == '3')
-//	{
-//		Jk516save.Set_Data.Nominal_Res.Unit = 0;
-//	}else if(scpiunit[0] == '+' && scpiunit[1] == '3'){
-//		Jk516save.Set_Data.Nominal_Res.Unit = 2;
-//	}
-//	Jk516save.Set_Data.Nominal_Res.Num = atoi(scpinum);
-	
+	if(dflag)
+	{
+		for(i = count;i < dflag;i++)
+		{
+			if((g_tModS.RxBuf[i] >= '0' && g_tModS.RxBuf[i] <= '9') || g_tModS.RxBuf[i] == '.')
+			{
+				scpinum[scpnum] = g_tModS.RxBuf[i];
+				if(g_tModS.RxBuf[i] == '.')
+				{
+					scpidot =scpnum;
+				}
+				scpnum ++;
+			}
+			scpiunit = 1;
+			if(g_tModS.RxBuf[i] == 'm')
+			{
+				scpiunit = 0;
+			}else if(g_tModS.RxBuf[i] == 'k'){
+				scpiunit = 2;
+			}		
+		}
+		for(i = dflag+1;i < g_tModS.RxCount;i++)
+		{
+			if((g_tModS.RxBuf[i] >= '0' && g_tModS.RxBuf[i] <= '9') || g_tModS.RxBuf[i] == '.')
+			{
+				scpinum1[scpnum1] = g_tModS.RxBuf[i];
+				if(g_tModS.RxBuf[i] == '.')
+				{
+					scpidot1 =scpnum1;
+				}
+				scpnum1 ++;
+			}
+			scpiunit1 = 1;
+			if(g_tModS.RxBuf[i] == 'm')
+			{
+				scpiunit1 = 0;
+			}else if(g_tModS.RxBuf[i] == 'k'){
+				scpiunit1 = 2;
+			}		
+		}
+	}else{
+		for(i = count;i < g_tModS.RxCount;i++)
+		{
+			if((g_tModS.RxBuf[i] >= '0' && g_tModS.RxBuf[i] <= '9') || g_tModS.RxBuf[i] == '.')
+			{
+				scpinum[scpnum] = g_tModS.RxBuf[i];
+				if(g_tModS.RxBuf[i] == '.')
+				{
+					scpidot =scpnum;
+				}
+				scpnum ++;
+			}
+			scpiunit = 1;
+			if(g_tModS.RxBuf[i] == 'm')
+			{
+				scpiunit = 0;
+			}else if(g_tModS.RxBuf[i] == 'k'){
+				scpiunit = 2;
+			}		
+		}
+	}
+	if(data == 0)
+	{
+		Jk516save.Set_Data.Nominal_V=SCPI_SET_V();
+	}else if(data == 1){
+		Jk516save.Set_Data.Nominal_Res=SCPI_SET_R();
+	}else if(data == 2){
+		Jk516save.Set_Data.Res_low=SCPI_SET_R();
+		Jk516save.Set_Data.High_Res=SCPI_SET_R1();
+	}else if(data == 3){
+		Jk516save.Set_Data.V_low=SCPI_SET_V();
+		Jk516save.Set_Data.V_high=SCPI_SET_V1();
+	}
 }
 
 void RecHandle(void)
@@ -483,9 +507,13 @@ void RecHandle(void)
     u8 sendlen;
     static u16 recrc;
     static u16 scrc;
-    u8 i;
+    u8 i,scpisendcount;
+	float scpisend1,scpisend2;
+	int scpisendE1,scpisendE2;
+	char scpisendbuf[24],scpisendbuf1[24];
    
-	
+	memset(scpisendbuf,0,24);
+	memset(scpisendbuf1,0,24);
 	if(g_tModS.RxBuf[0] == 'T' && g_tModS.RxBuf[1] == 'R' && g_tModS.RxBuf[2] == 'G')
 	{
 		RemTrig();//触发并返回数据命令
@@ -851,10 +879,232 @@ void RecHandle(void)
 		}//查询讯响
 	}else if(g_tModS.RxBuf[0] == 'C' && g_tModS.RxBuf[1] == 'O' && g_tModS.RxBuf[2] == 'M'
 	     && g_tModS.RxBuf[3] == 'P' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'T' && g_tModS.RxBuf[6] == 'O'
-		 && g_tModS.RxBuf[7] == 'L' && g_tModS.RxBuf[8] == ':' && g_tModS.RxBuf[9] == 'N' && g_tModS.RxBuf[10] == 'O'
-		 && g_tModS.RxBuf[11] == 'M')//设置标称电阻
+		 && g_tModS.RxBuf[7] == 'L' && g_tModS.RxBuf[8] == ':' && g_tModS.RxBuf[9] == 'R' && g_tModS.RxBuf[10] == 'N'
+		 && g_tModS.RxBuf[11] == 'O' && g_tModS.RxBuf[12] == 'M' && g_tModS.RxBuf[13] == ' ')//设置标称电阻
 	{
-		GetScpiNum(13);
+		GetScpiNum(13,1);
+	}else if(g_tModS.RxBuf[0] == 'C' && g_tModS.RxBuf[1] == 'O' && g_tModS.RxBuf[2] == 'M'
+	     && g_tModS.RxBuf[3] == 'P' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'T' && g_tModS.RxBuf[6] == 'O'
+		 && g_tModS.RxBuf[7] == 'L' && g_tModS.RxBuf[8] == ':' && g_tModS.RxBuf[9] == 'V' && g_tModS.RxBuf[10] == 'N'
+		 && g_tModS.RxBuf[11] == 'O' && g_tModS.RxBuf[12] == 'M' && g_tModS.RxBuf[13] == ' ')//设置标称电压
+	{
+		GetScpiNum(13,0);
+	}else if(g_tModS.RxBuf[0] == 'C' && g_tModS.RxBuf[1] == 'O' && g_tModS.RxBuf[2] == 'M'
+	     && g_tModS.RxBuf[3] == 'P' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'T' && g_tModS.RxBuf[6] == 'O'
+		 && g_tModS.RxBuf[7] == 'L' && g_tModS.RxBuf[8] == ':' && g_tModS.RxBuf[9] == 'R' && g_tModS.RxBuf[10] == 'M'
+		 && g_tModS.RxBuf[11] == 'L' && g_tModS.RxBuf[12] == 'T' && g_tModS.RxBuf[13] == ' ')//设置电阻上下限
+	{
+		GetScpiNum(13,2);
+	}else if(g_tModS.RxBuf[0] == 'C' && g_tModS.RxBuf[1] == 'O' && g_tModS.RxBuf[2] == 'M'
+	     && g_tModS.RxBuf[3] == 'P' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'T' && g_tModS.RxBuf[6] == 'O'
+		 && g_tModS.RxBuf[7] == 'L' && g_tModS.RxBuf[8] == ':' && g_tModS.RxBuf[9] == 'V' && g_tModS.RxBuf[10] == 'M'
+		 && g_tModS.RxBuf[11] == 'L' && g_tModS.RxBuf[12] == 'T' && g_tModS.RxBuf[13] == ' ')//设置电压上下限
+	{
+		GetScpiNum(13,3);
+	}else if(g_tModS.RxBuf[0] == 'C' && g_tModS.RxBuf[1] == 'O' && g_tModS.RxBuf[2] == 'M'
+	     && g_tModS.RxBuf[3] == 'P' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'T' && g_tModS.RxBuf[6] == 'O'
+		 && g_tModS.RxBuf[7] == 'L' && g_tModS.RxBuf[8] == ':' && g_tModS.RxBuf[9] == 'R' && g_tModS.RxBuf[10] == 'N'
+		 && g_tModS.RxBuf[11] == 'O' && g_tModS.RxBuf[12] == 'M' && g_tModS.RxBuf[13] == '?')//查询标称电阻
+	{
+		scpisend1 = (float)Jk516save.Set_Data.Nominal_Res.Num/pow(10,Jk516save.Set_Data.Nominal_Res.Dot);
+	
+		if(Jk516save.Set_Data.Nominal_Res.Unit == 0)
+		{
+			scpisendE1 = -3;
+			sprintf(scpisendbuf,"%.4fE%02d",scpisend1,scpisendE1);
+		}else if(Jk516save.Set_Data.Nominal_Res.Unit == 1){
+			scpisendE1 = 0;
+			sprintf(scpisendbuf,"%.4f+E%02d",scpisend1,scpisendE1);
+		}else if(Jk516save.Set_Data.Nominal_Res.Unit == 2){
+			scpisendE1 = 3;
+			sprintf(scpisendbuf,"%.4fE%+02d",scpisend1,scpisendE1);
+		}				
+		
+		for(i=0;i < sizeof(scpisendbuf);i++)
+		{
+			if(scpisendbuf[i] == 'E')
+			{
+				scpisendcount = i+3;
+			}
+		}
+		uart1SendChars(scpisendbuf,scpisendcount);
+	}else if(g_tModS.RxBuf[0] == 'C' && g_tModS.RxBuf[1] == 'O' && g_tModS.RxBuf[2] == 'M'
+	     && g_tModS.RxBuf[3] == 'P' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'T' && g_tModS.RxBuf[6] == 'O'
+		 && g_tModS.RxBuf[7] == 'L' && g_tModS.RxBuf[8] == ':' && g_tModS.RxBuf[9] == 'V' && g_tModS.RxBuf[10] == 'N'
+		 && g_tModS.RxBuf[11] == 'O' && g_tModS.RxBuf[12] == 'M' && g_tModS.RxBuf[13] == '?')//查询标称电阻
+	{
+		scpisend1 = (float)Jk516save.Set_Data.Nominal_V.Num/pow(10,Jk516save.Set_Data.Nominal_V.Dot);
+	
+//		if(Jk516save.Set_Data.Nominal_V.Unit == 0)
+//		{
+//			scpisendE = -3;
+//			sprintf(scpisendbuf,"%.4fE%02d",scpisend1,scpisendE);
+//		}else if(Jk516save.Set_Data.Nominal_Res.Unit == 1){
+//			scpisendE = 0;
+//			sprintf(scpisendbuf,"%.4f+E%02d",scpisend1,scpisendE);
+//		}else if(Jk516save.Set_Data.Nominal_Res.Unit == 2){
+//			scpisendE = 3;
+//			sprintf(scpisendbuf,"%.4fE%+02d",scpisend1,scpisendE);
+//		}				
+//		
+		sprintf(scpisendbuf,"%.4fE+0",scpisend1);
+		for(i=0;i < sizeof(scpisendbuf);i++)
+		{
+			if(scpisendbuf[i] == 'E')
+			{
+				scpisendcount = i+3;
+			}
+		}
+		
+		uart1SendChars(scpisendbuf,scpisendcount);
+	}else if(g_tModS.RxBuf[0] == 'C' && g_tModS.RxBuf[1] == 'O' && g_tModS.RxBuf[2] == 'M'
+	     && g_tModS.RxBuf[3] == 'P' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'T' && g_tModS.RxBuf[6] == 'O'
+		 && g_tModS.RxBuf[7] == 'L' && g_tModS.RxBuf[8] == ':' && g_tModS.RxBuf[9] == 'R' && g_tModS.RxBuf[10] == 'L'
+		 && g_tModS.RxBuf[11] == 'M' && g_tModS.RxBuf[12] == 'T' && g_tModS.RxBuf[13] == '?')//查询标称电阻
+	{
+		scpisend1 = (float)Jk516save.Set_Data.Res_low.Num/pow(10,Jk516save.Set_Data.Res_low.Dot);						
+		scpisend2 = (float)Jk516save.Set_Data.High_Res.Num/pow(10,Jk516save.Set_Data.High_Res.Dot);
+		
+		if(Jk516save.Set_Data.Res_low.Unit == 0)
+		{
+			scpisendE1 = -3;
+		}else if(Jk516save.Set_Data.Res_low.Unit == 1){
+			scpisendE1 = 0;
+		}else if(Jk516save.Set_Data.Res_low.Unit == 2){
+			scpisendE1 = 3;
+		}
+	
+		if(Jk516save.Set_Data.High_Res.Unit == 0)
+		{
+			scpisendE2 = -3;
+		}else if(Jk516save.Set_Data.High_Res.Unit == 1){
+			scpisendE2 = 0;
+		}else if(Jk516save.Set_Data.High_Res.Unit == 2){
+			scpisendE2 = 3;
+		}
+		if(scpisendE1 >= 0 && scpisendE2 >= 0)
+		{
+			sprintf(scpisendbuf,"%.4fE+%02d,%.4fE+%02d",scpisend1,scpisendE1,scpisend2,scpisendE2);
+		}else if(scpisendE1 >= 0 && scpisendE2 < 0)
+		{
+			sprintf(scpisendbuf,"%.4fE+%02d,%.4fE%02d",scpisend1,scpisendE1,scpisend2,scpisendE2);
+		}else if(scpisendE1 < 0 && scpisendE2 >= 0)
+		{
+			sprintf(scpisendbuf,"%.4fE%02d,%.4fE+%02d",scpisend1,scpisendE1,scpisend2,scpisendE2);
+		}else{
+			sprintf(scpisendbuf,"%.4fE%02d,%.4fE%02d",scpisend1,scpisendE1,scpisend2,scpisendE2);
+		}
+		for(i=0;i < sizeof(scpisendbuf);i++)
+		{
+			if(scpisendbuf[i] == 'E')
+			{
+				scpisendcount = i+4;
+			}
+		}
+		uart1SendChars(scpisendbuf,scpisendcount);
+	}else if(g_tModS.RxBuf[0] == 'C' && g_tModS.RxBuf[1] == 'O' && g_tModS.RxBuf[2] == 'M'
+	     && g_tModS.RxBuf[3] == 'P' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'T' && g_tModS.RxBuf[6] == 'O'
+		 && g_tModS.RxBuf[7] == 'L' && g_tModS.RxBuf[8] == ':' && g_tModS.RxBuf[9] == 'V' && g_tModS.RxBuf[10] == 'L'
+		 && g_tModS.RxBuf[11] == 'M' && g_tModS.RxBuf[12] == 'T' && g_tModS.RxBuf[13] == '?')//查询标称电阻
+	{
+		scpisend1 = (float)Jk516save.Set_Data.V_low.Num/pow(10,Jk516save.Set_Data.V_low.Dot);
+		scpisend2 = (float)Jk516save.Set_Data.V_high.Num/pow(10,Jk516save.Set_Data.V_high.Dot);
+	
+//		if(Jk516save.Set_Data.Nominal_V.Unit == 0)
+//		{
+//			scpisendE = -3;
+//			sprintf(scpisendbuf,"%.4fE%02d",scpisend1,scpisendE);
+//		}else if(Jk516save.Set_Data.Nominal_Res.Unit == 1){
+//			scpisendE = 0;
+//			sprintf(scpisendbuf,"%.4f+E%02d",scpisend1,scpisendE);
+//		}else if(Jk516save.Set_Data.Nominal_Res.Unit == 2){
+//			scpisendE = 3;
+//			sprintf(scpisendbuf,"%.4fE%+02d",scpisend1,scpisendE);
+//		}				
+//		
+		sprintf(scpisendbuf,"%.4fE+00,%.4fE+00",scpisend1,scpisend2);
+		for(i=0;i < sizeof(scpisendbuf);i++)
+		{
+			if(scpisendbuf[i] == 'E')
+			{
+				scpisendcount = i+4;
+			}
+		}
+		
+		uart1SendChars(scpisendbuf,scpisendcount);
+	}else if(g_tModS.RxBuf[0] == 'S' && g_tModS.RxBuf[1] == 'Y' && g_tModS.RxBuf[2] == 'S'
+	     && g_tModS.RxBuf[3] == 'T' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'L' && g_tModS.RxBuf[6] == 'A'
+		 && g_tModS.RxBuf[7] == 'N' && g_tModS.RxBuf[8] == 'G' && g_tModS.RxBuf[9] == ' ' && g_tModS.RxBuf[10] == 'E'
+		 && g_tModS.RxBuf[11] == 'N')//设置显示语言
+	{
+		Jk516save.Sys_Setvalue.lanage=1;
+	}else if(g_tModS.RxBuf[0] == 'S' && g_tModS.RxBuf[1] == 'Y' && g_tModS.RxBuf[2] == 'S'
+	     && g_tModS.RxBuf[3] == 'T' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'L' && g_tModS.RxBuf[6] == 'A'
+		 && g_tModS.RxBuf[7] == 'N' && g_tModS.RxBuf[8] == 'G' && g_tModS.RxBuf[9] == ' ' && g_tModS.RxBuf[10] == 'C'
+		 && g_tModS.RxBuf[11] == 'N')//设置显示语言
+	{
+		Jk516save.Sys_Setvalue.lanage=0;
+	}else if(g_tModS.RxBuf[0] == 'S' && g_tModS.RxBuf[1] == 'Y' && g_tModS.RxBuf[2] == 'S'
+	     && g_tModS.RxBuf[3] == 'T' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'L' && g_tModS.RxBuf[6] == 'A'
+		 && g_tModS.RxBuf[7] == 'N' && g_tModS.RxBuf[8] == 'G' && g_tModS.RxBuf[9] == ' ' && g_tModS.RxBuf[10] == 'E'
+		 && g_tModS.RxBuf[11] == 'N')//设置显示语言
+	{
+		Jk516save.Sys_Setvalue.lanage=1;
+	}else if(g_tModS.RxBuf[0] == 'S' && g_tModS.RxBuf[1] == 'Y' && g_tModS.RxBuf[2] == 'S'
+	     && g_tModS.RxBuf[3] == 'T' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'L' && g_tModS.RxBuf[6] == 'A'
+		 && g_tModS.RxBuf[7] == 'N' && g_tModS.RxBuf[8] == 'G' && g_tModS.RxBuf[9] == '?')//设置显示语言
+	{
+		if(Jk516save.Sys_Setvalue.lanage == 0)
+		{
+			uart1SendChars("CN",2);
+		}else if(Jk516save.Sys_Setvalue.lanage == 1){
+			uart1SendChars("EN",2);
+		}//查询显示语言
+	}else if(g_tModS.RxBuf[0] == 'S' && g_tModS.RxBuf[1] == 'Y' && g_tModS.RxBuf[2] == 'S'
+	     && g_tModS.RxBuf[3] == 'T' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'B' && g_tModS.RxBuf[6] == 'A'
+		 && g_tModS.RxBuf[7] == 'U' && g_tModS.RxBuf[8] == 'D' && g_tModS.RxBuf[9] == ' ')//设置波特率
+	{
+		if(g_tModS.RxBuf[10] == '2' && g_tModS.RxBuf[11] == '4' && g_tModS.RxBuf[12] == '0' && g_tModS.RxBuf[13] == '0')
+		{
+			Jk516save.Sys_Setvalue.buard=0;
+			if(GetSystemStatus() == SYS_STATUS_SYSSET)
+			Disp_Sys_value(2);
+		}else if(g_tModS.RxBuf[10] == '4' && g_tModS.RxBuf[11] == '8' && g_tModS.RxBuf[12] == '0' && g_tModS.RxBuf[13] == '0')
+		{
+			Jk516save.Sys_Setvalue.buard=1;
+			if(GetSystemStatus() == SYS_STATUS_SYSSET)
+			Disp_Sys_value(2);
+		}else if(g_tModS.RxBuf[10] == '9' && g_tModS.RxBuf[11] == '6' && g_tModS.RxBuf[12] == '0' && g_tModS.RxBuf[13] == '0')
+		{
+			Jk516save.Sys_Setvalue.buard=2;
+			if(GetSystemStatus() == SYS_STATUS_SYSSET)
+			Disp_Sys_value(2);
+		}else if(g_tModS.RxBuf[10] == '1' && g_tModS.RxBuf[11] == '4' && g_tModS.RxBuf[12] == '4' && g_tModS.RxBuf[13] == '0' && g_tModS.RxBuf[14] == '0')
+		{
+			Jk516save.Sys_Setvalue.buard=3;
+			if(GetSystemStatus() == SYS_STATUS_SYSSET)
+			Disp_Sys_value(2);
+		}else if(g_tModS.RxBuf[10] == '1' && g_tModS.RxBuf[11] == '9' && g_tModS.RxBuf[12] == '2' && g_tModS.RxBuf[13] == '0' && g_tModS.RxBuf[14] == '0')
+		{
+			Jk516save.Sys_Setvalue.buard=4;
+			if(GetSystemStatus() == SYS_STATUS_SYSSET)
+			Disp_Sys_value(2);
+		}
+	}else if(g_tModS.RxBuf[0] == 'S' && g_tModS.RxBuf[1] == 'Y' && g_tModS.RxBuf[2] == 'S'
+	     && g_tModS.RxBuf[3] == 'T' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'U' && g_tModS.RxBuf[6] == 'D'
+		 && g_tModS.RxBuf[7] == 'S' && g_tModS.RxBuf[8] == 'K' && g_tModS.RxBuf[9] == ' ')//设置U盘开关
+	{
+		if(g_tModS.RxBuf[10] == 'O' && g_tModS.RxBuf[11] == 'N')
+		{
+			Jk516save.Sys_Setvalue.u_flag=1;
+			if(GetSystemStatus() == SYS_STATUS_SYSSET)
+			Disp_Sys_value(3);
+		}else if(g_tModS.RxBuf[10] == 'O' && g_tModS.RxBuf[11] == 'F' && g_tModS.RxBuf[11] == 'F')
+		{
+			Jk516save.Sys_Setvalue.u_flag=0;
+			if(GetSystemStatus() == SYS_STATUS_SYSSET)
+			Disp_Sys_value(3);
+		}
 	}
 	
 	

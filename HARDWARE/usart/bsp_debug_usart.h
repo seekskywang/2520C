@@ -33,7 +33,7 @@
 #endif
 
 
-void Debug_USART_Config(void);
+void Debug_USART_Config(u32 baud);
 void Usart_SendString( USART_TypeDef * pUSARTx, char *str);
 void Send_Uart3str(char *str);
 

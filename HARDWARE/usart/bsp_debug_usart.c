@@ -41,7 +41,7 @@ static void NVIC_Configuration(void)
   * @param  无
   * @retval 无
   */
-void Debug_USART_Config(void)
+void Debug_USART_Config(u32 baud)
 {
   GPIO_InitTypeDef GPIO_InitStructure;
   USART_InitTypeDef USART_InitStructure;
@@ -72,7 +72,7 @@ void Debug_USART_Config(void)
   GPIO_Init(DEBUG_USART_RX_GPIO_PORT, &GPIO_InitStructure);
 			
   /* 配置串DEBUG_USART 模式 */
-  USART_InitStructure.USART_BaudRate = DEBUG_USART_BAUDRATE;
+  USART_InitStructure.USART_BaudRate = baud;
   USART_InitStructure.USART_WordLength = USART_WordLength_8b;
   USART_InitStructure.USART_StopBits = USART_StopBits_1;
   USART_InitStructure.USART_Parity = USART_Parity_No ;

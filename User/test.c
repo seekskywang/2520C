@@ -73,7 +73,7 @@ void Power_Process(void)
 	u8 key;
     Int_Pe3flag=0;
     Turnon_Led();
-    Debug_USART_Config();//串口1
+    Debug_USART_Config(9600);//串口1
     RTC_CLK_Config();
     RTC_Set_WakeUp(RTC_WakeUpClock_CK_SPRE_16bits,0);		//配置WAKE UP中断,1秒钟中断一次
     GPIO_Configuration();//端口初始化
@@ -1188,15 +1188,19 @@ void Test_Process(void)
 						
 							if(Test_Value.uint == 0)
 							{
-								sendE = 0;
+								sendE = -3;
 							}else if(Test_Value.uint == 1){
-								sendE = 3;
+								sendE = 0;
 							}else if(Test_Value.uint == 2){
-								sendE = 6;
+								sendE = 3;
 							}
 							
-							
-							sprintf(sendbuf,"+%.4fE+%d,+%.4fE+0+",RemoteR,sendE,RemoteV);
+							if(Test_Value_V.polar == 1)
+							{
+								sprintf(sendbuf,"+%.4fE+%d,+%.4fE+00",RemoteR,sendE,RemoteV);
+							}else if(Test_Value_V.polar == 0){
+								sprintf(sendbuf,"+%.4fE+%d,-%.4fE+00",RemoteR,sendE,RemoteV);
+							}
 							uart1SendChars(sendbuf,sizeof(sendbuf));
 						}
 						

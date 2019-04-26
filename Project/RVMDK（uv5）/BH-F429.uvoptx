@@ -120,7 +120,6 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name>猬遷,[?,[?趏侾</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -159,7 +158,7 @@
           <Type>0</Type>
           <LineNumber>905</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134251710</Address>
+          <Address>134255154</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -175,7 +174,7 @@
           <Type>0</Type>
           <LineNumber>906</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134251714</Address>
+          <Address>134255158</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -191,7 +190,7 @@
           <Type>0</Type>
           <LineNumber>907</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134251738</Address>
+          <Address>134255182</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -207,7 +206,7 @@
           <Type>0</Type>
           <LineNumber>887</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134251568</Address>
+          <Address>134255012</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -223,7 +222,7 @@
           <Type>0</Type>
           <LineNumber>910</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134251860</Address>
+          <Address>134255304</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -239,7 +238,7 @@
           <Type>0</Type>
           <LineNumber>893</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134251664</Address>
+          <Address>134255108</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -253,9 +252,9 @@
         <Bp>
           <Number>6</Number>
           <Type>0</Type>
-          <LineNumber>4695</LineNumber>
+          <LineNumber>4777</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134256694</Address>
+          <Address>134227078</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -264,7 +263,23 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>F:\2520C\Project\User\user.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\Template\../../User/user.c\4695</Expression>
+          <Expression>\\Template\../../User/user.c\4777</Expression>
+        </Bp>
+        <Bp>
+          <Number>7</Number>
+          <Type>0</Type>
+          <LineNumber>4786</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>134227130</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>F:\2520C\Project\User\user.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\Template\../../User/user.c\4786</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -421,7 +436,7 @@
         <Ww>
           <count>30</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Jk516save.Set_Data.Nominal_V.Num,0x0A</ItemText>
+          <ItemText>scpinum1</ItemText>
         </Ww>
         <Ww>
           <count>31</count>
@@ -477,6 +492,31 @@
           <count>41</count>
           <WinNumber>1</WinNumber>
           <ItemText>Scpi_num1,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>42</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>scpiunit</ItemText>
+        </Ww>
+        <Ww>
+          <count>43</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>ScpiV_num,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>44</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>ScpiV_num,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>45</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>ScpiV_num1,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>46</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>scpisendbuf</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>
