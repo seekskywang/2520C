@@ -590,7 +590,7 @@ typedef struct
     float Clear[RANGE_MAX+1];
      float Clear_V[2];
     vu8 fac_num[10];
-    
+    vu8 open;
     
     
 

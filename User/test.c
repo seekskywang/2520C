@@ -115,9 +115,14 @@ void Power_Process(void)
 
 	InitGlobalValue();//初始化全局变量
 	Read_set_flash();
-    lcd_image((uint8_t *)gImage_open);
+    
 	Parameter_valuecomp();//比较读出的数据
-
+	if(Jk516save.open == 1)
+	{
+		lcd_image((uint8_t *)gImage_open);
+	}else{
+		
+	}
     TIM6_Configuration();//定时器6定时10ms
 
 	MenuIndex=0;//待机菜单项
@@ -139,8 +144,10 @@ void Power_Process(void)
 		i++;
         j++;
        
-		if(i>POWERON_DISP_TIME)//延时20*100mS=2s后自动退出
+		if(i>POWERON_DISP_TIME && Jk516save.open == 1)//延时20*100mS=2s后自动退出
             SetSystemStatus(SYS_STATUS_TEST);//待测状态
+		else
+			SetSystemStatus(SYS_STATUS_TEST);//待测状态
 
         
 		key=Key_Read_WithTimeOut(TICKS_PER_SEC_SOFTTIMER/10);//等待按键(100*10ms/10=100ms)
@@ -2201,7 +2208,13 @@ void Use_DebugProcess(void)
 				case Key_BIAS:
 				break;
 				case Key_REST:
-                    
+                    if(Jk516save.open == 1)
+					{
+						Jk516save.open = 0;
+					}else{
+						Jk516save.open = 1;
+					}
+					Store_set_flash();
 				break;
 				case Key_TRIG:
 				break;

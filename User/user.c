@@ -386,6 +386,28 @@ const uint8_t Sys_Sys_E[][20+1]=
 
 
 };
+const uint8_t Sys_Sys1[][20+1]=
+{
+	{"ÒÇÆ÷ÐÍºÅ  2520C"},
+	{"Èí¼þ°æ±¾  Ver:1.6"},
+	{"Ó²¼þ°æ±¾  Ver:1.1"},
+	{"ÒÇÆ÷±àºÅ"},
+//	{"ÕËºÅ    "},
+
+
+
+};
+const uint8_t Sys_Sys_E1[][20+1]=
+{
+	{"INST MODEL  2520C"},
+	{"SOFT VER   Ver:1.6"},
+	{"HARD VER   Ver:1.1"},
+	{"SERIALNO"},
+//	{"ÕËºÅ    "},
+
+
+
+};
 const uint8_t Range_Disp_Test[][7][11+1]=
 {
     {
@@ -575,6 +597,8 @@ void Parameter_valuecomp(void)
 //		if(*pt>ParameterLimit[i][0])
 //            *pt=ParameterLimit[i][1];
 //	}
+	if(Jk516save.open>1)
+        Jk516save.open=0;
     if(Jk516save.Set_Data.trip>3)
         Jk516save.Set_Data.trip=0;
     if(Jk516save.Set_Data.speed>3)
@@ -4196,10 +4220,18 @@ void Disp_Sys(void)
 	//WriteString_16(0, 4, All_TopName[10],  0);
 	Colour.Fword=White;
 	Colour.black=LCD_COLOR_TEST_BACK;
-    if(Jk516save.Sys_Setvalue.lanage)
-        pt=Sys_Sys_E;
-    else
-        pt=Sys_Sys;
+	if(Jk516save.open)
+	{
+		if(Jk516save.Sys_Setvalue.lanage)
+			pt=Sys_Sys_E;
+		else
+			pt=Sys_Sys;
+	}else{
+		if(Jk516save.Sys_Setvalue.lanage)
+			pt=Sys_Sys_E1;
+		else
+			pt=Sys_Sys1;
+	}
     
 //	WriteString_16(LIST1, FIRSTLINE, User_ListScan_Item[0],  0);
 
