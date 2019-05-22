@@ -119,6 +119,10 @@
       <TargetDriverDllRegistry>
         <SetRegEntry>
           <Number>0</Number>
+          <Key>DLGUARM</Key>
+        </SetRegEntry>
+        <SetRegEntry>
+          <Number>0</Number>
           <Key>PWSTATINFO</Key>
           <Name>200,50,700</Name>
         </SetRegEntry>
@@ -154,7 +158,7 @@
           <Type>0</Type>
           <LineNumber>887</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134255040</Address>
+          <Address>134255514</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -170,7 +174,7 @@
           <Type>0</Type>
           <LineNumber>910</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134255198</Address>
+          <Address>134255654</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -180,38 +184,6 @@
           <Filename>F:\2520C\Project\User\test.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\Template\../../User/test.c\910</Expression>
-        </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
-          <LineNumber>4777</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134227020</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>F:\2520C\Project\User\user.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\Template\../../User/user.c\4777</Expression>
-        </Bp>
-        <Bp>
-          <Number>3</Number>
-          <Type>0</Type>
-          <LineNumber>4786</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134227124</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>F:\2520C\Project\User\user.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\Template\../../User/user.c\4786</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -454,6 +426,11 @@
           <count>47</count>
           <WinNumber>1</WinNumber>
           <ItemText>Jk516save.open</ItemText>
+        </Ww>
+        <Ww>
+          <count>48</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>g_tModS.RxBuf</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>

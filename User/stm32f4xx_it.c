@@ -514,9 +514,30 @@ void RecHandle(void)
    
 	memset(scpisendbuf,0,24);
 	memset(scpisendbuf1,0,24);
-	if(g_tModS.RxBuf[0] == 'T' && g_tModS.RxBuf[1] == 'R' && g_tModS.RxBuf[2] == 'G')
+	
+	if(g_tModS.RxBuf[0] == 'T' && g_tModS.RxBuf[1] == 'R' && g_tModS.RxBuf[2] == 'I' && g_tModS.RxBuf[3] == 'G'  && g_tModS.RxBuf[4] != ':')
 	{
 		RemTrig();//触发并返回数据命令
+	}else if(g_tModS.RxBuf[0] == 'T' && g_tModS.RxBuf[1] == 'R' && g_tModS.RxBuf[2] == 'I' && g_tModS.RxBuf[3] == 'G'
+	    && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'S' && g_tModS.RxBuf[6] == 'O'
+	    && g_tModS.RxBuf[7] == 'U' && g_tModS.RxBuf[8] == 'R' && g_tModS.RxBuf[9] == ' ')
+	{
+		if(g_tModS.RxBuf[10] == 'I' && g_tModS.RxBuf[11] == 'N' && g_tModS.RxBuf[12] == 'T')
+		{
+			Jk516save.Set_Data.trip = 0;
+		}else if(g_tModS.RxBuf[10] == 'M' && g_tModS.RxBuf[11] == 'A' && g_tModS.RxBuf[12] == 'N'){
+			Jk516save.Set_Data.trip = 1;
+		}else if(g_tModS.RxBuf[10] == 'E' && g_tModS.RxBuf[11] == 'X' && g_tModS.RxBuf[12] == 'T'){
+			Jk516save.Set_Data.trip = 2;
+		}else if(g_tModS.RxBuf[10] == 'R' && g_tModS.RxBuf[11] == 'M' && g_tModS.RxBuf[12] == 'T'){
+			Jk516save.Set_Data.trip = 3;
+		}
+		if(GetSystemStatus() == SYS_STATUS_TEST)
+		{
+			Disp_Test_value(1);
+		}else if(GetSystemStatus() == SYS_STATUS_SETUP){
+			DispSet_value(1);
+		}
 	}else if(g_tModS.RxBuf[0] == 'D' && g_tModS.RxBuf[1] == 'I' && g_tModS.RxBuf[2] == 'S'
 	    && g_tModS.RxBuf[3] == 'P' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'M' && g_tModS.RxBuf[6] == 'E'
 	    && g_tModS.RxBuf[7] == 'A' && g_tModS.RxBuf[8] == 'S')
@@ -883,13 +904,15 @@ void RecHandle(void)
 		 && g_tModS.RxBuf[11] == 'O' && g_tModS.RxBuf[12] == 'M' && g_tModS.RxBuf[13] == ' ')//设置标称电阻
 	{
 		GetScpiNum(13,1);
-		DispSet_value(9);
+		if(GetSystemStatus() == SYS_STATUS_SETUP)
+			DispSet_value(9);
 	}else if(g_tModS.RxBuf[0] == 'C' && g_tModS.RxBuf[1] == 'O' && g_tModS.RxBuf[2] == 'M'
 	     && g_tModS.RxBuf[3] == 'P' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'T' && g_tModS.RxBuf[6] == 'O'
 		 && g_tModS.RxBuf[7] == 'L' && g_tModS.RxBuf[8] == ':' && g_tModS.RxBuf[9] == 'V' && g_tModS.RxBuf[10] == 'N'
 		 && g_tModS.RxBuf[11] == 'O' && g_tModS.RxBuf[12] == 'M' && g_tModS.RxBuf[13] == ' ')//设置标称电压
 	{
 		GetScpiNum(13,0);
+		if(GetSystemStatus() == SYS_STATUS_SETUP)
 		DispSet_value(11);
 	}else if(g_tModS.RxBuf[0] == 'C' && g_tModS.RxBuf[1] == 'O' && g_tModS.RxBuf[2] == 'M'
 	     && g_tModS.RxBuf[3] == 'P' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'T' && g_tModS.RxBuf[6] == 'O'
@@ -897,16 +920,28 @@ void RecHandle(void)
 		 && g_tModS.RxBuf[11] == 'L' && g_tModS.RxBuf[12] == 'T' && g_tModS.RxBuf[13] == ' ')//设置电阻上下限
 	{
 		GetScpiNum(13,2);
-		DispSet_value(4);
-		DispSet_value(10);
+		if(GetSystemStatus() == SYS_STATUS_SETUP)
+		{
+			DispSet_value(4);
+			DispSet_value(10);
+		}else if(GetSystemStatus() == SYS_STATUS_TEST){
+			Disp_Test_value(2);
+			Disp_Test_value(3);
+		}
 	}else if(g_tModS.RxBuf[0] == 'C' && g_tModS.RxBuf[1] == 'O' && g_tModS.RxBuf[2] == 'M'
 	     && g_tModS.RxBuf[3] == 'P' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'T' && g_tModS.RxBuf[6] == 'O'
 		 && g_tModS.RxBuf[7] == 'L' && g_tModS.RxBuf[8] == ':' && g_tModS.RxBuf[9] == 'V' && g_tModS.RxBuf[10] == 'M'
 		 && g_tModS.RxBuf[11] == 'L' && g_tModS.RxBuf[12] == 'T' && g_tModS.RxBuf[13] == ' ')//设置电压上下限
 	{
 		GetScpiNum(13,3);
-		DispSet_value(6);
-		DispSet_value(12);
+		if(GetSystemStatus() == SYS_STATUS_SETUP)
+		{
+			DispSet_value(6);
+			DispSet_value(12);
+		}else if(GetSystemStatus() == SYS_STATUS_TEST){
+			Disp_Test_value(5);
+			Disp_Test_value(6);
+		}
 	}else if(g_tModS.RxBuf[0] == 'C' && g_tModS.RxBuf[1] == 'O' && g_tModS.RxBuf[2] == 'M'
 	     && g_tModS.RxBuf[3] == 'P' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'T' && g_tModS.RxBuf[6] == 'O'
 		 && g_tModS.RxBuf[7] == 'L' && g_tModS.RxBuf[8] == ':' && g_tModS.RxBuf[9] == 'R' && g_tModS.RxBuf[10] == 'N'
@@ -1117,22 +1152,20 @@ void RecHandle(void)
 	
 	
 	
-//    switch(g_tModS.RxBuf[1])
-//    {
-//        case 0x03:
-//        {
-//            MODS_03H();
-//        }break;
-//        case 0x06:
-//        {
-//            MODS_06H();
-//        }break;
-//		case 0x54:
-//		{
-//			RemTrig();
-//		}
-//        default:break;
-//    }
+    switch(g_tModS.RxBuf[1])
+    {
+        case 0x03:
+        {
+            MODS_03H();
+        }break;
+        case 0x06:
+        {
+            MODS_06H();
+        }break;
+        default:break;
+    }
+
+		memset(g_tModS.RxBuf,0,30);
 }
 
 static uint8_t MODS_ReadRegValue(uint16_t reg_addr, uint8_t *reg_value)
@@ -1342,17 +1375,17 @@ static void MODS_06H(void)
 	reg = BEBufToUint16(&g_tModS.RxBuf[2]); 	/* ???? */
 	value = BEBufToUint16(&g_tModS.RxBuf[4]);	/* ???? */
     
-//    if(reg == 0x0E)
-//    {
-//        if(value == 00)
-//        {
-//            GPIO_ResetBits(GPIOC,GPIO_Pin_10);//CC
-//            flag_Load_CC = 1;
-//        }else if(value == 01){
-//            GPIO_SetBits(GPIOC,GPIO_Pin_10);//CV
-//            flag_Load_CC = 0;
-//        }
-//    }
+    if(reg == 0x0E)
+    {
+        if(value == 00)
+        {
+            Jk516save.Set_Data.Range=RANGE_MAX;//0  自动  10   最佳量程
+			Jk516save.Set_Data.Range_Set=0;
+        }else{
+            Jk516save.Set_Data.Range_Set=1;
+			Jk516save.Set_Data.Range=value-1;
+        }
+    }
 // 	if (MODS_WriteRegValue(reg, value) == 1)	/* ????ёд???????? */
 // 	{
 // 		;

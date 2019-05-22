@@ -73,7 +73,7 @@ void Power_Process(void)
 	u8 key;
     Int_Pe3flag=0;
     Turnon_Led();
-    Debug_USART_Config(9600);//串口1
+	
     RTC_CLK_Config();
     RTC_Set_WakeUp(RTC_WakeUpClock_CK_SPRE_16bits,0);		//配置WAKE UP中断,1秒钟中断一次
     GPIO_Configuration();//端口初始化
@@ -117,6 +117,18 @@ void Power_Process(void)
 	Read_set_flash();
     
 	Parameter_valuecomp();//比较读出的数据
+	if(Jk516save.Sys_Setvalue.buard == 0)
+	{
+		Debug_USART_Config(2400);//串口1
+	}else if(Jk516save.Sys_Setvalue.buard == 1){
+		Debug_USART_Config(4800);//串口1
+	}else if(Jk516save.Sys_Setvalue.buard == 2){
+		Debug_USART_Config(9600);//串口1
+	}else if(Jk516save.Sys_Setvalue.buard == 3){
+		Debug_USART_Config(14400);//串口1
+	}else if(Jk516save.Sys_Setvalue.buard == 4){
+		Debug_USART_Config(19200);//串口1
+	}
 	if(Jk516save.open == 1)
 	{
 		lcd_image((uint8_t *)gImage_open);
@@ -1105,7 +1117,7 @@ void Test_Process(void)
 //					LCD_DrawFullRect(SORTING_XDISP, SORTING_Y_DISP, 60, 22);
 //					WriteString_16(SORTING_XDISP, SORTING_Y_DISP, DispBuf,  0);
 //				}
-//				test_start = 0;
+				test_start = 0;
 				if(Jk516save.Set_Data.trip == 3)
 			    {
 //				    uart1SendChars("+0.0000E+0,+0.0000E+0+",22);
