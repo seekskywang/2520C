@@ -655,6 +655,7 @@ void RecHandle(void)
 		}else if(GetSystemStatus() == SYS_STATUS_SETUP){
 			DispSet_value(7);
 		}
+		Range_Control(Range,V_Range);
 	}else if(g_tModS.RxBuf[0] == 'F' && g_tModS.RxBuf[1] == 'U' && g_tModS.RxBuf[2] == 'N'
 	     && g_tModS.RxBuf[3] == 'C' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'R' && g_tModS.RxBuf[6] == 'A'
 		 && g_tModS.RxBuf[7] == 'N' && g_tModS.RxBuf[8] == 'G' && g_tModS.RxBuf[9] == ' ' && g_tModS.RxBuf[10] == '2'
@@ -668,6 +669,7 @@ void RecHandle(void)
 		}else if(GetSystemStatus() == SYS_STATUS_SETUP){
 			DispSet_value(7);
 		}
+		Range_Control(Range,V_Range);
 	}else if(g_tModS.RxBuf[0] == 'F' && g_tModS.RxBuf[1] == 'U' && g_tModS.RxBuf[2] == 'N'
 	     && g_tModS.RxBuf[3] == 'C' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'R' && g_tModS.RxBuf[6] == 'A'
 		 && g_tModS.RxBuf[7] == 'N' && g_tModS.RxBuf[8] == 'G' && g_tModS.RxBuf[9] == ' ' && g_tModS.RxBuf[10] == '3'
@@ -681,6 +683,7 @@ void RecHandle(void)
 		}else if(GetSystemStatus() == SYS_STATUS_SETUP){
 			DispSet_value(7);
 		}
+		Range_Control(Range,V_Range);
 	}else if(g_tModS.RxBuf[0] == 'F' && g_tModS.RxBuf[1] == 'U' && g_tModS.RxBuf[2] == 'N'
 	     && g_tModS.RxBuf[3] == 'C' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'R' && g_tModS.RxBuf[6] == 'A'
 		 && g_tModS.RxBuf[7] == 'N' && g_tModS.RxBuf[8] == 'G' && g_tModS.RxBuf[9] == ' ' && g_tModS.RxBuf[10] == '4'
@@ -694,6 +697,7 @@ void RecHandle(void)
 		}else if(GetSystemStatus() == SYS_STATUS_SETUP){
 			DispSet_value(7);
 		}
+		Range_Control(Range,V_Range);
 	}else if(g_tModS.RxBuf[0] == 'F' && g_tModS.RxBuf[1] == 'U' && g_tModS.RxBuf[2] == 'N'
 	     && g_tModS.RxBuf[3] == 'C' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'R' && g_tModS.RxBuf[6] == 'A'
 		 && g_tModS.RxBuf[7] == 'N' && g_tModS.RxBuf[8] == 'G' && g_tModS.RxBuf[9] == ' ' && g_tModS.RxBuf[10] == '5'
@@ -707,6 +711,7 @@ void RecHandle(void)
 		}else if(GetSystemStatus() == SYS_STATUS_SETUP){
 			DispSet_value(7);
 		}
+		Range_Control(Range,V_Range);
 	}else if(g_tModS.RxBuf[0] == 'F' && g_tModS.RxBuf[1] == 'U' && g_tModS.RxBuf[2] == 'N'
 	     && g_tModS.RxBuf[3] == 'C' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'R' && g_tModS.RxBuf[6] == 'A'
 		 && g_tModS.RxBuf[7] == 'N' && g_tModS.RxBuf[8] == 'G' && g_tModS.RxBuf[9] == ' ' && g_tModS.RxBuf[10] == '6'
@@ -720,6 +725,7 @@ void RecHandle(void)
 		}else if(GetSystemStatus() == SYS_STATUS_SETUP){
 			DispSet_value(7);
 		}
+		Range_Control(Range,V_Range);
 	}else if(g_tModS.RxBuf[0] == 'F' && g_tModS.RxBuf[1] == 'U' && g_tModS.RxBuf[2] == 'N'
 	     && g_tModS.RxBuf[3] == 'C' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'R' && g_tModS.RxBuf[6] == 'A'
 		 && g_tModS.RxBuf[7] == 'N' && g_tModS.RxBuf[8] == 'G' && g_tModS.RxBuf[9] == ' ' && g_tModS.RxBuf[10] == '7'
@@ -733,6 +739,7 @@ void RecHandle(void)
 		}else if(GetSystemStatus() == SYS_STATUS_SETUP){
 			DispSet_value(7);
 		}
+		Range_Control(Range,V_Range);
 	}else if(g_tModS.RxBuf[0] == 'F' && g_tModS.RxBuf[1] == 'U' && g_tModS.RxBuf[2] == 'N'
 	     && g_tModS.RxBuf[3] == 'C' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'R' && g_tModS.RxBuf[6] == 'A'
 		 && g_tModS.RxBuf[7] == 'N' && g_tModS.RxBuf[8] == 'G' && g_tModS.RxBuf[9] == '?')
@@ -1384,7 +1391,14 @@ static void MODS_06H(void)
         }else{
             Jk516save.Set_Data.Range_Set=1;
 			Jk516save.Set_Data.Range=value-1;
+			Range_Control(Range,V_Range);
         }
+		if(GetSystemStatus() == SYS_STATUS_TEST)
+		{
+			Disp_Test_value(4);
+		}else if(GetSystemStatus() == SYS_STATUS_SETUP){
+			DispSet_value(7);
+		}
     }
 // 	if (MODS_WriteRegValue(reg, value) == 1)	/* ????§×§Õ???????? */
 // 	{

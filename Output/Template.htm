@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\..\Output\Template.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\..\Output\Template.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed May 22 15:43:06 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed May 22 16:27:51 2019
 <BR><P>
 <H3>Maximum Stack Usage =       1224 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -886,6 +886,7 @@ Global Symbols
 <LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Disp_Button_value1
 </UL>
 <BR>[Called By]<UL><LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RecHandle
+<LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MODS_06H
 <LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Setup_Process
 </UL>
 
@@ -1141,6 +1142,7 @@ Global Symbols
 <LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Disp_Button_value1
 </UL>
 <BR>[Called By]<UL><LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RecHandle
+<LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MODS_06H
 <LI><a href="#[19e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Test_Process
 </UL>
 
@@ -2265,6 +2267,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[1a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;VRange_Changecomp
 <LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Range_Changecomp
 <LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RecHandle
+<LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MODS_06H
 <LI><a href="#[20f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Use_DebugProcess
 <LI><a href="#[19e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Test_Process
 <LI><a href="#[194]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Setup_Process
@@ -2314,7 +2317,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Power_Process
 </UL>
 
-<P><STRONG><a name="[13e]"></a>RecHandle</STRONG> (Thumb, 6510 bytes, Stack size 176 bytes, stm32f4xx_it.o(i.RecHandle))
+<P><STRONG><a name="[13e]"></a>RecHandle</STRONG> (Thumb, 6626 bytes, Stack size 176 bytes, stm32f4xx_it.o(i.RecHandle))
 <BR><BR>[Stack]<UL><LI>Max Depth = 648<LI>Call Chain = RecHandle &rArr; GetScpiNum &rArr; SCPI_SET_R1 &rArr; Time_Set_Cov &rArr; __hardfp_pow &rArr; __kernel_poly &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
@@ -4223,10 +4226,13 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RecHandle
 </UL>
 
-<P><STRONG><a name="[13c]"></a>MODS_06H</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, stm32f4xx_it.o(i.MODS_06H))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = MODS_06H
+<P><STRONG><a name="[13c]"></a>MODS_06H</STRONG> (Thumb, 114 bytes, Stack size 8 bytes, stm32f4xx_it.o(i.MODS_06H))
+<BR><BR>[Stack]<UL><LI>Max Depth = 212<LI>Call Chain = MODS_06H &rArr; Disp_Test_value &rArr; Disp_Button_value1 &rArr; Disp_Fastbutton &rArr; LCD_DrawFullRect &rArr; DMA2D_Init
 </UL>
-<BR>[Calls]<UL><LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BEBufToUint16
+<BR>[Calls]<UL><LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Range_Control
+<LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Disp_Test_value
+<LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DispSet_value
+<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BEBufToUint16
 </UL>
 <BR>[Called By]<UL><LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RecHandle
 </UL>

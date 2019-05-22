@@ -158,7 +158,7 @@
           <Type>0</Type>
           <LineNumber>887</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134247968</Address>
+          <Address>134247846</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -174,7 +174,7 @@
           <Type>0</Type>
           <LineNumber>910</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134248260</Address>
+          <Address>134248136</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -184,6 +184,22 @@
           <Filename>F:\2520C\Project\User\test.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\Template\../../User/test.c\910</Expression>
+        </Bp>
+        <Bp>
+          <Number>2</Number>
+          <Type>0</Type>
+          <LineNumber>419</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+          <Address>134241752</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>F:\2520C\Project\User\stm32f4xx_it.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\Template\../../User/stm32f4xx_it.c\419</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -431,6 +447,11 @@
           <count>48</count>
           <WinNumber>1</WinNumber>
           <ItemText>g_tModS.TxBuf</ItemText>
+        </Ww>
+        <Ww>
+          <count>49</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>reg_value,0x0A</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>

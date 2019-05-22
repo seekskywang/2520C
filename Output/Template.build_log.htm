@@ -27,52 +27,6 @@ Project File Date:  05/22/2019
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target '工程模板'
-compiling main.c...
-compiling stm32f4xx_it.c...
-..\..\User\stm32f4xx_it.c(335): warning:  #177-D: variable "dat"  was declared but never referenced
-        u8 dat;
-..\..\User\stm32f4xx_it.c(971): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
-                uart1SendChars(scpisendbuf,scpisendcount);
-..\..\User\stm32f4xx_it.c(1000): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
-                uart1SendChars(scpisendbuf,scpisendcount);
-..\..\User\stm32f4xx_it.c(1045): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
-                uart1SendChars(scpisendbuf,scpisendcount);
-..\..\User\stm32f4xx_it.c(1075): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
-                uart1SendChars(scpisendbuf,scpisendcount);
-..\..\User\stm32f4xx_it.c(1112): warning:  #223-D: function "Disp_Sys_value" declared implicitly
-                        Disp_Sys_value(2);
-..\..\User\stm32f4xx_it.c(1117): warning:  #223-D: function "Disp_Sys_value" declared implicitly
-                        Disp_Sys_value(2);
-..\..\User\stm32f4xx_it.c(1122): warning:  #223-D: function "Disp_Sys_value" declared implicitly
-                        Disp_Sys_value(2);
-..\..\User\stm32f4xx_it.c(1127): warning:  #223-D: function "Disp_Sys_value" declared implicitly
-                        Disp_Sys_value(2);
-..\..\User\stm32f4xx_it.c(1132): warning:  #223-D: function "Disp_Sys_value" declared implicitly
-                        Disp_Sys_value(2);
-..\..\User\stm32f4xx_it.c(1142): warning:  #223-D: function "Disp_Sys_value" declared implicitly
-                        Disp_Sys_value(3);
-..\..\User\stm32f4xx_it.c(1147): warning:  #223-D: function "Disp_Sys_value" declared implicitly
-                        Disp_Sys_value(3);
-..\..\User\stm32f4xx_it.c(504): warning:  #177-D: variable "crec"  was declared but never referenced
-      u8 crec[6];
-..\..\User\stm32f4xx_it.c(505): warning:  #177-D: variable "csend"  was declared but never referenced
-      u8 *csend;
-..\..\User\stm32f4xx_it.c(506): warning:  #177-D: variable "sendbuf"  was declared but never referenced
-      static u8 *sendbuf;
-..\..\User\stm32f4xx_it.c(507): warning:  #177-D: variable "sendlen"  was declared but never referenced
-      u8 sendlen;
-..\..\User\stm32f4xx_it.c(508): warning:  #177-D: variable "recrc"  was declared but never referenced
-      static u16 recrc;
-..\..\User\stm32f4xx_it.c(509): warning:  #177-D: variable "scrc"  was declared but never referenced
-      static u16 scrc;
-..\..\User\stm32f4xx_it.c(1438): warning:  #223-D: function "MODS_Poll" declared implicitly
-          MODS_Poll();
-..\..\User\stm32f4xx_it.c(179): warning:  #177-D: function "MODS_SendAckErr"  was declared but never referenced
-  static void MODS_SendAckErr(uint8_t _ucErrCode)
-..\..\User\stm32f4xx_it.c(199): warning:  #177-D: function "MODS_SendAckOk"  was declared but never referenced
-  static void MODS_SendAckOk(void)
-..\..\User\stm32f4xx_it.c: 21 warnings, 0 errors
-compiling pbdata.c...
 compiling user.c...
 ..\..\User\user.c(1271): warning:  #188-D: enumerated type mixed with another type
         bool f_upper=FALSE;//量程过压标志
@@ -153,40 +107,11 @@ compiling user.c...
 ..\..\User\user.c(1386): warning:  #177-D: variable "i"  was declared but never referenced
         u8 i;
 ..\..\User\user.c: 39 warnings, 0 errors
-compiling test.c...
-..\..\User\test.c(854): warning:  #223-D: function "Read_ExtTrig" declared implicitly
-                Extrigflag = Read_ExtTrig();
-..\..\User\test.c(1124): warning:  #223-D: function "uart1SendChars" declared implicitly
-                                        uart1SendChars("OPEN",4);
-..\..\User\test.c(1163): warning:  #223-D: function "uart1SendChars" declared implicitly
-                                                  uart1SendChars("OPEN",4);
-..\..\User\test.c(1210): warning:  #68-D: integer conversion resulted in a change of sign
-                                                                sendE = -3;
-..\..\User\test.c(1223): warning:  #223-D: function "uart1SendChars" declared implicitly
-                                                        uart1SendChars(sendbuf,sizeof(sendbuf));
-..\..\User\test.c(761): warning:  #177-D: variable "oldskip"  was declared but never referenced
-        static u32 oldskip;
-..\..\User\test.c(764): warning:  #177-D: variable "csendlen"  was declared but never referenced
-        u8 csendlen;
-..\..\User\test.c: 7 warnings, 0 errors
-compiling 4094.C...
-compiling AD7706.C...
-compiling GPIO.C...
-compiling keyboard.c...
-compiling bsp_lcd.c...
-..\..\User\hzk.h(1100): warning:  #375-D: declaration requires a typedef name
-  };
-..\..\HARDWARE\lcd\bsp_lcd.c: 1 warning, 0 errors
-compiling bsp_debug_usart.c...
-compiling flash_eerom.c...
-compiling bsp_rtc.c...
-compiling diskio.c...
-compiling usbh_usr.c...
 linking...
-Program Size: Code=75044 RO-data=594036 RW-data=496 ZI-data=30008  
+Program Size: Code=75212 RO-data=594036 RW-data=496 ZI-data=30008  
 FromELF: creating hex file...
 After Build - User command #1: D:\Keil_v5\ARM\ARMCC\bin\fromelf.exe --bin -o ..\..\Output\Template.bin ..\..\Output\Template.axf
-"..\..\Output\Template.axf" - 0 Error(s), 68 Warning(s).
+"..\..\Output\Template.axf" - 0 Error(s), 39 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -200,7 +125,7 @@ Package Vendor: Keil
   D:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.12.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:17
+Build Time Elapsed:  00:00:03
 </pre>
 </body>
 </html>
