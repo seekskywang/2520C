@@ -528,8 +528,8 @@ void RecHandle(void)
 	{
 		SetSystemStatus(SYS_STATUS_SETUP);//测量设置界面
 	}else if(g_tModS.RxBuf[0] == 'D' && g_tModS.RxBuf[1] == 'I' && g_tModS.RxBuf[2] == 'S'
-	    && g_tModS.RxBuf[3] == 'P' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'S' && g_tModS.RxBuf[6] == 'Y'
-	    && g_tModS.RxBuf[7] == 'S' && g_tModS.RxBuf[8] == 'T')
+	    && g_tModS.RxBuf[3] == 'P' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'S' && g_tModS.RxBuf[6] == 'S'
+	    && g_tModS.RxBuf[7] == 'E' && g_tModS.RxBuf[8] == 'T')
 	{
 		SetSystemStatus(SYS_STATUS_SYSSET);//系统设置界面
 	}else if(g_tModS.RxBuf[0] == 'D' && g_tModS.RxBuf[1] == 'I' && g_tModS.RxBuf[2] == 'S'
@@ -883,24 +883,30 @@ void RecHandle(void)
 		 && g_tModS.RxBuf[11] == 'O' && g_tModS.RxBuf[12] == 'M' && g_tModS.RxBuf[13] == ' ')//设置标称电阻
 	{
 		GetScpiNum(13,1);
+		DispSet_value(9);
 	}else if(g_tModS.RxBuf[0] == 'C' && g_tModS.RxBuf[1] == 'O' && g_tModS.RxBuf[2] == 'M'
 	     && g_tModS.RxBuf[3] == 'P' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'T' && g_tModS.RxBuf[6] == 'O'
 		 && g_tModS.RxBuf[7] == 'L' && g_tModS.RxBuf[8] == ':' && g_tModS.RxBuf[9] == 'V' && g_tModS.RxBuf[10] == 'N'
 		 && g_tModS.RxBuf[11] == 'O' && g_tModS.RxBuf[12] == 'M' && g_tModS.RxBuf[13] == ' ')//设置标称电压
 	{
 		GetScpiNum(13,0);
+		DispSet_value(11);
 	}else if(g_tModS.RxBuf[0] == 'C' && g_tModS.RxBuf[1] == 'O' && g_tModS.RxBuf[2] == 'M'
 	     && g_tModS.RxBuf[3] == 'P' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'T' && g_tModS.RxBuf[6] == 'O'
 		 && g_tModS.RxBuf[7] == 'L' && g_tModS.RxBuf[8] == ':' && g_tModS.RxBuf[9] == 'R' && g_tModS.RxBuf[10] == 'M'
 		 && g_tModS.RxBuf[11] == 'L' && g_tModS.RxBuf[12] == 'T' && g_tModS.RxBuf[13] == ' ')//设置电阻上下限
 	{
 		GetScpiNum(13,2);
+		DispSet_value(4);
+		DispSet_value(10);
 	}else if(g_tModS.RxBuf[0] == 'C' && g_tModS.RxBuf[1] == 'O' && g_tModS.RxBuf[2] == 'M'
 	     && g_tModS.RxBuf[3] == 'P' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'T' && g_tModS.RxBuf[6] == 'O'
 		 && g_tModS.RxBuf[7] == 'L' && g_tModS.RxBuf[8] == ':' && g_tModS.RxBuf[9] == 'V' && g_tModS.RxBuf[10] == 'M'
 		 && g_tModS.RxBuf[11] == 'L' && g_tModS.RxBuf[12] == 'T' && g_tModS.RxBuf[13] == ' ')//设置电压上下限
 	{
 		GetScpiNum(13,3);
+		DispSet_value(6);
+		DispSet_value(12);
 	}else if(g_tModS.RxBuf[0] == 'C' && g_tModS.RxBuf[1] == 'O' && g_tModS.RxBuf[2] == 'M'
 	     && g_tModS.RxBuf[3] == 'P' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'T' && g_tModS.RxBuf[6] == 'O'
 		 && g_tModS.RxBuf[7] == 'L' && g_tModS.RxBuf[8] == ':' && g_tModS.RxBuf[9] == 'R' && g_tModS.RxBuf[10] == 'N'
@@ -923,7 +929,7 @@ void RecHandle(void)
 		for(i=0;i < sizeof(scpisendbuf);i++)
 		{
 			if(scpisendbuf[i] == 'E')
-			{
+			{ 
 				scpisendcount = i+3;
 			}
 		}
