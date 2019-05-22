@@ -158,7 +158,7 @@
           <Type>0</Type>
           <LineNumber>887</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134255514</Address>
+          <Address>134247968</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -174,7 +174,7 @@
           <Type>0</Type>
           <LineNumber>910</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134255654</Address>
+          <Address>134248260</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -425,12 +425,12 @@
         <Ww>
           <count>47</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Jk516save.open</ItemText>
+          <ItemText>g_tModS.RxBuf</ItemText>
         </Ww>
         <Ww>
           <count>48</count>
           <WinNumber>1</WinNumber>
-          <ItemText>g_tModS.RxBuf</ItemText>
+          <ItemText>g_tModS.TxBuf</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>
