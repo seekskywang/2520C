@@ -817,6 +817,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\User\APP\usbh_usr.c</FilePath>
             </File>
+            <File>
+              <FileName>flash_if.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\User\flash_if.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
