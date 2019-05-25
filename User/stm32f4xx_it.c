@@ -649,6 +649,7 @@ void RecHandle(void)
 	{
 		Jk516save.Set_Data.Range_Set=1;
 		Jk516save.Set_Data.Range=0;//设置量程为0
+		Range=Jk516save.Set_Data.Range;
 		if(GetSystemStatus() == SYS_STATUS_TEST)
 		{
 			Disp_Test_value(4);
@@ -663,6 +664,7 @@ void RecHandle(void)
 	{
 		Jk516save.Set_Data.Range_Set=1;
 		Jk516save.Set_Data.Range=1;//设置量程为1
+		Range=Jk516save.Set_Data.Range;
 		if(GetSystemStatus() == SYS_STATUS_TEST)
 		{
 			Disp_Test_value(4);
@@ -677,6 +679,7 @@ void RecHandle(void)
 	{
 		Jk516save.Set_Data.Range_Set=1;
 		Jk516save.Set_Data.Range=2;//设置量程为2
+		Range=Jk516save.Set_Data.Range;
 		if(GetSystemStatus() == SYS_STATUS_TEST)
 		{
 			Disp_Test_value(4);
@@ -691,6 +694,7 @@ void RecHandle(void)
 	{
 		Jk516save.Set_Data.Range_Set=1;
 		Jk516save.Set_Data.Range=3;//设置量程为3
+		Range=Jk516save.Set_Data.Range;
 		if(GetSystemStatus() == SYS_STATUS_TEST)
 		{
 			Disp_Test_value(4);
@@ -705,6 +709,7 @@ void RecHandle(void)
 	{
 		Jk516save.Set_Data.Range_Set=1;
 		Jk516save.Set_Data.Range=4;//设置量程为4
+		Range=Jk516save.Set_Data.Range;
 		if(GetSystemStatus() == SYS_STATUS_TEST)
 		{
 			Disp_Test_value(4);
@@ -719,6 +724,7 @@ void RecHandle(void)
 	{
 		Jk516save.Set_Data.Range_Set=1;
 		Jk516save.Set_Data.Range=5;//设置量程为5
+		Range=Jk516save.Set_Data.Range;
 		if(GetSystemStatus() == SYS_STATUS_TEST)
 		{
 			Disp_Test_value(4);
@@ -733,6 +739,7 @@ void RecHandle(void)
 	{
 		Jk516save.Set_Data.Range_Set=1;
 		Jk516save.Set_Data.Range=6;//设置量程为6
+		Range=Jk516save.Set_Data.Range;
 		if(GetSystemStatus() == SYS_STATUS_TEST)
 		{
 			Disp_Test_value(4);
@@ -1391,6 +1398,7 @@ static void MODS_06H(void)
         }else{
             Jk516save.Set_Data.Range_Set=1;
 			Jk516save.Set_Data.Range=value-1;
+			Range=Jk516save.Set_Data.Range;
 			Range_Control(Range,V_Range);
         }
 		if(GetSystemStatus() == SYS_STATUS_TEST)
