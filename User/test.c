@@ -6,7 +6,7 @@
 #include "./RTC/bsp_rtc.h"
 #include "bsp_exti.h"
 #include "open.h"
-
+#include "flash_if.h"
 
 
 //反馈切换
@@ -35,7 +35,51 @@ FIL file;
 //	1,
 //	3
 //	
-
+void JumpBoot(u8 flag)
+{
+  	void (*pUserApp)(void);
+  uint32_t JumpAddress;
+	if(flag==55)
+  {		
+	__asm("CPSID  I");
+        
+		JumpAddress = *(volatile uint32_t*) (USER_FLASH_FIRST_PAGE_ADDRESS+4);
+		pUserApp = (void (*)(void)) JumpAddress;
+		TIM_Cmd(BASIC_TIM, DISABLE);	
+		TIM_DeInit(TIM2);
+		TIM_Cmd(TIM2,DISABLE);
+		TIM_DeInit(BASIC_TIM);
+		TIM_ITConfig(BASIC_TIM,TIM_IT_Update,DISABLE);
+		TIM_Cmd(BASIC_TIM, DISABLE);	
+		USART_DeInit(DEBUG_USART);
+		USART_ITConfig(DEBUG_USART, USART_IT_RXNE, DISABLE);		
+		USART_Cmd(DEBUG_USART,DISABLE);
+		RCC_DeInit();
+		RCC_RTCCLKCmd(DISABLE);
+		EXTI_DeInit();
+		SysTick->CTRL = 0;
+		RTC_DeInit();
+		RTC_ITConfig(RTC_IT_WUT,DISABLE);//关闭WAKE UP 定时器中断
+		RTC_WakeUpCmd( DISABLE);//关闭WAKE UP 定时器　
+		Disable_Extiint();
+		USBH_DeInit(&USB_OTG_Core,&USB_Host);
+		__disable_irq();
+		NVIC_DisableIRQ(OTG_FS_IRQn);
+		NVIC_DisableIRQ(OTG_FS_WKUP_IRQn);
+		NVIC_DisableIRQ(OTG_HS_IRQn);
+		NVIC_DisableIRQ(OTG_HS_WKUP_IRQn);
+		__ASM volatile ("cpsid i");
+		/* Initialize user application's Stack Pointer */
+		__set_PSP(*(volatile uint32_t*) USER_FLASH_FIRST_PAGE_ADDRESS);
+		__set_CONTROL(0);
+		__set_MSP(*(volatile uint32_t*) USER_FLASH_FIRST_PAGE_ADDRESS);
+		
+        
+		
+//		NVIC_SystemReset();
+		pUserApp();
+	}
+}
 
 //};
 //==========================================================
@@ -626,6 +670,9 @@ void Setup_Process(void)
 				case Key_F5:
 					switch(keynum)
 					{
+						case 0:
+							JumpBoot(55);
+						break;
 						case 4:
 						case 9:
 							break;
