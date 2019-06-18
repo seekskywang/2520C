@@ -4958,8 +4958,11 @@ Sort_TypeDef Input_Set_Cov(Sort_TypeDef *Input_Ref)//
 //		Input_Ref->Dot=3;
 //		
 //	}
-	value=(float)Input_Ref->Num*1000000;
-	value/=(pow(10,7-Input_Ref->Dot));
+//	value=(float)Input_Ref->Num*1000000;
+//	value/=(pow(10,7-Input_Ref->Dot));
+	value=Input_Ref->Num/(pow(10,7-Input_Ref->Dot));
+	value*=(float)1000000;
+	
 	if(value>12000000)
 	{
 		value=12000000;

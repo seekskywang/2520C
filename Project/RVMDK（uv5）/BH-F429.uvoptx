@@ -119,6 +119,10 @@
       <TargetDriverDllRegistry>
         <SetRegEntry>
           <Number>0</Number>
+          <Key>DLGUARM</Key>
+        </SetRegEntry>
+        <SetRegEntry>
+          <Number>0</Number>
           <Key>PWSTATINFO</Key>
           <Name>200,50,700</Name>
         </SetRegEntry>
@@ -152,41 +156,9 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>887</LineNumber>
-          <EnabledFlag>0</EnabledFlag>
-          <Address>134247846</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>F:\2520C\Project\User\test.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\Template\../../User/test.c\887</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>910</LineNumber>
-          <EnabledFlag>0</EnabledFlag>
-          <Address>134248136</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>F:\2520C\Project\User\test.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\Template\../../User/test.c\910</Expression>
-        </Bp>
-        <Bp>
-          <Number>2</Number>
-          <Type>0</Type>
           <LineNumber>419</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>134241752</Address>
+          <Address>134232700</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -448,6 +420,11 @@
           <count>49</count>
           <WinNumber>1</WinNumber>
           <ItemText>reg_value,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>50</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>Input_Ref-&gt;Num,0x0A</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>
