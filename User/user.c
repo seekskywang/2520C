@@ -2056,7 +2056,7 @@ void Disp_Open(void)
 		Beep_Off();
 	//    Beep_Out(0);
 		LCD_DrawFullRect(SORTING_XDISP, SORTING_Y_DISP, 60, 22);
-		LCD_ShowFontCN_40_55(60+40*6,92,40,55, (uint8_t*)Out_Assic+14*40*55/8);
+		LCD_ShowFontCN_40_55(60+40*6,92,40,55, (uint8_t*)Out_Assic+22*40*55/8);
 	}
     //WriteString_16 ( TESTVALUE_X, SORTING_Y_DISP+30, "RV_OPEN",0 ); 
     Colour.black=colour;
@@ -2108,6 +2108,7 @@ void Disp_Testvalue(Test_ValueTypedef value,Test_ValueTypedef value_v,u8 speed)
     memcpy((void *)Send_To_U.Send_res,DispBuf,6);//µç×è
     memcpy((void *)&Send_To_U.Send_res[6],DISP_UINT[Test_Value.uint],3);//µ¥Î»
    Send_To_U.back=9;
+	DispBuf[5]=' ';
     DispBuf[6]=' ';
     if(Jk516save.Set_Data.speed!=3)
     {
