@@ -2029,7 +2029,7 @@ void Disp_Open(void)
 		Beep_Off();
 	//    Beep_Out(0);
 		LCD_DrawFullRect(SORTING_XDISP, SORTING_Y_DISP, 60, 22);
-		LCD_ShowFontCN_40_55(60+40*6,92,40,55, (uint8_t*)Out_Assic+14*40*55/8);
+		LCD_ShowFontCN_40_55(60+40*6,92,40,55, (uint8_t*)Out_Assic+22*40*55/8);
 	}
 	if(Jk516save.Set_Data.V_comp==1 || Jk516save.Set_Data.Res_comp==1)
 	{
@@ -2039,7 +2039,7 @@ void Disp_Open(void)
 			Beep_Off();
 		//    Beep_Out(0);
 			LCD_DrawFullRect(SORTING_XDISP, SORTING_Y_DISP, 60, 22);
-			LCD_ShowFontCN_40_55(60+40*6,92,40,55, (uint8_t*)Out_Assic+14*40*55/8);
+			LCD_ShowFontCN_40_55(60+40*6,92,40,55, (uint8_t*)Out_Assic+22*40*55/8);
 		}else{
 			Colour.black=LCD_COLOR_RED;
 			Beep_Out(1);
