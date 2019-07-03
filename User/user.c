@@ -366,8 +366,8 @@ const uint8_t BiasButton_Tip[][7+1]=  //ÆµÂÊÑ¡ÔñÊ±ºòµÄÏÂÃæµÄÌáÊ¾·ûºÅ
 
 const uint8_t Sys_Sys[][20+1]=
 {
-	{"ÒÇÆ÷ĞÍºÅ  JK2520C"},
-	{"Èí¼ş°æ±¾  Ver:2.0"},
+	{"ÒÇÆ÷ĞÍºÅ  18650"},
+	{"Èí¼ş°æ±¾  Ver:1.2"},
 	{"Ó²¼ş°æ±¾  Ver:1.1"},
 	{"ÒÇÆ÷±àºÅ"},
 //	{"ÕËºÅ    "},
@@ -377,8 +377,8 @@ const uint8_t Sys_Sys[][20+1]=
 };
 const uint8_t Sys_Sys_E[][20+1]=
 {
-	{"INST MODEL  JK2520C"},
-	{"SOFT VER   Ver:2.0"},
+	{"INST MODEL  18650"},
+	{"SOFT VER   Ver:1.2"},
 	{"HARD VER   Ver:1.1"},
 	{"SERIALNO"},
 //	{"ÕËºÅ    "},
@@ -388,8 +388,8 @@ const uint8_t Sys_Sys_E[][20+1]=
 };
 const uint8_t Sys_Sys1[][20+1]=
 {
-	{"ÒÇÆ÷ĞÍºÅ  2520C"},
-	{"Èí¼ş°æ±¾  Ver:2.0"},
+	{"ÒÇÆ÷ĞÍºÅ  18650"},
+	{"Èí¼ş°æ±¾  Ver:1.2"},
 	{"Ó²¼ş°æ±¾  Ver:1.1"},
 	{"ÒÇÆ÷±àºÅ"},
 //	{"ÕËºÅ    "},
@@ -399,8 +399,8 @@ const uint8_t Sys_Sys1[][20+1]=
 };
 const uint8_t Sys_Sys_E1[][20+1]=
 {
-	{"INST MODEL  2520C"},
-	{"SOFT VER   Ver:2.0"},
+	{"INST MODEL  18650"},
+	{"SOFT VER   Ver:1.2"},
 	{"HARD VER   Ver:1.1"},
 	{"SERIALNO"},
 //	{"ÕËºÅ    "},
@@ -414,10 +414,10 @@ const uint8_t Range_Disp_Test[][7][11+1]=
         {"AUTO 10m¦¸"},
         {"AUTO100m¦¸"},
         {"AUTO   1¦¸"},
-        {"AUTO  10¦¸"},
-        {"AUTO 100¦¸"},
-        {"AUTO  1k¦¸"},
-        {"AUTO 10k¦¸"},
+        {"AUTO   1¦¸"},
+        {"AUTO   1¦¸"},
+        {"AUTO   1¦¸"},
+        {"AUTO   1¦¸"},
        
     },
     {
@@ -4355,7 +4355,7 @@ void Disp_button_Num_time(void)
 	Colour.Fword=White;
 	WriteString_16(84, 271-30, " m¦¸  ",  0);
 	WriteString_16(84+80, 271-30, " ¦¸ ",  0);
-    WriteString_16(84+80+80, 271-30, "k¦¸ ",  0);
+//    WriteString_16(84+80+80, 271-30, "k¦¸ ",  0);
 
 
 }
@@ -4726,56 +4726,58 @@ Sort_TypeDef Time_Set_Cov(Sort_TypeDef *Time)
 		value*=(float)1e4;
 	else if(Time->Unit==1)
 		value*=(float)1e7;
-    else if(Time->Unit==2)
-		value*=(float)1e10;
+//    else if(Time->Unit==2)
+//		value*=(float)1e10;
         
 	value/=pow(10,Time->Dot);
-	if(value>(float)3e11)
+	if(value>(float)33e5)
 	{
 		//value=3e10;
-		Time->Num=30000;
-		Time->Dot=3;
-		Time->Unit=2;
-		
-	}else
-    if(value>=(float)3e10)
-	{
-		Time->Num=value/(float)1e7;
-		Time->Dot=3;
-		Time->Unit=2;
-		
-	
-	
-	
-	}else if(value>=(float)3e9)
-	{
-		Time->Num=value/(float)1e6;
+		Time->Num=3300;
 		Time->Dot=4;
-		Time->Unit=2;
-	
-	
-	}else if(value>=(float)3e8)
-	{
-		Time->Num=value/(float)1e5;
-		Time->Dot=2;
 		Time->Unit=1;
-	
-	
+		
 	}
-	else if(value>=(float)3e7)
-	{
-		Time->Num=value/(float)10000;
-		Time->Dot=3;
-		Time->Unit=1;
-	
-	}else if(value>=(float)3e6)
-	{
-		Time->Num=value/(float)1000;
-		Time->Dot=4;
-		Time->Unit=1;
-	
-	
-	}else if(value>=(float)3e5)
+//	else
+//    if(value>=(float)3e10)
+//	{
+//		Time->Num=value/(float)1e7;
+//		Time->Dot=3;
+//		Time->Unit=2;
+//		
+//	
+//	
+//	
+//	}else if(value>=(float)3e9)
+//	{
+//		Time->Num=value/(float)1e6;
+//		Time->Dot=4;
+//		Time->Unit=2;
+//	
+//	
+//	}else if(value>=(float)3e8)
+//	{
+//		Time->Num=value/(float)1e5;
+//		Time->Dot=2;
+//		Time->Unit=1;
+//	
+//	
+//	}
+//	else if(value>=(float)3e7)
+//	{
+//		Time->Num=value/(float)10000;
+//		Time->Dot=3;
+//		Time->Unit=1;
+//	
+//	}else if(value>=(float)3e6)
+//	{
+//		Time->Num=value/(float)1000;
+//		Time->Dot=4;
+//		Time->Unit=1;
+//	
+//	
+//	}
+	else if(value>=(float)3e5)
 	{
 		Time->Num=value/(float)100;
 		Time->Dot=2;
@@ -4958,14 +4960,13 @@ Sort_TypeDef Input_Set_Cov(Sort_TypeDef *Input_Ref)//
 //		Input_Ref->Dot=3;
 //		
 //	}
-//	value=(float)Input_Ref->Num*1000000;
-//	value/=(pow(10,7-Input_Ref->Dot));
-	value=Input_Ref->Num/(pow(10,7-Input_Ref->Dot));
-	value*=(float)1000000;
-	
-	if(value>12000000)
+	value=(float)Input_Ref->Num*1000000;
+	value/=(pow(10,7-Input_Ref->Dot));
+	if(value>900000/*6000000*//*12000000*/)
 	{
-		value=12000000;
+//		value=12000000;
+		value=900000;
+		
 	}
 	if(value>=(float)1e7)
 	{

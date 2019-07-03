@@ -647,7 +647,7 @@ void Setup_Process(void)
 							break;
 						case 7:
                             Jk516save.Set_Data.Range_Set=1;
-                            if(Jk516save.Set_Data.Range<RANGE_MAX)
+                            if(Jk516save.Set_Data.Range<2)
                                 Jk516save.Set_Data.Range++;
                             else
                                 Jk516save.Set_Data.Range=0;
@@ -681,7 +681,7 @@ void Setup_Process(void)
                             if(Jk516save.Set_Data.Range)
 							Jk516save.Set_Data.Range--;
                             else
-                                Jk516save.Set_Data.Range=RANGE_MAX;
+                                Jk516save.Set_Data.Range=2;
                                 
                             Range=Jk516save.Set_Data.Range;
 						break;
@@ -806,6 +806,7 @@ void Test_Process(void)
 	static u8 Extrigflag = 0;
 	static u8 skipkey;
 	static u32 oldskip;
+	static u8 vropen;
 	u32 sendE;
 	char sendbuf[24];
 	u8 csendlen;
@@ -1245,7 +1246,15 @@ void Test_Process(void)
                         Test_Value_V=V_Datacov(V_ad ,V_Range);//把数据的小数点和单位 和极性都加上
                         Test_Value=Datacov(I_ad,Range);
                         
-                        Disp_Testvalue(Test_Value,Test_Value_V,0);//显示电阻和电压
+                       if((Test_Value.uint == 1 && Test_Value.res > 3300 && Test_Value.dot == 4) || (Test_Value.uint == 1 && Test_Value.dot == 2) || Test_Value.uint > 1 || (Test_Value_V.dot == 4 && Test_Value_V.res > 90000) || Test_Value_V.dot < 4)
+						{
+							vropen = 1;
+							open_flag=1;
+							Disp_Open();
+						}else{
+							vropen = 0;
+							Disp_Testvalue(Test_Value,Test_Value_V,0);//显示电阻和电压
+						}
 						
 						if(Jk516save.Set_Data.trip==3)//若远程触发，发送数据到上位机
 						{
@@ -1281,7 +1290,12 @@ void Test_Process(void)
                             test_Rsorting=R_Comp();
 						
 						Colour.black=LCD_COLOR_TEST_MID;
-						Disp_R_Uint();
+						if(vropen == 0)
+						{
+							Disp_R_Uint();
+						}else{
+							LCD_ShowFontCN_40_55(60+40*6,92,40,55, (uint8_t*)Out_Assic+22*40*55/8);//m
+						}
                         color=Colour.black;
                         //下面是分选
                        
@@ -1626,7 +1640,7 @@ void Test_Process(void)
 							   
 								case 4:
 									//Jk516save.Set_Data.Range=Jk516save.Set_Data.Range>0? Jk516save.Set_Data.Range--:RANGE_MAX;
-									if(Range>=RANGE_MAX)
+									if(Range>=2)
 										Range=0;
 									else
 										Range++;
