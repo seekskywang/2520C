@@ -2108,7 +2108,7 @@ void Disp_Testvalue(Test_ValueTypedef value,Test_ValueTypedef value_v,u8 speed)
     memcpy((void *)Send_To_U.Send_res,DispBuf,6);//µç×è
     memcpy((void *)&Send_To_U.Send_res[6],DISP_UINT[Test_Value.uint],3);//µ¥Î»
    Send_To_U.back=9;
-	DispBuf[5]=' ';
+//	DispBuf[5]=' ';
     DispBuf[6]=' ';
     if(Jk516save.Set_Data.speed!=3)
     {

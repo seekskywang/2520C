@@ -17,7 +17,7 @@
 //==========================================================
 #define POWERON_DISP_TIME (20)	//开机显示界面延时20*100mS=2s
 u8 U15_4094,U16_4094;
-
+extern u8 rmtflag;
 FRESULT result;
 FATFS fs;
 FIL file;
@@ -805,8 +805,8 @@ void Test_Process(void)
 	static float RemoteR,RemoteV;
 	static u8 Extrigflag = 0;
 	static u8 skipkey;
-	static u32 oldskip;
-	static u8 vropen;
+	static u32 oldskip,vstable;
+	static u8 vropen,rmtwait;
 	u32 sendE;
 	char sendbuf[24];
 	u8 csendlen;
@@ -913,6 +913,13 @@ void Test_Process(void)
 		if(Jk516save.Set_Data.trip==2)
 		{
 			if(Extrigflag == 0)
+			{
+				test_start = 1;
+			}
+		}
+		if(Jk516save.Set_Data.trip==3)
+		{
+			if(rmtflag == 1)
 			{
 				test_start = 1;
 			}
@@ -1168,17 +1175,27 @@ void Test_Process(void)
 				test_start = 0;
 				if(Jk516save.Set_Data.trip == 3)
 			    {
+					rmtwait = 0;
+					rmtflag = 0;
 //				    uart1SendChars("+0.0000E+0,+0.0000E+0+",22);
 					uart1SendChars("OPEN",4);
 					test_start = 0;
 			    }
+//				else{
+//					rmtwait++;
+//				}
 			}
         }
             
        
 	 	if(test_start&&test_over==1)//显示测试值
 		{   
-            
+			if(Jk516save.Set_Data.trip == 3)
+			{
+				rmtwait ++;
+			}else{
+				rmtwait = 0;
+			}
             //test_over=0;
             if(Jk516save.Set_Data.trip)
             Trip_Over_usb=1;
@@ -1205,8 +1222,10 @@ void Test_Process(void)
 				  if(Jk516save.Set_Data.trip != 0)
 				  {
 					  test_start = 0;
-					  if(Jk516save.Set_Data.trip == 3)
+					  if(Jk516save.Set_Data.trip == 3 && rmtwait == 5)
 					  {
+						  rmtwait = 0;
+						  rmtflag = 0;
 //						  uart1SendChars("+0.0000E+0,+0.0000E+0+",22);
 						  uart1SendChars("OPEN",4);
 					  }
@@ -1252,33 +1271,53 @@ void Test_Process(void)
 							vropen = 1;
 							open_flag=1;
 							Disp_Open();
+							if(Jk516save.Set_Data.trip == 3 && rmtwait == 5)
+							  {
+								  rmtwait = 0;
+								  rmtflag = 0;
+		//						  uart1SendChars("+0.0000E+0,+0.0000E+0+",22);
+								  uart1SendChars("OPEN",4);
+							  }
 						}else{
 							vropen = 0;
-							Disp_Testvalue(Test_Value,Test_Value_V,0);//显示电阻和电压
-						}
-						
-						if(Jk516save.Set_Data.trip==3)//若远程触发，发送数据到上位机
-						{
-							RemoteR = (float)Test_Value.res/pow(10,Test_Value.dot);
-							RemoteV = (float)Test_Value_V.res/10000;
-						
-							if(Test_Value.uint == 0)
+							if(labs(Test_Value_V.res - vstable) > 12)
 							{
-								sendE = -3;
-							}else if(Test_Value.uint == 1){
-								sendE = 0;
-							}else if(Test_Value.uint == 2){
-								sendE = 3;
+								vstable = Test_Value_V.res;
+							}else{
+								Test_Value_V.res = vstable;
 							}
+							if(Jk516save.Set_Data.trip!=3)
+							{
+								Disp_Testvalue(Test_Value,Test_Value_V,0);//显示电阻和电压
+							}
+							if(Jk516save.Set_Data.trip==3 && rmtwait == 5)//若远程触发，发送数据到上位机
+							{
+								Disp_Testvalue(Test_Value,Test_Value_V,0);//显示电阻和电压
+								rmtwait = 0;
+								rmtflag = 0;
+								RemoteR = (float)Test_Value.res/pow(10,Test_Value.dot);
+								RemoteV = (float)Test_Value_V.res/10000;
 							
-							if(Test_Value_V.polar == 1)
-							{
-								sprintf(sendbuf,"+%.4fE+%d,+%.4fE+00",RemoteR,sendE,RemoteV);
-							}else if(Test_Value_V.polar == 0){
-								sprintf(sendbuf,"+%.4fE+%d,-%.4fE+00",RemoteR,sendE,RemoteV);
+								if(Test_Value.uint == 0)
+								{
+									sendE = -3;
+								}else if(Test_Value.uint == 1){
+									sendE = 0;
+								}else if(Test_Value.uint == 2){
+									sendE = 3;
+								}
+								
+								if(Test_Value_V.polar == 1)
+								{
+									sprintf(sendbuf,"+%.4fE+%d,+%.4fE+00",RemoteR,sendE,RemoteV);
+								}else if(Test_Value_V.polar == 0){
+									sprintf(sendbuf,"+%.4fE+%d,-%.4fE+00",RemoteR,sendE,RemoteV);
+								}
+								uart1SendChars(sendbuf,sizeof(sendbuf));
 							}
-							uart1SendChars(sendbuf,sizeof(sendbuf));
 						}
+						
+						
 						
                         if(Jk516save.Set_Data.V_comp)
                         {

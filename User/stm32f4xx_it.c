@@ -42,6 +42,7 @@ extern USB_OTG_CORE_HANDLE          USB_OTG_Core;
 extern USBH_HOST                    USB_Host;
 struct MODS_T g_tModS;
 u8 g_mods_timeout = 0;
+u8 rmtflag;
 u32 Tick_10ms=0;
 char scpinum[20],scpinum1[20];
 u8 scpidot,scpiunit,scpidot1,scpiunit1;
@@ -1311,7 +1312,7 @@ static uint8_t MODS_ReadRegValue(uint16_t reg_addr, uint8_t *reg_value)
 
 static void RemTrig(void)
 {
-	test_start = 1;
+	rmtflag = 1;
 }
 
 static void MODS_03H(void)
