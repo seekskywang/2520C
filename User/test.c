@@ -1280,7 +1280,7 @@ void Test_Process(void)
 							  }
 						}else{
 							vropen = 0;
-							if(labs(Test_Value_V.res - vstable) > 12)
+							if(labs(Test_Value_V.res - vstable) > 20)
 							{
 								vstable = Test_Value_V.res;
 							}else{
