@@ -163,15 +163,15 @@ void Power_Process(void)
 	Parameter_valuecomp();//比较读出的数据
 	if(Jk516save.Sys_Setvalue.buard == 0)
 	{
-		Debug_USART_Config(2400);//串口1
-	}else if(Jk516save.Sys_Setvalue.buard == 1){
 		Debug_USART_Config(4800);//串口1
-	}else if(Jk516save.Sys_Setvalue.buard == 2){
+	}else if(Jk516save.Sys_Setvalue.buard == 1){
 		Debug_USART_Config(9600);//串口1
-	}else if(Jk516save.Sys_Setvalue.buard == 3){
+	}else if(Jk516save.Sys_Setvalue.buard == 2){
 		Debug_USART_Config(14400);//串口1
-	}else if(Jk516save.Sys_Setvalue.buard == 4){
+	}else if(Jk516save.Sys_Setvalue.buard == 3){
 		Debug_USART_Config(19200);//串口1
+	}else if(Jk516save.Sys_Setvalue.buard == 4){
+		Debug_USART_Config(115200);//串口1
 	}
 	if(Jk516save.open == 1)
 	{
