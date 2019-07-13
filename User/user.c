@@ -341,14 +341,15 @@ const uint8_t Sys_Setitem_E[][10+1]=
 
 const uint8_t Sys_Buard_Value[][6+1]=
 {
-	{"2400"},
+	
 	{"4800"},
 	{"9600"},
 	{"14400"},
 	{"19200"},
+	{"115200"},
 	{"38400"},
 	{"56000"},
-	{"115200"},
+	{"2400"},
 
 };
 const uint8_t Sys_Language_Value[][7+1]=
@@ -3787,7 +3788,7 @@ void Use_SysSetProcess(void)
 							break;
 						case 2:
 							Jk516save.Sys_Setvalue.buard=0;
-							Debug_USART_Config(2400);
+							Debug_USART_Config(4800);
 							break;
 						case 3:
                             Jk516save.Sys_Setvalue.u_flag=0;
@@ -3908,7 +3909,7 @@ void Use_SysSetProcess(void)
 							break;
 						case 2:
 							Jk516save.Sys_Setvalue.buard=1;
-							Debug_USART_Config(4800);
+							Debug_USART_Config(9600);
 							break;
 						case 3:
 							Jk516save.Sys_Setvalue.u_flag=1;
@@ -3984,7 +3985,7 @@ void Use_SysSetProcess(void)
 							break;
 						case 2:
 							Jk516save.Sys_Setvalue.buard=2;
-							Debug_USART_Config(9600);
+							Debug_USART_Config(14400);
 						break;
 						default:
 						break;
@@ -4000,7 +4001,7 @@ void Use_SysSetProcess(void)
 							break;
 						case 2:
 							Jk516save.Sys_Setvalue.buard=3;
-							Debug_USART_Config(14400);
+							Debug_USART_Config(19200);
 						break;
 						default:
 						break;
@@ -4014,7 +4015,7 @@ void Use_SysSetProcess(void)
 							break;//»Ö¸´ÏµÍ³¸´Î»
 						case 2:
 							Jk516save.Sys_Setvalue.buard=4;
-							Debug_USART_Config(19200);
+							Debug_USART_Config(115200);
 						break;
 						default:
 						break;
