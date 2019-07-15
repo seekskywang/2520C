@@ -1222,7 +1222,7 @@ void Test_Process(void)
 				  if(Jk516save.Set_Data.trip != 0)
 				  {
 					  test_start = 0;
-					  if(Jk516save.Set_Data.trip == 3 && rmtwait == 5)
+					  if(Jk516save.Set_Data.trip == 3 && rmtwait == 6)
 					  {
 						  rmtwait = 0;
 						  rmtflag = 0;
@@ -1271,7 +1271,7 @@ void Test_Process(void)
 							vropen = 1;
 							open_flag=1;
 							Disp_Open();
-							if(Jk516save.Set_Data.trip == 3 && rmtwait == 5)
+							if(Jk516save.Set_Data.trip == 3 && rmtwait == 6)
 							  {
 								  rmtwait = 0;
 								  rmtflag = 0;
@@ -1290,7 +1290,7 @@ void Test_Process(void)
 							{
 								Disp_Testvalue(Test_Value,Test_Value_V,0);//显示电阻和电压
 							}
-							if(Jk516save.Set_Data.trip==3 && rmtwait == 5)//若远程触发，发送数据到上位机
+							if(Jk516save.Set_Data.trip==3 && rmtwait == 6)//若远程触发，发送数据到上位机
 							{
 								Disp_Testvalue(Test_Value,Test_Value_V,0);//显示电阻和电压
 								rmtwait = 0;
