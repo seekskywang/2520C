@@ -6106,7 +6106,7 @@ void read_adI_3(void)
     u8 i;
 //    u32 temp;
     I_ad=0;
-    for(i=0;i<100;i++)
+    for(i=0;i<70;i++)
     {
         while(GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_13)==Bit_RESET);
        scan_I[i]= Read_Convert_read();
@@ -6121,7 +6121,7 @@ void read_adI_3(void)
           
         
     }
-    I_ad/=98;
+    I_ad/=68;
     //Select_V_I(0);
 }
 void read_adV_3(void)
