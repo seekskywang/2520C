@@ -329,7 +329,7 @@ extern u8 polarity_v,polarity_r;
 extern u8 Readfirst_cpld,Readsecond_cpld;
 extern u8 RangeChange_Flag;
 extern u32 fit_i_buff[MAXFITNUM],fit_v_buff[MAXFITNUM];
-extern u32 scan_V[130],scan_I[130];
+extern u32 scan_V[130],scan_I[800];
 extern u8 range_over;
 extern u8 Int_Pe3flag;
 extern const u8 fit_allnum[4];
@@ -591,9 +591,6 @@ typedef struct
 //	float clear;
 //	float V_Clear;
     float Clear[RANGE_MAX+1];
-	float Clear1[RANGE_MAX+1];
-	float Clear2[RANGE_MAX+1];
-	float Clear3[RANGE_MAX+1];
     float Clear_V[2];
     vu8 fac_num[10];
     vu8 open;

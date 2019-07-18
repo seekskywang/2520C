@@ -18,7 +18,7 @@ vu16 count_ffit;
 vu8 Ad_over;
 vu8 Relay_c;
 u32 scan_V[130]={0};
-u32 scan_I[130]={0};
+u32 scan_I[800]={0};
 uint8_t softswitch;
 //NumBox_TypeDef NumBox;//ÊýÖµ¿ò
 vu32 Voltage;//µçÑ¹

@@ -2137,16 +2137,7 @@ void Use_DebugProcess(void)
                     
                                         
                 }
-                if(Jk516save.Set_Data.speed == 0)
-				{
-					I_ad=I_ad-Jk516save.Clear[list-1];//再判断极性
-				}else if(Jk516save.Set_Data.speed == 1){
-					I_ad=I_ad-Jk516save.Clear1[list-1];//再判断极性
-				}else if(Jk516save.Set_Data.speed == 2){
-					I_ad=I_ad-Jk516save.Clear2[list-1];//再判断极性
-				}else if(Jk516save.Set_Data.speed == 3){
-					I_ad=I_ad-Jk516save.Clear3[list-1];//再判断极性
-				}
+				I_ad=I_ad-Jk516save.Clear[list-1];//再判断极性
                 
                 I_ad=(I_ad)/169;
                  if(list-1 ==6)
@@ -2366,8 +2357,21 @@ void Use_DebugProcess(void)
                     }
                     else
                     {
-                      Jk516save.Debug_Value[list-1].standard=Debug_Set_Num(&Coordinates);//电压
-                        Jk516save.Debug_Value[list-1].ad_value=(float)Test_Value_V.res/Jk516save.Debug_Value[list-1].standard;
+						if(Jk516save.Set_Data.speed == 0)
+						{
+							Jk516save.Debug_Value[list-1].standard=Debug_Set_Num(&Coordinates);//电压
+							Jk516save.Debug_Value[list-1].ad_value=(float)Test_Value_V.res/Jk516save.Debug_Value[list-1].standard;
+						}else if(Jk516save.Set_Data.speed == 1){
+							Jk516save.Debug_Value1[list-1].standard=Debug_Set_Num(&Coordinates);//电压
+							Jk516save.Debug_Value1[list-1].ad_value=(float)Test_Value_V.res/Jk516save.Debug_Value1[list-1].standard;
+						}else if(Jk516save.Set_Data.speed == 2){
+							Jk516save.Debug_Value2[list-1].standard=Debug_Set_Num(&Coordinates);//电压
+							Jk516save.Debug_Value2[list-1].ad_value=(float)Test_Value_V.res/Jk516save.Debug_Value2[list-1].standard;
+						}else if(Jk516save.Set_Data.speed == 3){
+							Jk516save.Debug_Value3[list-1].standard=Debug_Set_Num(&Coordinates);//电压
+							Jk516save.Debug_Value3[list-1].ad_value=(float)Test_Value_V.res/Jk516save.Debug_Value3[list-1].standard;
+						}
+                      
                         
                     }
                     
@@ -2416,50 +2420,39 @@ void Clear_Process(void)
     while(GetSystemStatus()==SYS_STATUS_CLEAR)
     {
         Select_V_I(1);
-//        if(Jk516save.Set_Data.speed == 0)
-//		{
-//			read_adI_1();//
-//		}else if(Jk516save.Set_Data.speed == 1){
-//			read_adI_2();//
-//		}else if(Jk516save.Set_Data.speed == 2){
-//			read_adI_3();//
-//		}else if(Jk516save.Set_Data.speed == 3){
-//			read_adI_4();//
-//		}
-		read_adI_1();//
+       if(Jk516save.Set_Data.speed == 0)
+		{
+			read_adI_1();//
+		}else if(Jk516save.Set_Data.speed == 1){
+			read_adI_2();//
+		}else if(Jk516save.Set_Data.speed == 2){
+			read_adI_3();//
+		}else if(Jk516save.Set_Data.speed == 3){
+			read_adI_4();//
+		}
         Range_value=I_ad;
         Range_Changecomp();	//换挡 比较
         while(range_over)
         {
             Range_Changecomp();	//换挡 比较
-//            if(Jk516save.Set_Data.speed == 0)
-//			{
-//				read_adI_1();//
-//			}else if(Jk516save.Set_Data.speed == 1){
-//				read_adI_2();//
-//			}else if(Jk516save.Set_Data.speed == 2){
-//				read_adI_3();//
-//			}else if(Jk516save.Set_Data.speed == 3){
-//				read_adI_4();//
-//			}
-            read_adI_1();//
+            
+            if(Jk516save.Set_Data.speed == 0)
+			{
+				read_adI_1();//
+			}else if(Jk516save.Set_Data.speed == 1){
+				read_adI_2();//
+			}else if(Jk516save.Set_Data.speed == 2){
+				read_adI_3();//
+			}else if(Jk516save.Set_Data.speed == 3){
+				read_adI_4();//
+			}
             Range_value=I_ad;
         
         
         }
         Select_V_I(0);
         
-//        if(Jk516save.Set_Data.speed == 0)
-//		{
-//			read_adI_1();//
-//		}else if(Jk516save.Set_Data.speed == 1){
-//			read_adI_2();//
-//		}else if(Jk516save.Set_Data.speed == 2){
-//			read_adI_3();//
-//		}else if(Jk516save.Set_Data.speed == 3){
-//			read_adI_4();//
-//		}
-		read_adI_1();//
+        read_adV_1();
         Range_Value_V=V_ad;
         Range_Changecomp();	//换挡 比较
        

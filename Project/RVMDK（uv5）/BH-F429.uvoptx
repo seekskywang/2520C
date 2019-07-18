@@ -120,7 +120,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name>猬.w??趏*Q</Name>
+          <Name>猬.w??趏*Q</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -383,7 +383,7 @@
         <Ww>
           <count>45</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Jk516save.Debug_Value2</ItemText>
+          <ItemText>Jk516save.Debug_Value2,0x10</ItemText>
         </Ww>
         <Ww>
           <count>46</count>
@@ -398,12 +398,12 @@
         <Ww>
           <count>48</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Jk516save.Clear1</ItemText>
+          <ItemText>I_ad</ItemText>
         </Ww>
         <Ww>
           <count>49</count>
           <WinNumber>1</WinNumber>
-          <ItemText>I_ad</ItemText>
+          <ItemText>Jk516save.Debug_Value</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>

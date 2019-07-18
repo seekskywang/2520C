@@ -380,7 +380,7 @@ const uint8_t Sys_Sys[][20+1]=
 const uint8_t Sys_Sys_E[][20+1]=
 {
 	{"INST MODEL  18650"},
-	{"SOFT VER   Ver:1.3"},
+	{"SOFT VER   Ver:1.4"},
 	{"HARD VER   Ver:1.1"},
 	{"SERIALNO"},
 //	{"ÕËºÅ    "},
@@ -391,7 +391,7 @@ const uint8_t Sys_Sys_E[][20+1]=
 const uint8_t Sys_Sys1[][20+1]=
 {
 	{"ÒÇÆ÷ÐÍºÅ  18650"},
-	{"Èí¼þ°æ±¾  Ver:1.3"},
+	{"Èí¼þ°æ±¾  Ver:1.4"},
 	{"Ó²¼þ°æ±¾  Ver:1.1"},
 	{"ÒÇÆ÷±àºÅ"},
 //	{"ÕËºÅ    "},
@@ -402,7 +402,7 @@ const uint8_t Sys_Sys1[][20+1]=
 const uint8_t Sys_Sys_E1[][20+1]=
 {
 	{"INST MODEL  18650"},
-	{"SOFT VER   Ver:1.3"},
+	{"SOFT VER   Ver:1.4"},
 	{"HARD VER   Ver:1.1"},
 	{"SERIALNO"},
 //	{"ÕËºÅ    "},
@@ -1523,14 +1523,18 @@ void Test_Debug(void)
 	if(Jk516save.Set_Data.speed == 0)
 	{
         Res_count.r=Res_count.r/Jk516save.Debug_Value[Range].ad_value;
+		V_ad=(float)V_ad/Jk516save.Debug_Value[7+V_Range].ad_value;
 	}else if(Jk516save.Set_Data.speed == 1){
 		Res_count.r=Res_count.r/Jk516save.Debug_Value1[Range].ad_value;
+		V_ad=(float)V_ad/Jk516save.Debug_Value1[7+V_Range].ad_value;
 	}else if(Jk516save.Set_Data.speed == 2){
 		Res_count.r=Res_count.r/Jk516save.Debug_Value2[Range].ad_value;
+		V_ad=(float)V_ad/Jk516save.Debug_Value3[7+V_Range].ad_value;
 	}else if(Jk516save.Set_Data.speed == 3){
 		Res_count.r=Res_count.r/Jk516save.Debug_Value3[Range].ad_value;
+		V_ad=(float)V_ad/Jk516save.Debug_Value3[7+V_Range].ad_value;
 	}
-        V_ad=(float)V_ad/Jk516save.Debug_Value[7+V_Range].ad_value;
+        
    
 }
 
@@ -6159,34 +6163,14 @@ void read_adV_4(void)
 }
 void read_adI_3(void)
 {
-    u8 i;
-//    u32 temp;
-    I_ad=0;
-    for(i=0;i<70;i++)
-    {
-        while(GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_13)==Bit_RESET);
-       scan_I[i]= Read_Convert_read();
-        if(i>2)
-        if(scan_I[i]>0x800000)
-        {
-            scan_I[i]=0xffffff-scan_I[i];
-            I_ad-=scan_I[i];
-        }
-        else
-            I_ad+=scan_I[i];
-          
-        
-    }
-    I_ad/=68;
-    //Select_V_I(0);
-//	u16 i;
+//    u8 i;
 ////    u32 temp;
 //    I_ad=0;
-//    for(i=0;i<580;i++)
+//    for(i=0;i<70;i++)
 //    {
 //        while(GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_13)==Bit_RESET);
 //       scan_I[i]= Read_Convert_read();
-//        if(i>550)
+//        if(i>2)
 //        if(scan_I[i]>0x800000)
 //        {
 //            scan_I[i]=0xffffff-scan_I[i];
@@ -6197,7 +6181,27 @@ void read_adI_3(void)
 //          
 //        
 //    }
-//    I_ad/=29;
+//    I_ad/=68;
+
+	u16 i;
+//    u32 temp;
+    I_ad=0;
+    for(i=0;i<580;i++)
+    {
+        while(GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_13)==Bit_RESET);
+       scan_I[i]= Read_Convert_read();
+        if(i>550)
+        if(scan_I[i]>0x800000)
+        {
+            scan_I[i]=0xffffff-scan_I[i];
+            I_ad-=scan_I[i];
+        }
+        else
+            I_ad+=scan_I[i];
+          
+        
+    }
+    I_ad/=29;
 }
 void read_adV_3(void)
 {
