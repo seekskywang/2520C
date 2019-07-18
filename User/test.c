@@ -1036,14 +1036,14 @@ void Test_Process(void)
                         }
                         Select_V_I(0);
                         
-                        read_adV_3();
+                        read_adV_4();
                         Range_Value_V=V_ad;
                         VRange_Changecomp();	//换挡 比较
                         while(range_over)
                         {
                             VRange_Changecomp();	//换挡 比较
                             
-                            read_adV_3();//
+                            read_adV_4();//
                            Range_Value_V=V_ad;
                         
                         
@@ -1190,17 +1190,27 @@ void Test_Process(void)
        
 	 	if(test_start&&test_over==1)//显示测试值
 		{   
-			if(Jk516save.Set_Data.trip == 3)
-			{
-				rmtwait ++;
-			}else{
-				rmtwait = 0;
-			}
+//			if(Jk516save.Set_Data.trip == 3)
+//			{
+//				rmtwait ++;
+//			}else{
+//				rmtwait = 0;
+//			}
             //test_over=0;
             if(Jk516save.Set_Data.trip)
             Trip_Over_usb=1;
             
             Ad_over=0; 
+//			if(Jk516save.Set_Data.speed == 0)
+//			{
+//				I_ad=I_ad-Jk516save.Clear[Range];//再判断极性
+//			}else if(Jk516save.Set_Data.speed == 1){
+//				I_ad=I_ad-Jk516save.Clear1[Range];//再判断极性
+//			}else if(Jk516save.Set_Data.speed == 2){
+//				I_ad=I_ad-Jk516save.Clear2[Range];//再判断极性
+//			}else if(Jk516save.Set_Data.speed == 3){
+//				I_ad=I_ad-Jk516save.Clear3[Range];//再判断极性
+//			}
             I_ad=I_ad-Jk516save.Clear[Range];//再判断极性
                if(I_ad<0)
                {
@@ -1222,7 +1232,7 @@ void Test_Process(void)
 				  if(Jk516save.Set_Data.trip != 0)
 				  {
 					  test_start = 0;
-					  if(Jk516save.Set_Data.trip == 3 && rmtwait == 6)
+					  if(Jk516save.Set_Data.trip == 3/* && rmtwait == 6*/)
 					  {
 						  rmtwait = 0;
 						  rmtflag = 0;
@@ -1271,7 +1281,7 @@ void Test_Process(void)
 							vropen = 1;
 							open_flag=1;
 							Disp_Open();
-							if(Jk516save.Set_Data.trip == 3 && rmtwait == 6)
+							if(Jk516save.Set_Data.trip == 3/* && rmtwait == 6*/)
 							  {
 								  rmtwait = 0;
 								  rmtflag = 0;
@@ -1290,9 +1300,9 @@ void Test_Process(void)
 							{
 								Disp_Testvalue(Test_Value,Test_Value_V,0);//显示电阻和电压
 							}
-							if(Jk516save.Set_Data.trip==3 && rmtwait == 6)//若远程触发，发送数据到上位机
+							if(Jk516save.Set_Data.trip==3/* && rmtwait == 6*/)//若远程触发，发送数据到上位机
 							{
-								Disp_Testvalue(Test_Value,Test_Value_V,0);//显示电阻和电压
+								
 								rmtwait = 0;
 								rmtflag = 0;
 								RemoteR = (float)Test_Value.res/pow(10,Test_Value.dot);
@@ -1314,6 +1324,7 @@ void Test_Process(void)
 									sprintf(sendbuf,"+%.4fE+%d,-%.4fE+00",RemoteR,sendE,RemoteV);
 								}
 								uart1SendChars(sendbuf,sizeof(sendbuf));
+								Disp_Testvalue(Test_Value,Test_Value_V,0);//显示电阻和电压
 							}
 						}
 						
@@ -2066,15 +2077,44 @@ void Use_DebugProcess(void)
     Range_Control(0,0);
  	while(GetSystemStatus()==SYS_STATUS_DEBUG)
 	{
-
-         Select_V_I(1);
-        read_adI_1();//
-        Range_value=I_ad;
-
-        Select_V_I(0);
-        
-        read_adV_1();
-        Range_Value_V=V_ad;
+		if(Jk516save.Set_Data.speed == 0)
+		{
+			 Select_V_I(1);
+			read_adI_1();//
+			Range_value=I_ad;
+		
+			Select_V_I(0);
+			
+			read_adV_1();
+			Range_Value_V=V_ad;
+		}else if(Jk516save.Set_Data.speed == 1){
+			Select_V_I(1);
+			read_adI_2();//
+			Range_value=I_ad;
+		
+			Select_V_I(0);
+			
+			read_adV_2();
+			Range_Value_V=V_ad;
+		}else if(Jk516save.Set_Data.speed == 2){
+			Select_V_I(1);
+			read_adI_3();//
+			Range_value=I_ad;
+		
+			Select_V_I(0);
+			
+			read_adV_3();
+			Range_Value_V=V_ad;
+		}else if(Jk516save.Set_Data.speed == 3){
+			Select_V_I(1);
+			read_adI_4();//
+			Range_value=I_ad;
+		
+			Select_V_I(0);
+			
+			read_adV_4();
+			Range_Value_V=V_ad;
+		}
 
 
 		if(test_start)
@@ -2097,8 +2137,17 @@ void Use_DebugProcess(void)
                     
                                         
                 }
+                if(Jk516save.Set_Data.speed == 0)
+				{
+					I_ad=I_ad-Jk516save.Clear[list-1];//再判断极性
+				}else if(Jk516save.Set_Data.speed == 1){
+					I_ad=I_ad-Jk516save.Clear1[list-1];//再判断极性
+				}else if(Jk516save.Set_Data.speed == 2){
+					I_ad=I_ad-Jk516save.Clear2[list-1];//再判断极性
+				}else if(Jk516save.Set_Data.speed == 3){
+					I_ad=I_ad-Jk516save.Clear3[list-1];//再判断极性
+				}
                 
-                I_ad=I_ad-Jk516save.Clear[list-1];//再判断极性
                 I_ad=(I_ad)/169;
                  if(list-1 ==6)
                 {
@@ -2300,8 +2349,20 @@ void Use_DebugProcess(void)
                 {
                     if(list<8)
                     {
-                        Jk516save.Debug_Value[list-1].standard=Debug_Set_Res(&Coordinates);//电阻
-                        Jk516save.Debug_Value[list-1].ad_value=(float)Test_Value.res/Jk516save.Debug_Value[list-1].standard;
+						if(Jk516save.Set_Data.speed == 0)
+						{
+							Jk516save.Debug_Value[list-1].standard=Debug_Set_Res(&Coordinates);//电阻
+							Jk516save.Debug_Value[list-1].ad_value=(float)Test_Value.res/Jk516save.Debug_Value[list-1].standard;
+						}else if(Jk516save.Set_Data.speed == 1){
+							Jk516save.Debug_Value1[list-1].standard=Debug_Set_Res(&Coordinates);//电阻
+							Jk516save.Debug_Value1[list-1].ad_value=(float)Test_Value.res/Jk516save.Debug_Value1[list-1].standard;
+						}else if(Jk516save.Set_Data.speed == 2){
+							Jk516save.Debug_Value2[list-1].standard=Debug_Set_Res(&Coordinates);//电阻
+							Jk516save.Debug_Value2[list-1].ad_value=(float)Test_Value.res/Jk516save.Debug_Value2[list-1].standard;
+						}else if(Jk516save.Set_Data.speed == 3){
+							Jk516save.Debug_Value3[list-1].standard=Debug_Set_Res(&Coordinates);//电阻
+							Jk516save.Debug_Value3[list-1].ad_value=(float)Test_Value.res/Jk516save.Debug_Value3[list-1].standard;
+						}
                     }
                     else
                     {
@@ -2355,13 +2416,32 @@ void Clear_Process(void)
     while(GetSystemStatus()==SYS_STATUS_CLEAR)
     {
         Select_V_I(1);
-        read_adI_1();//
+//        if(Jk516save.Set_Data.speed == 0)
+//		{
+//			read_adI_1();//
+//		}else if(Jk516save.Set_Data.speed == 1){
+//			read_adI_2();//
+//		}else if(Jk516save.Set_Data.speed == 2){
+//			read_adI_3();//
+//		}else if(Jk516save.Set_Data.speed == 3){
+//			read_adI_4();//
+//		}
+		read_adI_1();//
         Range_value=I_ad;
         Range_Changecomp();	//换挡 比较
         while(range_over)
         {
             Range_Changecomp();	//换挡 比较
-            
+//            if(Jk516save.Set_Data.speed == 0)
+//			{
+//				read_adI_1();//
+//			}else if(Jk516save.Set_Data.speed == 1){
+//				read_adI_2();//
+//			}else if(Jk516save.Set_Data.speed == 2){
+//				read_adI_3();//
+//			}else if(Jk516save.Set_Data.speed == 3){
+//				read_adI_4();//
+//			}
             read_adI_1();//
             Range_value=I_ad;
         
@@ -2369,7 +2449,17 @@ void Clear_Process(void)
         }
         Select_V_I(0);
         
-        read_adV_1();
+//        if(Jk516save.Set_Data.speed == 0)
+//		{
+//			read_adI_1();//
+//		}else if(Jk516save.Set_Data.speed == 1){
+//			read_adI_2();//
+//		}else if(Jk516save.Set_Data.speed == 2){
+//			read_adI_3();//
+//		}else if(Jk516save.Set_Data.speed == 3){
+//			read_adI_4();//
+//		}
+		read_adI_1();//
         Range_Value_V=V_ad;
         Range_Changecomp();	//换挡 比较
        
@@ -2396,6 +2486,16 @@ void Clear_Process(void)
         //if(Clear_num>2)
         {
             Clear_num=0;
+//			if(Jk516save.Set_Data.speed == 0)
+//			{
+//				Jk516save.Clear[list]=I_ad;
+//			}else if(Jk516save.Set_Data.speed == 1){
+//				Jk516save.Clear1[list]=I_ad;
+//			}else if(Jk516save.Set_Data.speed == 2){
+//				Jk516save.Clear2[list]=I_ad;
+//			}else if(Jk516save.Set_Data.speed == 3){
+//				Jk516save.Clear3[list]=I_ad;
+//			}
             Jk516save.Clear[list]=I_ad;
             if(list<2)
             {

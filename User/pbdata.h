@@ -584,11 +584,17 @@ typedef struct
 //    Sysconfig_TypeDef Sysconfig;//œµÕ≥…Ë÷√
     Set_Data_Typedef Set_Data;
 	Debug_Value_Typedef Debug_Value[DEBUG_RANGE];
+	Debug_Value_Typedef Debug_Value1[DEBUG_RANGE];
+	Debug_Value_Typedef Debug_Value2[DEBUG_RANGE];
+	Debug_Value_Typedef Debug_Value3[DEBUG_RANGE];
 	Sys_Setvalue_Typedef Sys_Setvalue;
 //	float clear;
 //	float V_Clear;
     float Clear[RANGE_MAX+1];
-     float Clear_V[2];
+	float Clear1[RANGE_MAX+1];
+	float Clear2[RANGE_MAX+1];
+	float Clear3[RANGE_MAX+1];
+    float Clear_V[2];
     vu8 fac_num[10];
     vu8 open;
     

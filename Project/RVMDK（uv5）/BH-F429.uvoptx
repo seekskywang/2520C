@@ -119,6 +119,11 @@
       <TargetDriverDllRegistry>
         <SetRegEntry>
           <Number>0</Number>
+          <Key>DLGUARM</Key>
+          <Name>猬.w??趏*Q</Name>
+        </SetRegEntry>
+        <SetRegEntry>
+          <Number>0</Number>
           <Key>PWSTATINFO</Key>
           <Name>200,50,700</Name>
         </SetRegEntry>
@@ -173,242 +178,232 @@
         <Ww>
           <count>4</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Jk516save.Clear_V</ItemText>
+          <ItemText>g_tModS.RxCount</ItemText>
         </Ww>
         <Ww>
           <count>5</count>
           <WinNumber>1</WinNumber>
-          <ItemText>ComBuf.rec.buf</ItemText>
+          <ItemText>g_tModS.RxBuf</ItemText>
         </Ww>
         <Ww>
           <count>6</count>
           <WinNumber>1</WinNumber>
-          <ItemText>g_tModS.RxCount</ItemText>
+          <ItemText>V_ad</ItemText>
         </Ww>
         <Ww>
           <count>7</count>
           <WinNumber>1</WinNumber>
-          <ItemText>g_tModS.RxBuf</ItemText>
+          <ItemText>Test_Value,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>8</count>
           <WinNumber>1</WinNumber>
-          <ItemText>V_ad</ItemText>
+          <ItemText>Test_Value_V,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>9</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Test_Value,0x0A</ItemText>
+          <ItemText>Jk516save.Set_Data.Range_Set</ItemText>
         </Ww>
         <Ww>
           <count>10</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Test_Value_V,0x0A</ItemText>
+          <ItemText>Range</ItemText>
         </Ww>
         <Ww>
           <count>11</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Jk516save.Set_Data.Range_Set</ItemText>
+          <ItemText>sendrvalue</ItemText>
         </Ww>
         <Ww>
           <count>12</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Range</ItemText>
+          <ItemText>test_start</ItemText>
         </Ww>
         <Ww>
           <count>13</count>
           <WinNumber>1</WinNumber>
-          <ItemText>sendrvalue</ItemText>
+          <ItemText>open_flag</ItemText>
         </Ww>
         <Ww>
           <count>14</count>
           <WinNumber>1</WinNumber>
-          <ItemText>test_start</ItemText>
+          <ItemText>watchPA6</ItemText>
         </Ww>
         <Ww>
           <count>15</count>
           <WinNumber>1</WinNumber>
-          <ItemText>open_flag</ItemText>
+          <ItemText>Test_Value.uint</ItemText>
         </Ww>
         <Ww>
           <count>16</count>
           <WinNumber>1</WinNumber>
-          <ItemText>watchPA6</ItemText>
+          <ItemText>key</ItemText>
         </Ww>
         <Ww>
           <count>17</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Test_Value.uint</ItemText>
+          <ItemText>Extrigflag</ItemText>
         </Ww>
         <Ww>
           <count>18</count>
           <WinNumber>1</WinNumber>
-          <ItemText>key</ItemText>
+          <ItemText>oldskip</ItemText>
         </Ww>
         <Ww>
           <count>19</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Extrigflag</ItemText>
+          <ItemText>skipkey</ItemText>
         </Ww>
         <Ww>
           <count>20</count>
           <WinNumber>1</WinNumber>
-          <ItemText>oldskip</ItemText>
+          <ItemText>value_v.polar</ItemText>
         </Ww>
         <Ww>
           <count>21</count>
           <WinNumber>1</WinNumber>
-          <ItemText>skipkey</ItemText>
+          <ItemText>V_Range</ItemText>
         </Ww>
         <Ww>
           <count>22</count>
           <WinNumber>1</WinNumber>
-          <ItemText>value_v.polar</ItemText>
+          <ItemText>Range_Value_V,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>23</count>
           <WinNumber>1</WinNumber>
-          <ItemText>V_Range</ItemText>
+          <ItemText>buff</ItemText>
         </Ww>
         <Ww>
           <count>24</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Range_Value_V,0x0A</ItemText>
+          <ItemText>g_tModS.RxCount,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>25</count>
           <WinNumber>1</WinNumber>
-          <ItemText>buff</ItemText>
+          <ItemText>Jk516save.Set_Data.Nominal_V.Num,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>26</count>
           <WinNumber>1</WinNumber>
-          <ItemText>g_tModS.RxCount,0x0A</ItemText>
+          <ItemText>scpidot</ItemText>
         </Ww>
         <Ww>
           <count>27</count>
           <WinNumber>1</WinNumber>
-          <ItemText>scpinum</ItemText>
+          <ItemText>buf</ItemText>
         </Ww>
         <Ww>
           <count>28</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Jk516save.Set_Data.Nominal_V.Num,0x0A</ItemText>
+          <ItemText>unbuf</ItemText>
         </Ww>
         <Ww>
           <count>29</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Jk516save.Set_Data.Nominal_V,0x0A</ItemText>
+          <ItemText>scpiunit</ItemText>
         </Ww>
         <Ww>
           <count>30</count>
           <WinNumber>1</WinNumber>
-          <ItemText>scpinum1</ItemText>
+          <ItemText>Disp_buff</ItemText>
         </Ww>
         <Ww>
           <count>31</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Jk516save.Set_Data.Nominal_Res,0x0A</ItemText>
+          <ItemText>Sort_set,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>32</count>
           <WinNumber>1</WinNumber>
-          <ItemText>scpidot</ItemText>
+          <ItemText>Sort_num,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>33</count>
           <WinNumber>1</WinNumber>
-          <ItemText>buf</ItemText>
+          <ItemText>Sort_num1,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>34</count>
           <WinNumber>1</WinNumber>
-          <ItemText>unbuf</ItemText>
+          <ItemText>Scpi_num,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>35</count>
           <WinNumber>1</WinNumber>
-          <ItemText>scpiunit</ItemText>
+          <ItemText>Scpi_num1,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>36</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Disp_buff</ItemText>
+          <ItemText>scpiunit</ItemText>
         </Ww>
         <Ww>
           <count>37</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Sort_set,0x0A</ItemText>
+          <ItemText>ScpiV_num,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>38</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Sort_num,0x0A</ItemText>
+          <ItemText>ScpiV_num,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>39</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Sort_num1,0x0A</ItemText>
+          <ItemText>ScpiV_num1,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>40</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Scpi_num,0x0A</ItemText>
+          <ItemText>scpisendbuf</ItemText>
         </Ww>
         <Ww>
           <count>41</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Scpi_num1,0x0A</ItemText>
+          <ItemText>reg_value,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>42</count>
           <WinNumber>1</WinNumber>
-          <ItemText>scpiunit</ItemText>
+          <ItemText>Input_Ref-&gt;Num,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>43</count>
           <WinNumber>1</WinNumber>
-          <ItemText>ScpiV_num,0x0A</ItemText>
+          <ItemText>readpc6</ItemText>
         </Ww>
         <Ww>
           <count>44</count>
           <WinNumber>1</WinNumber>
-          <ItemText>ScpiV_num,0x0A</ItemText>
+          <ItemText>Jk516save.Set_Data.speed</ItemText>
         </Ww>
         <Ww>
           <count>45</count>
           <WinNumber>1</WinNumber>
-          <ItemText>ScpiV_num1,0x0A</ItemText>
+          <ItemText>Jk516save.Debug_Value2</ItemText>
         </Ww>
         <Ww>
           <count>46</count>
           <WinNumber>1</WinNumber>
-          <ItemText>scpisendbuf</ItemText>
+          <ItemText>Jk516save.Debug_Value1</ItemText>
         </Ww>
         <Ww>
           <count>47</count>
           <WinNumber>1</WinNumber>
-          <ItemText>g_tModS.RxBuf</ItemText>
+          <ItemText>Jk516save.Clear</ItemText>
         </Ww>
         <Ww>
           <count>48</count>
           <WinNumber>1</WinNumber>
-          <ItemText>g_tModS.TxBuf</ItemText>
+          <ItemText>Jk516save.Clear1</ItemText>
         </Ww>
         <Ww>
           <count>49</count>
           <WinNumber>1</WinNumber>
-          <ItemText>reg_value,0x0A</ItemText>
-        </Ww>
-        <Ww>
-          <count>50</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>Input_Ref-&gt;Num,0x0A</ItemText>
-        </Ww>
-        <Ww>
-          <count>51</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>readpc6</ItemText>
+          <ItemText>I_ad</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>

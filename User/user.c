@@ -1520,7 +1520,16 @@ void Test_Debug(void)
     
     
     }//Range_Value_V
+	if(Jk516save.Set_Data.speed == 0)
+	{
         Res_count.r=Res_count.r/Jk516save.Debug_Value[Range].ad_value;
+	}else if(Jk516save.Set_Data.speed == 1){
+		Res_count.r=Res_count.r/Jk516save.Debug_Value1[Range].ad_value;
+	}else if(Jk516save.Set_Data.speed == 2){
+		Res_count.r=Res_count.r/Jk516save.Debug_Value2[Range].ad_value;
+	}else if(Jk516save.Set_Data.speed == 3){
+		Res_count.r=Res_count.r/Jk516save.Debug_Value3[Range].ad_value;
+	}
         V_ad=(float)V_ad/Jk516save.Debug_Value[7+V_Range].ad_value;
    
 }
@@ -5484,7 +5493,54 @@ void Debug_stanedcomp(void)
             
             }
         }
+		if(Jk516save.Debug_Value1[i].standard>Debug_Compvalue[i][1]||Jk516save.Debug_Value1[i].standard<Debug_Compvalue[i][1])
+        {
+            if(i<DEBUG_RANGE-2)
+            {
+                
+                 Jk516save.Debug_Value1[i].standard=10000;
+                    
+                
+            }
+            else
+            {
             
+                Jk516save.Debug_Value1[i].standard=60000;
+            
+            }
+        }
+		if(Jk516save.Debug_Value2[i].standard>Debug_Compvalue[i][1]||Jk516save.Debug_Value2[i].standard<Debug_Compvalue[i][1])
+        {
+            if(i<DEBUG_RANGE-2)
+            {
+                
+                 Jk516save.Debug_Value2[i].standard=10000;
+                    
+                
+            }
+            else
+            {
+            
+                Jk516save.Debug_Value2[i].standard=60000;
+            
+            }
+        }
+        if(Jk516save.Debug_Value3[i].standard>Debug_Compvalue[i][1]||Jk516save.Debug_Value3[i].standard<Debug_Compvalue[i][1])
+        {
+            if(i<DEBUG_RANGE-2)
+            {
+                
+                 Jk516save.Debug_Value3[i].standard=10000;
+                    
+                
+            }
+            else
+            {
+            
+                Jk516save.Debug_Value3[i].standard=60000;
+            
+            }
+        }
     
     }
 
@@ -6123,6 +6179,25 @@ void read_adI_3(void)
     }
     I_ad/=68;
     //Select_V_I(0);
+//	u16 i;
+////    u32 temp;
+//    I_ad=0;
+//    for(i=0;i<580;i++)
+//    {
+//        while(GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_13)==Bit_RESET);
+//       scan_I[i]= Read_Convert_read();
+//        if(i>550)
+//        if(scan_I[i]>0x800000)
+//        {
+//            scan_I[i]=0xffffff-scan_I[i];
+//            I_ad-=scan_I[i];
+//        }
+//        else
+//            I_ad+=scan_I[i];
+//          
+//        
+//    }
+//    I_ad/=29;
 }
 void read_adV_3(void)
 {
