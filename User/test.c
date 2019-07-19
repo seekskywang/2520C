@@ -1028,14 +1028,14 @@ void Test_Process(void)
                         }
                         Select_V_I(0);
                         
-                        read_adV_3();
+                        read_adV_4();
                         Range_Value_V=V_ad;
                         VRange_Changecomp();	//换挡 比较
                         while(range_over)
                         {
                             VRange_Changecomp();	//换挡 比较
                             
-                            read_adV_3();//
+                            read_adV_4();//
                            Range_Value_V=V_ad;
                         
                         
@@ -1268,6 +1268,7 @@ void Test_Process(void)
 								sprintf(sendbuf,"+%.4fE+%d,-%.4fE+00",RemoteR,sendE,RemoteV);
 							}
 							uart1SendChars(sendbuf,sizeof(sendbuf));
+							Disp_Testvalue(Test_Value,Test_Value_V,0);//显示电阻和电压
 						}
 						
                         if(Jk516save.Set_Data.V_comp)
@@ -2013,14 +2014,53 @@ void Use_DebugProcess(void)
  	while(GetSystemStatus()==SYS_STATUS_DEBUG)
 	{
 
-         Select_V_I(1);
-        read_adI_1();//
-        Range_value=I_ad;
+//         Select_V_I(1);
+//        read_adI_1();//
+//        Range_value=I_ad;
 
-        Select_V_I(0);
-        
-        read_adV_1();
-        Range_Value_V=V_ad;
+//        Select_V_I(0);
+//        
+//        read_adV_1();
+//        Range_Value_V=V_ad;
+		
+		if(Jk516save.Set_Data.speed == 0)
+		{
+			 Select_V_I(1);
+			read_adI_1();//
+			Range_value=I_ad;
+		
+			Select_V_I(0);
+			
+			read_adV_1();
+			Range_Value_V=V_ad;
+		}else if(Jk516save.Set_Data.speed == 1){
+			Select_V_I(1);
+			read_adI_2();//
+			Range_value=I_ad;
+		
+			Select_V_I(0);
+			
+			read_adV_2();
+			Range_Value_V=V_ad;
+		}else if(Jk516save.Set_Data.speed == 2){
+			Select_V_I(1);
+			read_adI_3();//
+			Range_value=I_ad;
+		
+			Select_V_I(0);
+			
+			read_adV_3();
+			Range_Value_V=V_ad;
+		}else if(Jk516save.Set_Data.speed == 3){
+			Select_V_I(1);
+			read_adI_4();//
+			Range_value=I_ad;
+		
+			Select_V_I(0);
+			
+			read_adV_4();
+			Range_Value_V=V_ad;
+		}
 
 
 		if(test_start)
@@ -2246,13 +2286,38 @@ void Use_DebugProcess(void)
                 {
                     if(list<8)
                     {
-                        Jk516save.Debug_Value[list-1].standard=Debug_Set_Res(&Coordinates);//电阻
-                        Jk516save.Debug_Value[list-1].ad_value=(float)Test_Value.res/Jk516save.Debug_Value[list-1].standard;
+						if(Jk516save.Set_Data.speed == 0)
+						{
+							Jk516save.Debug_Value[list-1].standard=Debug_Set_Res(&Coordinates);//电阻
+							Jk516save.Debug_Value[list-1].ad_value=(float)Test_Value.res/Jk516save.Debug_Value[list-1].standard;
+						}else if(Jk516save.Set_Data.speed == 1){
+							Jk516save.Debug_Value1[list-1].standard=Debug_Set_Res(&Coordinates);//电阻
+							Jk516save.Debug_Value1[list-1].ad_value=(float)Test_Value.res/Jk516save.Debug_Value1[list-1].standard;
+						}else if(Jk516save.Set_Data.speed == 2){
+							Jk516save.Debug_Value2[list-1].standard=Debug_Set_Res(&Coordinates);//电阻
+							Jk516save.Debug_Value2[list-1].ad_value=(float)Test_Value.res/Jk516save.Debug_Value2[list-1].standard;
+						}else if(Jk516save.Set_Data.speed == 3){
+							Jk516save.Debug_Value3[list-1].standard=Debug_Set_Res(&Coordinates);//电阻
+							Jk516save.Debug_Value3[list-1].ad_value=(float)Test_Value.res/Jk516save.Debug_Value3[list-1].standard;
+						}
                     }
                     else
                     {
-                      Jk516save.Debug_Value[list-1].standard=Debug_Set_Num(&Coordinates);//电压
-                        Jk516save.Debug_Value[list-1].ad_value=(float)Test_Value_V.res/Jk516save.Debug_Value[list-1].standard;
+						if(Jk516save.Set_Data.speed == 0)
+						{
+							Jk516save.Debug_Value[list-1].standard=Debug_Set_Num(&Coordinates);//电压
+							Jk516save.Debug_Value[list-1].ad_value=(float)Test_Value_V.res/Jk516save.Debug_Value[list-1].standard;
+						}else if(Jk516save.Set_Data.speed == 1){
+							Jk516save.Debug_Value1[list-1].standard=Debug_Set_Num(&Coordinates);//电压
+							Jk516save.Debug_Value1[list-1].ad_value=(float)Test_Value_V.res/Jk516save.Debug_Value1[list-1].standard;
+						}else if(Jk516save.Set_Data.speed == 2){
+							Jk516save.Debug_Value2[list-1].standard=Debug_Set_Num(&Coordinates);//电压
+							Jk516save.Debug_Value2[list-1].ad_value=(float)Test_Value_V.res/Jk516save.Debug_Value2[list-1].standard;
+						}else if(Jk516save.Set_Data.speed == 3){
+							Jk516save.Debug_Value3[list-1].standard=Debug_Set_Num(&Coordinates);//电压
+							Jk516save.Debug_Value3[list-1].ad_value=(float)Test_Value_V.res/Jk516save.Debug_Value3[list-1].standard;
+						}
+                      
                         
                     }
                     
@@ -2301,21 +2366,49 @@ void Clear_Process(void)
     while(GetSystemStatus()==SYS_STATUS_CLEAR)
     {
         Select_V_I(1);
-        read_adI_1();//
+       if(Jk516save.Set_Data.speed == 0)
+		{
+			read_adI_1();//
+		}else if(Jk516save.Set_Data.speed == 1){
+			read_adI_2();//
+		}else if(Jk516save.Set_Data.speed == 2){
+			read_adI_3();//
+		}else if(Jk516save.Set_Data.speed == 3){
+			read_adI_4();//
+		}
         Range_value=I_ad;
         Range_Changecomp();	//换挡 比较
         while(range_over)
         {
             Range_Changecomp();	//换挡 比较
             
-            read_adI_1();//
+            if(Jk516save.Set_Data.speed == 0)
+			{
+				read_adI_1();//
+			}else if(Jk516save.Set_Data.speed == 1){
+				read_adI_2();//
+			}else if(Jk516save.Set_Data.speed == 2){
+				read_adI_3();//
+			}else if(Jk516save.Set_Data.speed == 3){
+				read_adI_4();//
+			}
             Range_value=I_ad;
         
         
         }
         Select_V_I(0);
         
-        read_adV_1();
+		if(Jk516save.Set_Data.speed == 0)
+		{
+			read_adV_1();
+		}else if(Jk516save.Set_Data.speed == 1){
+			read_adV_2();
+		}else if(Jk516save.Set_Data.speed == 2){
+			read_adV_4();
+		}else if(Jk516save.Set_Data.speed == 3){
+			read_adV_4();
+		}
+//        read_adV_1();
         Range_Value_V=V_ad;
         Range_Changecomp();	//换挡 比较
        

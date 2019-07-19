@@ -329,7 +329,7 @@ extern u8 polarity_v,polarity_r;
 extern u8 Readfirst_cpld,Readsecond_cpld;
 extern u8 RangeChange_Flag;
 extern u32 fit_i_buff[MAXFITNUM],fit_v_buff[MAXFITNUM];
-extern u32 scan_V[130],scan_I[130];
+extern u32 scan_V[130],scan_I[800];
 extern u8 range_over;
 extern u8 Int_Pe3flag;
 extern const u8 fit_allnum[4];
@@ -584,6 +584,9 @@ typedef struct
 //    Sysconfig_TypeDef Sysconfig;//œµÕ≥…Ë÷√
     Set_Data_Typedef Set_Data;
 	Debug_Value_Typedef Debug_Value[DEBUG_RANGE];
+	Debug_Value_Typedef Debug_Value1[DEBUG_RANGE];
+	Debug_Value_Typedef Debug_Value2[DEBUG_RANGE];
+	Debug_Value_Typedef Debug_Value3[DEBUG_RANGE];
 	Sys_Setvalue_Typedef Sys_Setvalue;
 //	float clear;
 //	float V_Clear;
