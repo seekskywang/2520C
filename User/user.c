@@ -6267,7 +6267,7 @@ void read_adV_2(void)
 {
     u8 i,j;
 //    u32 temp;
-    u32 buff[5];
+    float buff[5];
     V_ad=0;
     delay_1us(20);
     for(j=0;j<5;j++)

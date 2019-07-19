@@ -2452,7 +2452,17 @@ void Clear_Process(void)
         }
         Select_V_I(0);
         
-        read_adV_1();
+		if(Jk516save.Set_Data.speed == 0)
+		{
+			read_adV_1();
+		}else if(Jk516save.Set_Data.speed == 1){
+			read_adV_2();
+		}else if(Jk516save.Set_Data.speed == 2){
+			read_adV_4();
+		}else if(Jk516save.Set_Data.speed == 3){
+			read_adV_4();
+		}
+        
         Range_Value_V=V_ad;
         Range_Changecomp();	//»»µ² ±È½Ï
        
