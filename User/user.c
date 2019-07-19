@@ -368,7 +368,7 @@ const uint8_t BiasButton_Tip[][7+1]=  //频率选择时候的下面的提示符号
 const uint8_t Sys_Sys[][20+1]=
 {
 	{"仪器型号  JK2520C"},
-	{"软件版本  Ver:2.1"},
+	{"软件版本  Ver:2.3"},
 	{"硬件版本  Ver:1.1"},
 	{"仪器编号"},
 //	{"账号    "},
@@ -379,7 +379,7 @@ const uint8_t Sys_Sys[][20+1]=
 const uint8_t Sys_Sys_E[][20+1]=
 {
 	{"INST MODEL  JK2520C"},
-	{"SOFT VER   Ver:2.2"},
+	{"SOFT VER   Ver:2.3"},
 	{"HARD VER   Ver:1.1"},
 	{"SERIALNO"},
 //	{"账号    "},
@@ -390,7 +390,7 @@ const uint8_t Sys_Sys_E[][20+1]=
 const uint8_t Sys_Sys1[][20+1]=
 {
 	{"仪器型号  2520C"},
-	{"软件版本  Ver:2.2"},
+	{"软件版本  Ver:2.3"},
 	{"硬件版本  Ver:1.1"},
 	{"仪器编号"},
 //	{"账号    "},
@@ -401,7 +401,7 @@ const uint8_t Sys_Sys1[][20+1]=
 const uint8_t Sys_Sys_E1[][20+1]=
 {
 	{"INST MODEL  2520C"},
-	{"SOFT VER   Ver:2.2"},
+	{"SOFT VER   Ver:2.3"},
 	{"HARD VER   Ver:1.1"},
 	{"SERIALNO"},
 //	{"账号    "},
@@ -6266,7 +6266,7 @@ void read_adV_2(void)
 {
     u8 i,j;
 //    u32 temp;
-    u32 buff[5];
+    float buff[5];
     V_ad=0;
     delay_1us(20);
     for(j=0;j<5;j++)
