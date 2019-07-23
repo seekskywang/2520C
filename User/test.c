@@ -2499,16 +2499,16 @@ void Clear_Process(void)
 //			}else if(Jk516save.Set_Data.speed == 3){
 //				Jk516save.Clear3[list]=I_ad;
 //			}
-            Jk516save.Clear[list]=I_ad;
+            Jk516save.Clear[list-1]=I_ad;
             if(list<2)
             {
-                Jk516save.Clear_V[list]=V_ad;
+                Jk516save.Clear_V[list-1]=V_ad;
                 range_v=list;
                 
             }
             Range_Control(list,range_v);
             Disp_Range(0,list);
-        
+			delay_ms(200);
             if(list>=RANGE_MAX)
             {
                 SetSystemStatus(SYS_STATUS_TEST);

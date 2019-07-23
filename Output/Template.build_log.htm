@@ -27,8 +27,33 @@ Project File Date:  07/18/2019
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target '¹¤³ÌÄ£°å'
+compiling test.c...
+..\..\User\test.c(902): warning:  #223-D: function "Read_ExtTrig" declared implicitly
+                Extrigflag = Read_ExtTrig();
+..\..\User\test.c(1181): warning:  #223-D: function "uart1SendChars" declared implicitly
+                                        uart1SendChars("OPEN",4);
+..\..\User\test.c(1240): warning:  #223-D: function "uart1SendChars" declared implicitly
+                                                  uart1SendChars("OPEN",4);
+..\..\User\test.c(1289): warning:  #223-D: function "uart1SendChars" declared implicitly
+                                                                  uart1SendChars("OPEN",4);
+..\..\User\test.c(1293): warning:  #223-D: function "labs" declared implicitly
+                                                        if(labs(Test_Value_V.res - vstable) > 20)
+..\..\User\test.c(1313): warning:  #68-D: integer conversion resulted in a change of sign
+                                                                        sendE = -3;
+..\..\User\test.c(1326): warning:  #223-D: function "uart1SendChars" declared implicitly
+                                                                uart1SendChars(sendbuf,sizeof(sendbuf));
+..\..\User\test.c(808): warning:  #177-D: variable "oldskip"  was declared but never referenced
+        static u32 oldskip,vstable;
+..\..\User\test.c(809): warning:  #550-D: variable "rmtwait"  was set but never used
+        static u8 vropen,rmtwait;
+..\..\User\test.c(812): warning:  #177-D: variable "csendlen"  was declared but never referenced
+        u8 csendlen;
+..\..\User\test.c: 10 warnings, 0 errors
+linking...
+Program Size: Code=77832 RO-data=594048 RW-data=504 ZI-data=32904  
+FromELF: creating hex file...
 After Build - User command #1: D:\Keil_v5\ARM\ARMCC\bin\fromelf.exe --bin -o ..\..\Output\update.bin ..\..\Output\Template.axf
-"..\..\Output\Template.axf" - 0 Error(s), 0 Warning(s).
+"..\..\Output\Template.axf" - 0 Error(s), 10 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -42,7 +67,7 @@ Package Vendor: Keil
   D:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.12.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:03
 </pre>
 </body>
 </html>
