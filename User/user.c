@@ -368,7 +368,7 @@ const uint8_t BiasButton_Tip[][7+1]=  //频率选择时候的下面的提示符号
 const uint8_t Sys_Sys[][20+1]=
 {
 	{"仪器型号  JK2520C"},
-	{"软件版本  Ver:2.4"},
+	{"软件版本  Ver:2.5"},
 	{"硬件版本  Ver:1.1"},
 	{"仪器编号"},
 //	{"账号    "},
@@ -379,7 +379,7 @@ const uint8_t Sys_Sys[][20+1]=
 const uint8_t Sys_Sys_E[][20+1]=
 {
 	{"INST MODEL  JK2520C"},
-	{"SOFT VER   Ver:2.4"},
+	{"SOFT VER   Ver:2.5"},
 	{"HARD VER   Ver:1.1"},
 	{"SERIALNO"},
 //	{"账号    "},
@@ -390,7 +390,7 @@ const uint8_t Sys_Sys_E[][20+1]=
 const uint8_t Sys_Sys1[][20+1]=
 {
 	{"仪器型号  2520C"},
-	{"软件版本  Ver:2.4"},
+	{"软件版本  Ver:2.5"},
 	{"硬件版本  Ver:1.1"},
 	{"仪器编号"},
 //	{"账号    "},
@@ -401,7 +401,7 @@ const uint8_t Sys_Sys1[][20+1]=
 const uint8_t Sys_Sys_E1[][20+1]=
 {
 	{"INST MODEL  2520C"},
-	{"SOFT VER   Ver:2.4"},
+	{"SOFT VER   Ver:2.5"},
 	{"HARD VER   Ver:1.1"},
 	{"SERIALNO"},
 //	{"账号    "},
@@ -1518,7 +1518,8 @@ void Test_Debug(void)
         }
     
     
-    }//Range_Value_V
+    }
+	//Range_Value_V
 //        Res_count.r=Res_count.r/Jk516save.Debug_Value[Range].ad_value;
 //        V_ad=(float)V_ad/Jk516save.Debug_Value[7+V_Range].ad_value;
 	if(Jk516save.Set_Data.speed == 0)

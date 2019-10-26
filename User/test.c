@@ -2436,7 +2436,7 @@ void Clear_Process(void)
         {
             Clear_num=0;
             Jk516save.Clear[list-1]=I_ad;
-            if(list<2)
+            if(list<3)
             {
                 Jk516save.Clear_V[list-1]=V_ad;
                 range_v=list;
@@ -2445,7 +2445,7 @@ void Clear_Process(void)
             Range_Control(list,range_v);
             Disp_Range(0,list);
         
-            if(list>=RANGE_MAX)
+            if(list>=RANGE_MAX+1)
             {
                 SetSystemStatus(SYS_STATUS_TEST);
                
