@@ -5444,7 +5444,7 @@ void Disp_UserCheck_Item(void)
 }
 int32_t Debug_Valuedata(Sort_TypeDef *Debug_value)
 {
-    if(Debug_value->Num>10000)
+    if(Debug_value->Num>20000)
         Debug_value->Num/=10;
 	return Debug_value->Num;//(pow(10,Debug_value->Dot));
 
