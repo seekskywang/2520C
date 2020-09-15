@@ -21,6 +21,7 @@ u8 U15_4094,U16_4094;
 FRESULT result;
 FATFS fs;
 FIL file;
+u16 startdelay;
 //const u8 RANGE_UNIT[11]=
 //{
 //	4,
@@ -1239,7 +1240,7 @@ void Test_Process(void)
                     }
                    
                     Colour.black=LCD_COLOR_TEST_MID;
-                    if(range_over==0)
+                    if(range_over==0 && startdelay == 0)
                     {
                         test_start=0;
                         Test_Value_V=V_Datacov(V_ad ,V_Range);//把数据的小数点和单位 和极性都加上
@@ -1390,7 +1391,9 @@ void Test_Process(void)
                       
                         
                         
-                    }
+                    }else{
+						startdelay --;
+					}
                     
                 }
  
