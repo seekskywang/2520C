@@ -367,8 +367,8 @@ const uint8_t BiasButton_Tip[][7+1]=  //ÆµÂÊÑ¡ÔñÊ±ºòµÄÏÂÃæµÄÌáÊ¾·ûºÅ
 
 const uint8_t Sys_Sys[][20+1]=
 {
-	{"ÒÇÆ÷ÐÍºÅ  JK2520C"},
-	{"Èí¼þ°æ±¾  Ver:2.6"},
+	{"ÒÇÆ÷ÐÍºÅ  JK2520B+"},
+	{"Èí¼þ°æ±¾  Ver:1.1"},
 	{"Ó²¼þ°æ±¾  Ver:1.1"},
 	{"ÒÇÆ÷±àºÅ"},
 //	{"ÕËºÅ    "},
@@ -378,8 +378,8 @@ const uint8_t Sys_Sys[][20+1]=
 };
 const uint8_t Sys_Sys_E[][20+1]=
 {
-	{"INST MODEL  JK2520C"},
-	{"SOFT VER   Ver:2.6"},
+	{"INST MODEL  JK2520B+"},
+	{"SOFT VER   Ver:1.1"},
 	{"HARD VER   Ver:1.1"},
 	{"SERIALNO"},
 //	{"ÕËºÅ    "},
@@ -389,8 +389,8 @@ const uint8_t Sys_Sys_E[][20+1]=
 };
 const uint8_t Sys_Sys1[][20+1]=
 {
-	{"ÒÇÆ÷ÐÍºÅ  2520C"},
-	{"Èí¼þ°æ±¾  Ver:2.6"},
+	{"ÒÇÆ÷ÐÍºÅ  JK2520B+"},
+	{"Èí¼þ°æ±¾  Ver:1.1"},
 	{"Ó²¼þ°æ±¾  Ver:1.1"},
 	{"ÒÇÆ÷±àºÅ"},
 //	{"ÕËºÅ    "},
@@ -400,8 +400,8 @@ const uint8_t Sys_Sys1[][20+1]=
 };
 const uint8_t Sys_Sys_E1[][20+1]=
 {
-	{"INST MODEL  2520C"},
-	{"SOFT VER   Ver:2.6"},
+	{"INST MODEL  JK2520B+"},
+	{"SOFT VER   Ver:1.1"},
 	{"HARD VER   Ver:1.1"},
 	{"SERIALNO"},
 //	{"ÕËºÅ    "},
@@ -2045,7 +2045,8 @@ void Disp_Open(void)
 		Beep_Off();
 	//    Beep_Out(0);
 		LCD_DrawFullRect(SORTING_XDISP, SORTING_Y_DISP, 60, 22);
-		LCD_ShowFontCN_40_55(60+40*6,92,40,55, (uint8_t*)Out_Assic+14*40*55/8);
+		LCD_ShowFontCN_40_55(60+40*6,92,40,55, (uint8_t*)Out_Assic+22*40*55/8);
+//		LCD_ShowFontCN_40_55(60+40*6,92,40,55, (uint8_t*)Out_Assic+14*40*55/8);
 	}
 	if(Jk516save.Set_Data.V_comp==1 || Jk516save.Set_Data.Res_comp==1)
 	{
@@ -2072,7 +2073,8 @@ void Disp_Open(void)
 		Beep_Off();
 	//    Beep_Out(0);
 		LCD_DrawFullRect(SORTING_XDISP, SORTING_Y_DISP, 60, 22);
-		LCD_ShowFontCN_40_55(60+40*6,92,40,55, (uint8_t*)Out_Assic+14*40*55/8);
+		LCD_ShowFontCN_40_55(60+40*6,92,40,55, (uint8_t*)Out_Assic+22*40*55/8);
+//		LCD_ShowFontCN_40_55(60+40*6,92,40,55, (uint8_t*)Out_Assic+14*40*55/8);
 	}
     //WriteString_16 ( TESTVALUE_X, SORTING_Y_DISP+30, "RV_OPEN",0 ); 
     Colour.black=colour;
@@ -4371,7 +4373,7 @@ void Disp_button_Num_time(void)
 	Colour.Fword=White;
 	WriteString_16(84, 271-30, " m¦¸  ",  0);
 	WriteString_16(84+80, 271-30, " ¦¸ ",  0);
-    WriteString_16(84+80+80, 271-30, "k¦¸ ",  0);
+//    WriteString_16(84+80+80, 271-30, "k¦¸ ",  0);
 
 
 }
@@ -4462,28 +4464,31 @@ Sort_TypeDef Disp_NumKeyboard_Set(Disp_Coordinates_Typedef *Coordinates,u8 flag 
 					
 				break;
 				case Key_F3:
-                    Sort_set.Unit=2;
-					
-					While_flag=0;
-					if(key_count<lenth)
+					if(GetSystemMessage() == SYS_STATUS_DEBUG)
 					{
-						if(dot_num==0)
-						{
-							if(key_count>0)
-							{
-								Disp_buff[key_count]='.';
-								dot_num1=key_count;
-								key_count++;
-							
-							
-							}
-							dot_num++;
-						}
-					
-					}
+						Sort_set.Unit=2;
 						
-					
-					Sort_set.Updata_flag=1;
+						While_flag=0;
+						if(key_count<lenth)
+						{
+							if(dot_num==0)
+							{
+								if(key_count>0)
+								{
+									Disp_buff[key_count]='.';
+									dot_num1=key_count;
+									key_count++;
+								
+								
+								}
+								dot_num++;
+							}
+						
+						}
+							
+						
+						Sort_set.Updata_flag=1;
+					}
 					
 				break;
 				case Key_F4:
@@ -4974,14 +4979,13 @@ Sort_TypeDef Input_Set_Cov(Sort_TypeDef *Input_Ref)//
 //		Input_Ref->Dot=3;
 //		
 //	}
-//	value=(float)Input_Ref->Num*1000000;
-//	value/=(pow(10,7-Input_Ref->Dot));
-	value=Input_Ref->Num/(pow(10,7-Input_Ref->Dot));
-	value*=(float)1000000;
-	
-	if(value>12000000)
+	value=(float)Input_Ref->Num*1000000;
+	value/=(pow(10,7-Input_Ref->Dot));
+	if(value>6000000/*12000000*/)
 	{
-		value=12000000;
+//		value=12000000;
+		value=6000000;
+		
 	}
 	if(value>=(float)1e7)
 	{
@@ -5193,8 +5197,8 @@ void Disp_Range(u8 hand,u8 range)
 //        hand=1;
     if(hand>1)
         hand=1;
-    if(range>6)
-        range=6;
+    if(range>3)
+        range=3;
     Colour.black =LCD_COLOR_TEST_BACK;
     WriteString_16(SORTING_XDISP-20, SORTING_Y_DISP+30, Range_Disp_Test[hand][range],  0);
 
