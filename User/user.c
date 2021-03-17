@@ -238,6 +238,39 @@ const uint8_t Test_Compvalue_E[][6+1]=
 
 };
 
+
+const uint8_t V_Compvalue[][9+1]=
+{
+	{"关闭"},
+	{"打开"},
+	{"绝对值ON"}
+
+};
+
+const uint8_t V1_Compvalue[][9+1]=
+{
+	{"关闭"},
+	{"打开"},
+	{"绝对值OFF"}
+
+};
+
+const uint8_t V_Compvalue_E[][7+1]=
+{
+	{"CLOSE"},
+	{"OPEN"},
+	{"ABSON"}
+
+};
+
+const uint8_t V1_Compvalue_E[][7+1]=
+{
+	{"CLOSE"},
+	{"OPEN"},
+	{"ABSOFF"}
+
+};
+
 const uint8_t Setup_Beep[][6+1]=
 {
 	"关闭  ",
@@ -368,18 +401,18 @@ const uint8_t BiasButton_Tip[][7+1]=  //频率选择时候的下面的提示符号
 const uint8_t Sys_Sys[][20+1]=
 {
 	{"仪器型号  JK2520B+"},
-	{"软件版本  Ver:1.1"},
+	{"软件版本  Ver:1.2"},
 	{"硬件版本  Ver:1.1"},
 	{"仪器编号"},
 //	{"账号    "},
-
+//1.2增加电压绝对值分选开关
 
 
 };
 const uint8_t Sys_Sys_E[][20+1]=
 {
 	{"INST MODEL  JK2520B+"},
-	{"SOFT VER   Ver:1.1"},
+	{"SOFT VER   Ver:1.2"},
 	{"HARD VER   Ver:1.1"},
 	{"SERIALNO"},
 //	{"账号    "},
@@ -389,8 +422,8 @@ const uint8_t Sys_Sys_E[][20+1]=
 };
 const uint8_t Sys_Sys1[][20+1]=
 {
-	{"仪器型号  JK2520B+"},
-	{"软件版本  Ver:1.1"},
+	{"仪器型号  2520B+"},
+	{"软件版本  Ver:1.2"},
 	{"硬件版本  Ver:1.1"},
 	{"仪器编号"},
 //	{"账号    "},
@@ -400,8 +433,8 @@ const uint8_t Sys_Sys1[][20+1]=
 };
 const uint8_t Sys_Sys_E1[][20+1]=
 {
-	{"INST MODEL  JK2520B+"},
-	{"SOFT VER   Ver:1.1"},
+	{"INST MODEL  2520B+"},
+	{"SOFT VER   Ver:1.2"},
 	{"HARD VER   Ver:1.1"},
 	{"SERIALNO"},
 //	{"账号    "},
@@ -620,6 +653,8 @@ void Parameter_valuecomp(void)
         Jk516save.Set_Data.beep=0;
     if(Jk516save.Set_Data.V_comp>1)
         Jk516save.Set_Data.V_comp=0;
+	if(Jk516save.Set_Data.abscomp>1)
+        Jk516save.Set_Data.abscomp=0;
     
     if(Jk516save.Set_Data.Nominal_Res.Dot>5)
         Jk516save.Set_Data.Nominal_Res.Dot=3;
@@ -668,6 +703,7 @@ void Parameter_valuecomp(void)
         Jk516save.Sys_Setvalue.uart=0;
     if(Jk516save.Sys_Setvalue.u_flag>1)
         Jk516save.Sys_Setvalue.u_flag=0;
+	
     for(i=0;i<20;i++)
     {
         if(Jk516save.Sys_Setvalue.textname[i]>128)
@@ -2758,6 +2794,7 @@ void DispSet_value(u8 keynum)
 	vu32 i;
     const u8 (*pt)[7];
 	const u8 (*pt1)[8];
+	const u8 (*pt2)[10];
     const u8 (*ppt)[11];
 	vu32 Black_Select;
 	Black_Select=(keynum==1)?1:0;
@@ -3116,20 +3153,39 @@ void DispSet_value(u8 keynum)
 		case 5:
 			Colour.Fword=White;
 			Colour.black=LCD_COLOR_TEST_BUTON;
-            if(Jk516save.Sys_Setvalue.lanage)
-            {
-                pt=Test_Compvalue_E;
-            
-            }
-            else
-            {
-                pt=Test_Compvalue;
-            
-            }
-			for(i=0;i<2;i++)
+			if(Jk516save.Set_Data.abscomp == 0)
 			{
+				if(Jk516save.Sys_Setvalue.lanage)
+				{
+					pt1=V1_Compvalue_E;
 				
-				WriteString_16(BUTTOM_X_VALUE+i*BUTTOM_MID_VALUE, BUTTOM_Y_VALUE, pt[i],  0);
+				}
+				else
+				{
+					pt2=V1_Compvalue;
+				
+				}
+			}else if(Jk516save.Set_Data.abscomp == 1){
+				if(Jk516save.Sys_Setvalue.lanage)
+				{
+					pt1=V_Compvalue_E;
+				
+				}
+				else
+				{
+					pt2=V_Compvalue;
+				
+				}
+			}
+            
+			for(i=0;i<3;i++)
+			{
+				if(Jk516save.Sys_Setvalue.lanage)
+				{
+					WriteString_16(BUTTOM_X_VALUE+i*BUTTOM_MID_VALUE, BUTTOM_Y_VALUE, pt1[i],  0);
+				}else{
+					WriteString_16(BUTTOM_X_VALUE+i*BUTTOM_MID_VALUE, BUTTOM_Y_VALUE, pt2[i],  0);
+				}
 			}
 			break;
 		case 6:

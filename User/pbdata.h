@@ -533,7 +533,7 @@ typedef struct
 	Sort_TypeDef High_Res;
 	Sort_TypeDef Nominal_V;
 	Sort_TypeDef	V_high;
-	
+	vu8 abscomp;//电压绝对值比较
 
 
 }Set_Data_Typedef;

@@ -592,6 +592,12 @@ void Setup_Process(void)
 
 							break;
 						case 5:
+							if(Jk516save.Set_Data.abscomp == 0)
+							{
+								Jk516save.Set_Data.abscomp = 1;
+							}else if(Jk516save.Set_Data.abscomp == 1){
+								Jk516save.Set_Data.abscomp = 0;
+							}
 							break;
 						case 6:
 
@@ -1216,7 +1222,12 @@ void Test_Process(void)
                 V_ad=V_ad-Jk516save.Clear_V[V_Range];
                 if(V_ad<0)
                 {
-                    polarity_v=0;
+					if(Jk516save.Set_Data.abscomp == 0)
+					{
+						polarity_v=0;
+					}else{
+						polarity_v=1;
+					}
                     V_ad=-V_ad;
                 
                 }else
