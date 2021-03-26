@@ -367,7 +367,7 @@ const uint8_t BiasButton_Tip[][7+1]=  //频率选择时候的下面的提示符号
 
 const uint8_t Sys_Sys[][20+1]=
 {
-	{"仪器型号  JK2520C"},
+	{"仪器型号  JK2520N"},
 	{"软件版本  Ver:2.6"},
 	{"硬件版本  Ver:1.1"},
 	{"仪器编号"},
@@ -378,7 +378,7 @@ const uint8_t Sys_Sys[][20+1]=
 };
 const uint8_t Sys_Sys_E[][20+1]=
 {
-	{"INST MODEL  JK2520C"},
+	{"INST MODEL  JK2520N"},
 	{"SOFT VER   Ver:2.6"},
 	{"HARD VER   Ver:1.1"},
 	{"SERIALNO"},
@@ -389,7 +389,7 @@ const uint8_t Sys_Sys_E[][20+1]=
 };
 const uint8_t Sys_Sys1[][20+1]=
 {
-	{"仪器型号  2520C"},
+	{"仪器型号  2520N"},
 	{"软件版本  Ver:2.6"},
 	{"硬件版本  Ver:1.1"},
 	{"仪器编号"},
@@ -400,7 +400,7 @@ const uint8_t Sys_Sys1[][20+1]=
 };
 const uint8_t Sys_Sys_E1[][20+1]=
 {
-	{"INST MODEL  2520C"},
+	{"INST MODEL  2520N"},
 	{"SOFT VER   Ver:2.6"},
 	{"HARD VER   Ver:1.1"},
 	{"SERIALNO"},
@@ -608,8 +608,8 @@ void Parameter_valuecomp(void)
         Jk516save.Set_Data.Res_comp=0;
     if(Jk516save.Set_Data.V_low.Dot>5)
         Jk516save.Set_Data.V_low.Dot=3;
-    if(Jk516save.Set_Data.V_low.Num>1200000)
-        Jk516save.Set_Data.V_low.Num=120000;
+    if(Jk516save.Set_Data.V_low.Num>4000000)
+        Jk516save.Set_Data.V_low.Num=400000;
     if(Jk516save.Set_Data.V_low.Unit>5)
         Jk516save.Set_Data.V_low.Unit=0;
     if(Jk516save.Set_Data.Range>10)
@@ -644,8 +644,8 @@ void Parameter_valuecomp(void)
     
     if(Jk516save.Set_Data.Nominal_V.Dot>5)
         Jk516save.Set_Data.Nominal_V.Dot=3;
-    if(Jk516save.Set_Data.Nominal_V.Num>1200000)
-        Jk516save.Set_Data.Nominal_V.Num=120000;
+    if(Jk516save.Set_Data.Nominal_V.Num>4000000)
+        Jk516save.Set_Data.Nominal_V.Num=400000;
     if(Jk516save.Set_Data.Nominal_V.Unit>5)
         Jk516save.Set_Data.Nominal_V.Unit=0;
     
@@ -653,8 +653,8 @@ void Parameter_valuecomp(void)
     
     if(Jk516save.Set_Data.V_high.Dot>5)
         Jk516save.Set_Data.V_high.Dot=3;
-    if(Jk516save.Set_Data.V_high.Num>1200000)
-        Jk516save.Set_Data.V_high.Num=120000;
+    if(Jk516save.Set_Data.V_high.Num>4000000)
+        Jk516save.Set_Data.V_high.Num=400000;
     if(Jk516save.Set_Data.V_high.Unit>5)
         Jk516save.Set_Data.V_high.Unit=0;
     
@@ -690,23 +690,23 @@ void Parameter_valuecomp(void)
     
     for(i=0;i<RANGE_MAX+2;i++)
     {
-        if((Jk516save.Debug_Value[i].ad_value>Debug_Limit[0])||(Jk516save.Debug_Value[i].ad_value<Debug_Limit[1]))
-            Jk516save.Debug_Value[i].ad_value=1;
-        if((Jk516save.Debug_Value[i].standard>Debug_Compvalue[i][0])||(Jk516save.Debug_Value[i].standard<Debug_Compvalue[i][1]))
-            Jk516save.Debug_Value[i].standard=Debug_Compvaluemind[i];
-        if(i<RANGE_MAX)
-        {
-            if(Jk516save.Clear[i]>100000)
-                Jk516save.Clear[i]=0;
-        
-        }
-        else
-        {
-            if(Jk516save.Clear_V[i-RANGE_MAX]>500000)
-                Jk516save.Clear_V[i-RANGE_MAX]=0;
-        
-        
-        }
+//        if((Jk516save.Debug_Value[i].ad_value>Debug_Limit[0])||(Jk516save.Debug_Value[i].ad_value<Debug_Limit[1]))
+//            Jk516save.Debug_Value[i].ad_value=1;
+//        if((Jk516save.Debug_Value[i].standard>Debug_Compvalue[i][0])||(Jk516save.Debug_Value[i].standard<Debug_Compvalue[i][1]))
+//            Jk516save.Debug_Value[i].standard=Debug_Compvaluemind[i];
+//        if(i<RANGE_MAX)
+//        {
+//            if(Jk516save.Clear[i]>100000)
+//                Jk516save.Clear[i]=0;
+//        
+//        }
+//        else
+//        {
+//            if(Jk516save.Clear_V[i-RANGE_MAX]>500000)
+//                Jk516save.Clear_V[i-RANGE_MAX]=0;
+//        
+//        
+//        }
         
     }
 
@@ -2123,7 +2123,7 @@ void Disp_Testvalue(Test_ValueTypedef value,Test_ValueTypedef value_v,u8 speed)
     memcpy((void *)Send_ComBuff.send_res,DispBuf,6);
     memcpy((void *)Send_To_U.Send_res,DispBuf,6);//电阻
     memcpy((void *)&Send_To_U.Send_res[6],DISP_UINT[Test_Value.uint],3);//单位
-   Send_To_U.back=9;
+    Send_To_U.back=9;
     DispBuf[6]=' ';
     if(Jk516save.Set_Data.speed!=3)
     {
@@ -4979,9 +4979,9 @@ Sort_TypeDef Input_Set_Cov(Sort_TypeDef *Input_Ref)//
 	value=Input_Ref->Num/(pow(10,7-Input_Ref->Dot));
 	value*=(float)1000000;
 	
-	if(value>12000000)
+	if(value>40000000)
 	{
-		value=12000000;
+		value=40000000;
 	}
 	if(value>=(float)1e7)
 	{
