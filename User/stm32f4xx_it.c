@@ -498,7 +498,10 @@ static void GetScpiNum(u8 count,u8 data)
 		Jk516save.Set_Data.V_high=SCPI_SET_V1();
 	}
 }
-
+void sendsetres(void)
+{
+	uart1SendChars("SetOK",5);
+}
 void RecHandle(void)
 {
     u8 crec[6];
@@ -580,6 +583,7 @@ void RecHandle(void)
 	{
 		Jk516save.Set_Data.Range_Set=0;
 		Jk516save.Set_Data.Range=0;//设置量程为自动
+		sendsetres();
 		if(GetSystemStatus() == SYS_STATUS_TEST)
 		{
 			Disp_Test_value(4);
@@ -629,20 +633,23 @@ void RecHandle(void)
 		}else if(Jk516save.Set_Data.Range_Set == 2){
 			uart1SendChars("NOM",3);
 		}//查询切换量程方式
-	}else if(g_tModS.RxBuf[0] == 'F' && g_tModS.RxBuf[1] == 'U' && g_tModS.RxBuf[2] == 'N'
-	     && g_tModS.RxBuf[3] == 'C' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'R' && g_tModS.RxBuf[6] == 'A'
-		 && g_tModS.RxBuf[7] == 'N' && g_tModS.RxBuf[8] == 'G' && g_tModS.RxBuf[9] == ' ' && g_tModS.RxBuf[10] == '1'
-		 )
-	{
-		Jk516save.Set_Data.Range_Set=1;//增加档位选择的计算
-		Jk516save.Set_Data.Range=0;//设置量程为0
-		if(GetSystemStatus() == SYS_STATUS_TEST)
-		{
-			Disp_Test_value(4);
-		}else if(GetSystemStatus() == SYS_STATUS_SETUP){
-			DispSet_value(7);
-		}
-	}else if(g_tModS.RxBuf[0] == 'F' && g_tModS.RxBuf[1] == 'U' && g_tModS.RxBuf[2] == 'N'
+	}
+//	else if(g_tModS.RxBuf[0] == 'F' && g_tModS.RxBuf[1] == 'U' && g_tModS.RxBuf[2] == 'N'
+//	     && g_tModS.RxBuf[3] == 'C' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'R' && g_tModS.RxBuf[6] == 'A'
+//		 && g_tModS.RxBuf[7] == 'N' && g_tModS.RxBuf[8] == 'G' && g_tModS.RxBuf[9] == ' ' && g_tModS.RxBuf[10] == '1'
+//		 )
+//	{
+//		Jk516save.Set_Data.Range_Set=1;//增加档位选择的计算
+//		Jk516save.Set_Data.Range=0;//设置量程为0
+//		
+//		if(GetSystemStatus() == SYS_STATUS_TEST)
+//		{
+//			Disp_Test_value(4);
+//		}else if(GetSystemStatus() == SYS_STATUS_SETUP){
+//			DispSet_value(7);
+//		}
+//	}
+	else if(g_tModS.RxBuf[0] == 'F' && g_tModS.RxBuf[1] == 'U' && g_tModS.RxBuf[2] == 'N'
 	     && g_tModS.RxBuf[3] == 'C' && g_tModS.RxBuf[4] == ':' && g_tModS.RxBuf[5] == 'R' && g_tModS.RxBuf[6] == 'A'
 		 && g_tModS.RxBuf[7] == 'N' && g_tModS.RxBuf[8] == 'G' && g_tModS.RxBuf[9] == ' ' && g_tModS.RxBuf[10] == '1'
 		 )
@@ -650,6 +657,7 @@ void RecHandle(void)
 		Jk516save.Set_Data.Range_Set=1;
 		Jk516save.Set_Data.Range=0;//设置量程为0
 		Range=Jk516save.Set_Data.Range;
+		sendsetres();
 		if(GetSystemStatus() == SYS_STATUS_TEST)
 		{
 			Disp_Test_value(4);
@@ -665,6 +673,7 @@ void RecHandle(void)
 		Jk516save.Set_Data.Range_Set=1;
 		Jk516save.Set_Data.Range=1;//设置量程为1
 		Range=Jk516save.Set_Data.Range;
+		sendsetres();
 		if(GetSystemStatus() == SYS_STATUS_TEST)
 		{
 			Disp_Test_value(4);
@@ -680,6 +689,7 @@ void RecHandle(void)
 		Jk516save.Set_Data.Range_Set=1;
 		Jk516save.Set_Data.Range=2;//设置量程为2
 		Range=Jk516save.Set_Data.Range;
+		sendsetres();
 		if(GetSystemStatus() == SYS_STATUS_TEST)
 		{
 			Disp_Test_value(4);
@@ -695,6 +705,7 @@ void RecHandle(void)
 		Jk516save.Set_Data.Range_Set=1;
 		Jk516save.Set_Data.Range=3;//设置量程为3
 		Range=Jk516save.Set_Data.Range;
+		sendsetres();
 		if(GetSystemStatus() == SYS_STATUS_TEST)
 		{
 			Disp_Test_value(4);
@@ -710,6 +721,7 @@ void RecHandle(void)
 		Jk516save.Set_Data.Range_Set=1;
 		Jk516save.Set_Data.Range=4;//设置量程为4
 		Range=Jk516save.Set_Data.Range;
+		sendsetres();
 		if(GetSystemStatus() == SYS_STATUS_TEST)
 		{
 			Disp_Test_value(4);
@@ -725,6 +737,7 @@ void RecHandle(void)
 		Jk516save.Set_Data.Range_Set=1;
 		Jk516save.Set_Data.Range=5;//设置量程为5
 		Range=Jk516save.Set_Data.Range;
+		sendsetres();
 		if(GetSystemStatus() == SYS_STATUS_TEST)
 		{
 			Disp_Test_value(4);
@@ -740,6 +753,7 @@ void RecHandle(void)
 		Jk516save.Set_Data.Range_Set=1;
 		Jk516save.Set_Data.Range=6;//设置量程为6
 		Range=Jk516save.Set_Data.Range;
+		sendsetres();
 		if(GetSystemStatus() == SYS_STATUS_TEST)
 		{
 			Disp_Test_value(4);
@@ -773,6 +787,7 @@ void RecHandle(void)
 		 && g_tModS.RxBuf[11] == 'L' && g_tModS.RxBuf[12] == 'O' && g_tModS.RxBuf[13] == 'W')
 	{
 		Jk516save.Set_Data.speed=0;//慢速
+		sendsetres();
 		if(GetSystemStatus() == SYS_STATUS_SETUP){
 			DispSet_value(2);
 		}
@@ -782,6 +797,7 @@ void RecHandle(void)
 		 && g_tModS.RxBuf[11] == 'E' && g_tModS.RxBuf[12] == 'D')
 	{
 		Jk516save.Set_Data.speed=1;//中速
+		sendsetres();
 		if(GetSystemStatus() == SYS_STATUS_SETUP){
 			DispSet_value(2);
 		}
@@ -791,6 +807,7 @@ void RecHandle(void)
 		 && g_tModS.RxBuf[11] == 'A' && g_tModS.RxBuf[12] == 'S' && g_tModS.RxBuf[13] == 'T')
 	{
 		Jk516save.Set_Data.speed=2;//快速
+		sendsetres();
 		if(GetSystemStatus() == SYS_STATUS_SETUP){
 			DispSet_value(2);
 		}
@@ -800,6 +817,7 @@ void RecHandle(void)
 		 && g_tModS.RxBuf[11] == 'L' && g_tModS.RxBuf[12] == 'T' && g_tModS.RxBuf[13] == 'R')
 	{
 		Jk516save.Set_Data.speed=3;//极速
+		sendsetres();
 		if(GetSystemStatus() == SYS_STATUS_SETUP){
 			DispSet_value(2);
 		}
