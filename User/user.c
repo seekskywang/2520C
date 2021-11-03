@@ -89,9 +89,24 @@ const uint8_t User_Check_Item[][12+1]=
     {"1.0000kΩ"},
     {"10.000kΩ"},
     
-	{"6.0000 V"},
-	{"60.000 V"},
+	{"1.0000 V"},
+	{"2.0000 V"},
 
+
+};
+
+const uint8_t User_Check_Item1[][12+1]=
+{
+	{"4.0000 V"},
+	{"6.0000 V"},
+	{"15.000 V"},
+	{"30.000 V"},
+    {"45.000 V"},
+    {"60.000 V"},
+    {"80.000 V"},
+    
+	{"100.000 V"},
+	{"         "},
 
 };
 const uint8_t Test_Setitem[][9+1]=
@@ -368,7 +383,7 @@ const uint8_t BiasButton_Tip[][7+1]=  //频率选择时候的下面的提示符号
 const uint8_t Sys_Sys[][20+1]=
 {
 	{"仪器型号  JK2520C"},
-	{"软件版本  Ver:2.6"},
+	{"软件版本  Ver:2.7"},
 	{"硬件版本  Ver:1.1"},
 	{"仪器编号"},
 //	{"账号    "},
@@ -379,7 +394,7 @@ const uint8_t Sys_Sys[][20+1]=
 const uint8_t Sys_Sys_E[][20+1]=
 {
 	{"INST MODEL  JK2520C"},
-	{"SOFT VER   Ver:2.6"},
+	{"SOFT VER   Ver:2.7"},
 	{"HARD VER   Ver:1.1"},
 	{"SERIALNO"},
 //	{"账号    "},
@@ -390,7 +405,7 @@ const uint8_t Sys_Sys_E[][20+1]=
 const uint8_t Sys_Sys1[][20+1]=
 {
 	{"仪器型号  2520C"},
-	{"软件版本  Ver:2.6"},
+	{"软件版本  Ver:2.7"},
 	{"硬件版本  Ver:1.1"},
 	{"仪器编号"},
 //	{"账号    "},
@@ -401,7 +416,7 @@ const uint8_t Sys_Sys1[][20+1]=
 const uint8_t Sys_Sys_E1[][20+1]=
 {
 	{"INST MODEL  2520C"},
-	{"SOFT VER   Ver:2.6"},
+	{"SOFT VER   Ver:2.7"},
 	{"HARD VER   Ver:1.1"},
 	{"SERIALNO"},
 //	{"账号    "},
@@ -1498,7 +1513,7 @@ void Get_FFT(void)
 
 void Test_Debug(void)
 {
-    float a,b;
+    float a,b,vmid;
     
 
      if(Range ==6)
@@ -1519,22 +1534,173 @@ void Test_Debug(void)
     
     
     }
+	vmid = V_ad;
 	//Range_Value_V
 //        Res_count.r=Res_count.r/Jk516save.Debug_Value[Range].ad_value;
 //        V_ad=(float)V_ad/Jk516save.Debug_Value[7+V_Range].ad_value;
 	if(Jk516save.Set_Data.speed == 0)
 	{
         Res_count.r=Res_count.r/Jk516save.Debug_Value[Range].ad_value;
-		V_ad=(float)V_ad/Jk516save.Debug_Value[7+V_Range].ad_value;
+		if(V_Range == 0)
+		{
+			V_ad=(float)vmid/Jk516save.Debug_Value[7].ad_value;
+			if(V_ad>10000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value[8].ad_value;
+			}
+			if(V_ad>20000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value[9].ad_value;
+			}
+			if(V_ad>40000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value[10].ad_value;
+			}
+		}else{
+			V_ad=(float)V_ad/Jk516save.Debug_Value[11].ad_value;
+			if(V_ad>15000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value[12].ad_value;
+			}
+			if(V_ad>30000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value[13].ad_value;
+			}
+			if(V_ad>45000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value[14].ad_value;
+			}
+			if(V_ad>60000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value[15].ad_value;
+			}
+			if(V_ad>80000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value[16].ad_value;
+			}
+
+		}
 	}else if(Jk516save.Set_Data.speed == 1){
 		Res_count.r=Res_count.r/Jk516save.Debug_Value1[Range].ad_value;
-		V_ad=(float)V_ad/Jk516save.Debug_Value1[7+V_Range].ad_value;
+		if(V_Range == 0)
+		{
+			V_ad=(float)vmid/Jk516save.Debug_Value1[7].ad_value;
+			if(V_ad>10000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value1[8].ad_value;
+			}
+			if(V_ad>20000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value1[9].ad_value;
+			}
+			if(V_ad>40000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value1[10].ad_value;
+			}
+			
+		}else{
+			V_ad=(float)vmid/Jk516save.Debug_Value1[11].ad_value;
+			if(V_ad>15000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value1[12].ad_value;
+			}
+			if(V_ad>30000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value1[13].ad_value;
+			}
+			if(V_ad>45000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value1[14].ad_value;
+			}
+			if(V_ad>60000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value1[15].ad_value;
+			}
+			if(V_ad>80000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value1[16].ad_value;
+			}
+		}
 	}else if(Jk516save.Set_Data.speed == 2){
 		Res_count.r=Res_count.r/Jk516save.Debug_Value2[Range].ad_value;
-		V_ad=(float)V_ad/Jk516save.Debug_Value3[7+V_Range].ad_value;
+		if(V_Range == 0)
+		{
+			V_ad=(float)vmid/Jk516save.Debug_Value2[7].ad_value;
+			if(V_ad>10000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value2[8].ad_value;
+			}
+			if(V_ad>20000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value2[9].ad_value;
+			}
+			if(V_ad>40000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value2[10].ad_value;
+			}
+		}else{
+			V_ad=(float)vmid/Jk516save.Debug_Value2[11].ad_value;
+			if(V_ad>15000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value2[12].ad_value;
+			}
+			if(V_ad>30000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value2[13].ad_value;
+			}
+			if(V_ad>45000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value2[14].ad_value;
+			}
+			if(V_ad>60000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value2[15].ad_value;
+			}
+			if(V_ad>80000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value2[16].ad_value;
+			}
+		}
 	}else if(Jk516save.Set_Data.speed == 3){
 		Res_count.r=Res_count.r/Jk516save.Debug_Value3[Range].ad_value;
-		V_ad=(float)V_ad/Jk516save.Debug_Value3[7+V_Range].ad_value;
+		if(V_Range == 0)
+		{
+			V_ad=(float)vmid/Jk516save.Debug_Value3[7].ad_value;
+			if(V_ad>10000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value3[8].ad_value;
+			}
+			if(V_ad>20000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value3[9].ad_value;
+			}
+			if(V_ad>40000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value3[10].ad_value;
+			}
+		}else{
+			V_ad=(float)vmid/Jk516save.Debug_Value3[11].ad_value;
+			if(V_ad>15000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value3[12].ad_value;
+			}
+			if(V_ad>30000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value3[13].ad_value;
+			}
+			if(V_ad>45000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value3[14].ad_value;
+			}
+			if(V_ad>60000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value3[15].ad_value;
+			}
+			if(V_ad>80000)
+			{
+				V_ad=(float)vmid/Jk516save.Debug_Value3[16].ad_value;
+			}
+		}
 	}
    
 }
@@ -5352,58 +5518,101 @@ void Disp_dateandtime(void)
 void Disp_Debug_Reference( vu8 list,Test_ValueTypedef eee,Test_ValueTypedef ddd)
 {
 	if(list)
-	if(list>DEBUG_RANGE-2)
 	{
-		
-		//V_BCD_Int(eee);
-        Hex_Format(eee.res,eee.dot,6,FALSE);
-		
-		
-	}
-		else
+		if(debugpage == 0)
 		{
-			
-			 Hex_Format(ddd.res,ddd.dot,7,FALSE);
-			
-			
+			if(list>7)
+			{
+				
+				//V_BCD_Int(eee);
+				Hex_Format(eee.res,eee.dot,6,FALSE);
+				
+				
+			}
+			else
+			{
+				
+				 Hex_Format(ddd.res,ddd.dot,7,FALSE);
+				
+				
+			}
+			WriteString_16(LIST1+160+160, FIRSTLINE+(SPACE1-2)*(list), DispBuf,  1);
+		}else if(debugpage == 1){
+			Hex_Format(eee.res,eee.dot,6,FALSE);
+			WriteString_16(LIST1+160+160, FIRSTLINE+(SPACE1-2)*(list), DispBuf,  1);
 		}
-        WriteString_16(LIST1+160+160, FIRSTLINE+(SPACE1-2)*(list), DispBuf,  1);
+	}
 
 
 }
-const vu8 Debug_Dot[DEBUG_RANGE]={3,2,4,3,2,4,3,4,3};
+const vu8 Debug_Dot[9]={3,2,4,3,2,4,3,4,4};
+const vu8 Debug_Dot1[8]={4,4,3,3,3,3,3,3};
 //显示设置参数的值Setup_Valueall
-void Disp_Debug_value(vu8 list)
+void Disp_Debug_value(vu8 list,vu8 page)
 {
 //	vu32 flag;
 	vu32 i;
 //	vu32 xpose;
 	vu32 Black_Select;
 //	vu32 Select_color;
-	for(i=0;i<DEBUG_RANGE;i++)
+	if(page == 0)
 	{
-		if(list==(i+1))
+		for(i=0;i<DEBUG_RANGE-8;i++)
 		{
-			Colour.black=LCD_COLOR_SELECT;
-		
-		}
-		else
-		{
-			Colour.black=LCD_COLOR_TEST_BACK;
-		}
-	
-	
-		LCD_DrawFullRect( LIST1+160, FIRSTLINE+(SPACE1-2)*(i+1),90 , SPACE1-2 ) ;//SPACE1
-		Hex_Format(Jk516save.Debug_Value[i].standard, Debug_Dot[i] , 6 , 0);//sprintf((char *)DispBuf,"%4",Save_Res;
-		WriteString_16(LIST1+160, FIRSTLINE+(SPACE1-2)*(i+1), DispBuf,  1);
-		
-//		LCD_DrawRect( LIST1+160+160, FIRSTLINE+SPACE1*(i+1)-2,SELECT_1END+40+160 , FIRSTLINE+SPACE1*(i+2)-4 , Colour.black ) ;//SPACE1
-		//Hex_Format(Save_Res.Debug_Value[i].ad_value, Debug_Dot[i] , 4 , 0);//sprintf((char *)DispBuf,"%4",Save_Res;
-		
-		
+			if(list==(i+1))
+			{
+				Colour.black=LCD_COLOR_SELECT;
 			
+			}
+			else
+			{
+				Colour.black=LCD_COLOR_TEST_BACK;
+			}
+		
+		
+			LCD_DrawFullRect( LIST1+160, FIRSTLINE+(SPACE1-2)*(i+1),90 , SPACE1-2 ) ;//SPACE1
+			Hex_Format(Jk516save.Debug_Value[i].standard, Debug_Dot[i] , 6 , 0);//sprintf((char *)DispBuf,"%4",Save_Res;
+			WriteString_16(LIST1+160, FIRSTLINE+(SPACE1-2)*(i+1), DispBuf,  1);
+			
+	//		LCD_DrawRect( LIST1+160+160, FIRSTLINE+SPACE1*(i+1)-2,SELECT_1END+40+160 , FIRSTLINE+SPACE1*(i+2)-4 , Colour.black ) ;//SPACE1
+			//Hex_Format(Save_Res.Debug_Value[i].ad_value, Debug_Dot[i] , 4 , 0);//sprintf((char *)DispBuf,"%4",Save_Res;
+			
+			
+				
+		}
+		Colour.black=LCD_COLOR_TEST_BACK;
+	}else if(page == 1){
+		for(i=0;i<8;i++)
+		{
+			if(list==(i+1))
+			{
+				Colour.black=LCD_COLOR_SELECT;
+			
+			}
+			else
+			{
+				Colour.black=LCD_COLOR_TEST_BACK;
+			}
+		
+		
+			LCD_DrawFullRect( LIST1+160, FIRSTLINE+(SPACE1-2)*(i+1),90 , SPACE1-2 ) ;//SPACE1
+			if(i < 8)
+			{
+				Hex_Format(Jk516save.Debug_Value[i+9].standard, Debug_Dot1[i] , 6 , 0);
+			}else{
+				Hex_Format(Jk516save.Debug_Value[i+9].standard, Debug_Dot1[i] , 7 , 0);
+			}				
+			WriteString_16(LIST1+160, FIRSTLINE+(SPACE1-2)*(i+1), DispBuf,  1);
+			
+	//		LCD_DrawRect( LIST1+160+160, FIRSTLINE+SPACE1*(i+1)-2,SELECT_1END+40+160 , FIRSTLINE+SPACE1*(i+2)-4 , Colour.black ) ;//SPACE1
+			//Hex_Format(Save_Res.Debug_Value[i].ad_value, Debug_Dot[i] , 4 , 0);//sprintf((char *)DispBuf,"%4",Save_Res;
+			
+			
+				
+		}
+		LCD_DrawFullRect( LIST1+160, FIRSTLINE+(SPACE1-2)*(8+1),90 , SPACE1-2 ) ;//SPACE1
+		Colour.black=LCD_COLOR_TEST_BACK;
 	}
-	Colour.black=LCD_COLOR_TEST_BACK;
 	
 
 
@@ -5430,11 +5639,19 @@ void Disp_UserCheck_Item(void)
 		WriteString_16(LIST1+160*i, FIRSTLINE, User_Check_main[i],  0);
 
 	}
-	
-	for(i=0;i<(sizeof(User_Check_Item)/(sizeof(User_Check_Item[0])));i++)
+	if(debugpage == 0)
 	{
-		WriteString_16(LIST1, FIRSTLINE+(SPACE1-2)*(i+1), User_Check_Item[i],  0);
+		for(i=0;i<(sizeof(User_Check_Item)/(sizeof(User_Check_Item[0])));i++)
+		{
+			WriteString_16(LIST1, FIRSTLINE+(SPACE1-2)*(i+1), User_Check_Item[i],  0);
 
+		}
+	}else{
+		for(i=0;i<(sizeof(User_Check_Item1)/(sizeof(User_Check_Item1[0])));i++)
+		{
+			WriteString_16(LIST1, FIRSTLINE+(SPACE1-2)*(i+1), User_Check_Item1[i],  0);
+
+		}
 	}
 //	else
 //	{
@@ -5444,7 +5661,7 @@ void Disp_UserCheck_Item(void)
 }
 int32_t Debug_Valuedata(Sort_TypeDef *Debug_value)
 {
-    if(Debug_value->Num>20000)
+    if(Debug_value->Num>20000 && Debug_value->Dot != 3)
         Debug_value->Num/=10;
 	return Debug_value->Num;//(pow(10,Debug_value->Dot));
 

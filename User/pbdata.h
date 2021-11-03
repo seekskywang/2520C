@@ -294,7 +294,7 @@ u8 GetSoftTimerOut(u8 id);
 #define RANGE_LIMIT_VLOW (11000*45)
 
 
-#define DEBUG_RANGE 9
+#define DEBUG_RANGE 17
 //==========================================================
 //标准电压DA   50V   500V
 //==========================================================
@@ -756,6 +756,6 @@ extern  u8 cpld_buff[2];
 extern u8 open_flag;//开路标志位
 extern vu8 V_Range;
 extern u8 USB_Openflag,Disp_usbflag,Disp_RTCflag;
-
+extern vu8 debugpage;
 
 #endif

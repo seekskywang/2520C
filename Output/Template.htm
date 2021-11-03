@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\..\Output\Template.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\..\Output\Template.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Thu Jun 03 09:15:59 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Mon Jun 07 16:02:13 2021
 <BR><P>
 <H3>Maximum Stack Usage =       1224 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -869,7 +869,7 @@ Global Symbols
 <LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Power_Process
 </UL>
 
-<P><STRONG><a name="[c2]"></a>Debug_Valuedata</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, user.o(i.Debug_Valuedata))
+<P><STRONG><a name="[c2]"></a>Debug_Valuedata</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, user.o(i.Debug_Valuedata))
 <BR><BR>[Called By]<UL><LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Debug_Set_Res
 <LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Debug_Set_Num
 </UL>
@@ -925,8 +925,8 @@ Global Symbols
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DispSet_value
 </UL>
 
-<P><STRONG><a name="[d5]"></a>Disp_Debug_Reference</STRONG> (Thumb, 82 bytes, Stack size 24 bytes, user.o(i.Disp_Debug_Reference))
-<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = Disp_Debug_Reference &rArr; WriteString_16 &rArr; PutChar &rArr; LCD429_PutPixel
+<P><STRONG><a name="[d5]"></a>Disp_Debug_Reference</STRONG> (Thumb, 140 bytes, Stack size 32 bytes, user.o(i.Disp_Debug_Reference))
+<BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = Disp_Debug_Reference &rArr; WriteString_16 &rArr; PutChar &rArr; LCD429_PutPixel
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WriteString_16
 <LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Hex_Format
@@ -934,8 +934,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[219]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Use_DebugProcess
 </UL>
 
-<P><STRONG><a name="[d6]"></a>Disp_Debug_value</STRONG> (Thumb, 128 bytes, Stack size 24 bytes, user.o(i.Disp_Debug_value))
-<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = Disp_Debug_value &rArr; WriteString_16 &rArr; PutChar &rArr; LCD429_PutPixel
+<P><STRONG><a name="[d6]"></a>Disp_Debug_value</STRONG> (Thumb, 310 bytes, Stack size 40 bytes, user.o(i.Disp_Debug_value))
+<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = Disp_Debug_value &rArr; WriteString_16 &rArr; PutChar &rArr; LCD429_PutPixel
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WriteString_16
 <LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_DrawFullRect
@@ -1189,7 +1189,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[1af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Test_Process
 </UL>
 
-<P><STRONG><a name="[f6]"></a>Disp_UserCheck_Item</STRONG> (Thumb, 124 bytes, Stack size 16 bytes, user.o(i.Disp_UserCheck_Item))
+<P><STRONG><a name="[f6]"></a>Disp_UserCheck_Item</STRONG> (Thumb, 174 bytes, Stack size 16 bytes, user.o(i.Disp_UserCheck_Item))
 <BR><BR>[Stack]<UL><LI>Max Depth = 156<LI>Call Chain = Disp_UserCheck_Item &rArr; Disp_Usercheck_Screen &rArr; Disp_Fastbutton &rArr; LCD_DrawFullRect &rArr; DMA2D_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;WriteString_16
@@ -1386,9 +1386,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[9c]"></a>GPIO_ResetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f4xx_gpio.o(i.GPIO_ResetBits))
-<BR><BR>[Called By]<UL><LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Turnon_Led
-<LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Turnoff_Led
-<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Trip_Off
+<BR><BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Trip_Off
 <LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Select_V_I
 <LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Lock_Off
 <LI><a href="#[146]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Led_Pass_On
@@ -1402,15 +1400,14 @@ Global Symbols
 <LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Sendvalueto164
 <LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Power_Relay_OFF
 <LI><a href="#[182]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpiRxByte
+<LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Turnon_Led
+<LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Turnoff_Led
 <LI><a href="#[1a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_one_buff
 <LI><a href="#[1df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USB_OTG_BSP_ConfigVBUS
 </UL>
 
 <P><STRONG><a name="[a8]"></a>GPIO_SetBits</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, stm32f4xx_gpio.o(i.GPIO_SetBits))
-<BR><BR>[Called By]<UL><LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Turnon_Led
-<LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Turnoff_Led
-<LI><a href="#[16b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Trip_On
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Select_V_I
+<BR><BR>[Called By]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Select_V_I
 <LI><a href="#[147]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Lock_On
 <LI><a href="#[146]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Led_Pass_On
 <LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Keyboard_Init
@@ -1425,6 +1422,9 @@ Global Symbols
 <LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Sendvalueto164
 <LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Power_Relay_on
 <LI><a href="#[182]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SpiRxByte
+<LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Turnon_Led
+<LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Turnoff_Led
+<LI><a href="#[16b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Trip_On
 <LI><a href="#[1a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_one_buff
 </UL>
 
@@ -1945,8 +1945,8 @@ Global Symbols
 <P><STRONG><a name="[154]"></a>Power_Off_led</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, gpio.o(i.Power_Off_led))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Power_Off_led &rArr; Turnon_Led
 </UL>
-<BR>[Calls]<UL><LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Turnon_Led
-<LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Power_Relay_on
+<BR>[Calls]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Power_Relay_on
+<LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Turnon_Led
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Soft_Turnon
 </UL>
@@ -1954,8 +1954,8 @@ Global Symbols
 <P><STRONG><a name="[157]"></a>Power_On_led</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, gpio.o(i.Power_On_led))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Power_On_led &rArr; Turnoff_Led
 </UL>
-<BR>[Calls]<UL><LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Turnoff_Led
-<LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Power_Relay_OFF
+<BR>[Calls]<UL><LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Power_Relay_OFF
+<LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Turnoff_Led
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Soft_Turnon
 </UL>
@@ -1968,9 +1968,6 @@ Global Symbols
 <LI><a href="#[160]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_WaitForSynchro
 <LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC_ReadBackupRegister
 <LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RCC_APB1PeriphClockCmd
-<LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Turnon_Led
-<LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Turnoff_Led
-<LI><a href="#[16b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Trip_On
 <LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Trip_Off
 <LI><a href="#[168]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM6_Configuration
 <LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Init
@@ -2001,6 +1998,9 @@ Global Symbols
 <LI><a href="#[167]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_image
 <LI><a href="#[16a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBH_Process
 <LI><a href="#[169]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBH_Init
+<LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Turnon_Led
+<LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Turnoff_Led
+<LI><a href="#[16b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Trip_On
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -2778,8 +2778,8 @@ Global Symbols
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_SetTime
 </UL>
 
-<P><STRONG><a name="[1b4]"></a>Test_Debug</STRONG> (Thumb, 324 bytes, Stack size 12 bytes, user.o(i.Test_Debug))
-<BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = Test_Debug
+<P><STRONG><a name="[1b4]"></a>Test_Debug</STRONG> (Thumb, 1114 bytes, Stack size 36 bytes, user.o(i.Test_Debug))
+<BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = Test_Debug
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Test_Process
 </UL>
@@ -2788,7 +2788,6 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 1224<LI>Call Chain = Test_Process &rArr; f_open &rArr; dir_register &rArr; dir_find &rArr; dir_next &rArr; create_chain &rArr; put_fat &rArr; move_window &rArr; sync_window &rArr; disk_write &rArr; USBH_MSC_HandleBOTXfer &rArr; USBH_BulkSendData &rArr; HCD_SubmitRequest &rArr; USB_OTG_HC_StartXfer &rArr; USB_OTG_WritePacket
 </UL>
 <BR>[Calls]<UL><LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI_ClearITPendingBit
-<LI><a href="#[16b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Trip_On
 <LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Trip_Off
 <LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Select_V_I
 <LI><a href="#[183]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Read_ExtTrig
@@ -2845,6 +2844,7 @@ Global Symbols
 <LI><a href="#[1bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;f_lseek
 <LI><a href="#[1be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;f_close
 <LI><a href="#[16a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;USBH_Process
+<LI><a href="#[16b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Trip_On
 <LI><a href="#[1b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcat
 <LI><a href="#[186]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 <LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_pow
@@ -3618,7 +3618,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[1a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Send_Uart3str
 </UL>
 
-<P><STRONG><a name="[219]"></a>Use_DebugProcess</STRONG> (Thumb, 1842 bytes, Stack size 88 bytes, test.o(i.Use_DebugProcess))
+<P><STRONG><a name="[219]"></a>Use_DebugProcess</STRONG> (Thumb, 2452 bytes, Stack size 88 bytes, test.o(i.Use_DebugProcess))
 <BR><BR>[Stack]<UL><LI>Max Depth = 368<LI>Call Chain = Use_DebugProcess &rArr; Debug_Set_Res &rArr; Disp_NumKeyboard_Set &rArr; WriteString_16 &rArr; PutChar &rArr; LCD429_PutPixel
 </UL>
 <BR>[Calls]<UL><LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI_ClearITPendingBit

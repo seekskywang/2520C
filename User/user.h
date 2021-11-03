@@ -219,7 +219,7 @@ void Disp_dateandtime(void);
 uint8_t Jisuan_Range(Sort_TypeDef date);
 uint8_t Jisuan_V_Range(Sort_TypeDef date);
 void Disp_UserCheck_Item(void);
-void Disp_Debug_value(vu8 list);
+void Disp_Debug_value(vu8 list,vu8 page);
 vu32 Debug_Set_Num(Disp_Coordinates_Typedef *Coordinates);//ÆµÂÊÉèÖÃ
 void Debug_stanedcomp(void);
 void Disp_Debug_Reference( vu8 list,Test_ValueTypedef eee,Test_ValueTypedef ddd);
