@@ -593,7 +593,8 @@ void Setup_Process(void)
 
 							break;
 						case 5:
-							break;
+							Jk516save.Set_Data.V_comp=2;
+						break;
 						case 6:
 
 							break;
@@ -1276,7 +1277,7 @@ void Test_Process(void)
                         if(Jk516save.Set_Data.V_comp)
                         {
                             test_Vsorting= V_Comp();
-                            if(polarity_v==0)
+                            if(polarity_v==0 && Jk516save.Set_Data.V_comp!=2)
                                 test_Vsorting=2;
                             
                         }
@@ -1288,7 +1289,7 @@ void Test_Process(void)
                         color=Colour.black;
                         //下面是分选
                        
-                        if(Jk516save.Set_Data.Res_comp==1&&Jk516save.Set_Data.V_comp==1)
+                        if(Jk516save.Set_Data.Res_comp==1&&Jk516save.Set_Data.V_comp!=0)
                         {
                              
                             Colour.black=LCD_COLOR_RED;
@@ -1357,7 +1358,7 @@ void Test_Process(void)
                             LCD_DrawFullRect(SORTING_XDISP, SORTING_Y_DISP, 60, 22);    
                             WriteString_16(SORTING_XDISP, SORTING_Y_DISP, DispBuf,  0);
                             
-                            }else if(Jk516save.Set_Data.V_comp==1)
+                            }else if(Jk516save.Set_Data.V_comp!=0)
                             {
                                 if(test_Vsorting)//不合格
                                 {

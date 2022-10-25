@@ -3,115 +3,32 @@
 <pre>
 <h1>礦ision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: μVision V5.25.3.0
-Copyright (C) 2018 ARM Ltd and ARM Germany GmbH. All rights reserved.
+IDE-Version: μVision V5.37.0.0
+Copyright (C) 2022 ARM Ltd and ARM Germany GmbH. All rights reserved.
 License Information: 1 Microsoft, Microsoft, LIC=03C6R-KIDXE-2Z1W4-FI5SL-E8BHU-R7F4D
  
 Tool Versions:
-Toolchain:       MDK-ARM Plus  Version: 5.25.2.0
+Toolchain:       MDK-ARM Plus  Version: 5.37.0.0
 Toolchain Path:  E:\Keil_v5\ARM\ARMCC\Bin
 C Compiler:      Armcc.exe V5.06 update 6 (build 750)
 Assembler:       Armasm.exe V5.06 update 6 (build 750)
 Linker/Locator:  ArmLink.exe V5.06 update 6 (build 750)
 Library Manager: ArmAr.exe V5.06 update 6 (build 750)
 Hex Converter:   FromElf.exe V5.06 update 6 (build 750)
-CPU DLL:         SARMCM3.DLL V5.25.2.0
-Dialog DLL:      DCM.DLL V1.17.1.0
-Target DLL:      Segger\JL2CM3.dll V2.99.29.0
-Dialog DLL:      TCM.DLL V1.35.1.0
+CPU DLL:         SARMCM3.DLL V5.37.0.0
+Dialog DLL:      DCM.DLL V1.17.5.0
+Target DLL:      Segger\JL2CM3.dll V2.99.42.0
+Dialog DLL:      TCM.DLL V1.56.1.0
  
 <h2>Project:</h2>
 F:\2520C\Project\RVMDK（uv5）\BH-F429.uvprojx
-Project File Date:  06/03/2021
+Project File Date:  10/25/2022
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'E:\Keil_v5\ARM\ARMCC\Bin'
 Build target '工程模板'
-compiling user.c...
-..\..\User\user.c(1287): warning:  #188-D: enumerated type mixed with another type
-        bool f_upper=FALSE;//量程过压标志
-..\..\User\user.c(1288): warning:  #188-D: enumerated type mixed with another type
-        bool f_below=FALSE;//量程欠压标志
-..\..\User\user.c(1289): warning:  #188-D: enumerated type mixed with another type
-        bool f_switch=FALSE;//量程切换标志
-..\..\User\user.c(1290): warning:  #188-D: enumerated type mixed with another type
-      bool V_upper=FALSE;//量程过压标志
-..\..\User\user.c(1291): warning:  #188-D: enumerated type mixed with another type
-        bool V_below=FALSE;//量程欠压标志
-..\..\User\user.c(1292): warning:  #188-D: enumerated type mixed with another type
-        bool V_switch=FALSE;//量程切换标志
-..\..\User\user.c(1297): warning:  #188-D: enumerated type mixed with another type
-                f_upper=TRUE;//量程过压标志
-..\..\User\user.c(1298): warning:  #188-D: enumerated type mixed with another type
-                f_below=FALSE;//量程欠压标志
-..\..\User\user.c(1306): warning:  #188-D: enumerated type mixed with another type
-                f_below=TRUE;//量程低压标志
-..\..\User\user.c(1307): warning:  #188-D: enumerated type mixed with another type
-                f_upper=FALSE;//量程欠压标志
-..\..\User\user.c(1311): warning:  #188-D: enumerated type mixed with another type
-                f_upper=FALSE;//量程过压标志
-..\..\User\user.c(1312): warning:  #188-D: enumerated type mixed with another type
-                f_below=FALSE;//量程欠压标志
-..\..\User\user.c(1314): warning:  #188-D: enumerated type mixed with another type
-        f_switch=FALSE;//量程切换标志
-..\..\User\user.c(1321): warning:  #188-D: enumerated type mixed with another type
-                        f_switch=TRUE;//量程切换标志
-..\..\User\user.c(1331): warning:  #188-D: enumerated type mixed with another type
-                        f_switch=TRUE;//量程切换标志
-..\..\User\user.c(1375): warning:  #188-D: enumerated type mixed with another type
-          f_switch=FALSE;
-..\..\User\user.c(1376): warning:  #188-D: enumerated type mixed with another type
-          V_switch=FALSE;
-..\..\User\user.c(1290): warning:  #177-D: variable "V_upper"  was declared but never referenced
-      bool V_upper=FALSE;//量程过压标志
-..\..\User\user.c(1291): warning:  #177-D: variable "V_below"  was declared but never referenced
-        bool V_below=FALSE;//量程欠压标志
-..\..\User\user.c(1396): warning:  #188-D: enumerated type mixed with another type
-        bool f_upper=FALSE;//量程过压标志
-..\..\User\user.c(1397): warning:  #188-D: enumerated type mixed with another type
-        bool f_below=FALSE;//量程欠压标志
-..\..\User\user.c(1398): warning:  #188-D: enumerated type mixed with another type
-        bool f_switch=FALSE;//量程切换标志
-..\..\User\user.c(1399): warning:  #188-D: enumerated type mixed with another type
-      bool V_upper=FALSE;//量程过压标志
-..\..\User\user.c(1400): warning:  #188-D: enumerated type mixed with another type
-        bool V_below=FALSE;//量程欠压标志
-..\..\User\user.c(1401): warning:  #188-D: enumerated type mixed with another type
-        bool V_switch=FALSE;//量程切换标志
-..\..\User\user.c(1448): warning:  #188-D: enumerated type mixed with another type
-              V_upper=TRUE;//量程过压标志
-..\..\User\user.c(1449): warning:  #188-D: enumerated type mixed with another type
-              V_below=FALSE;//量程欠压标志
-..\..\User\user.c(1454): warning:  #188-D: enumerated type mixed with another type
-              V_below=TRUE;//量程低压标志
-..\..\User\user.c(1455): warning:  #188-D: enumerated type mixed with another type
-              V_upper=FALSE;//量程欠压标志
-..\..\User\user.c(1459): warning:  #188-D: enumerated type mixed with another type
-              V_upper=FALSE;//量程过压标志
-..\..\User\user.c(1460): warning:  #188-D: enumerated type mixed with another type
-              V_below=FALSE;//量程欠压标志
-..\..\User\user.c(1462): warning:  #188-D: enumerated type mixed with another type
-          V_switch=FALSE;//量程切换标志
-..\..\User\user.c(1468): warning:  #188-D: enumerated type mixed with another type
-              V_switch=TRUE;//量程切换标志
-..\..\User\user.c(1475): warning:  #188-D: enumerated type mixed with another type
-              V_switch=TRUE;//量程切换标志
-..\..\User\user.c(1484): warning:  #188-D: enumerated type mixed with another type
-          f_switch=FALSE;
-..\..\User\user.c(1485): warning:  #188-D: enumerated type mixed with another type
-          V_switch=FALSE;
-..\..\User\user.c(1396): warning:  #177-D: variable "f_upper"  was declared but never referenced
-        bool f_upper=FALSE;//量程过压标志
-..\..\User\user.c(1397): warning:  #177-D: variable "f_below"  was declared but never referenced
-        bool f_below=FALSE;//量程欠压标志
-..\..\User\user.c(1402): warning:  #177-D: variable "i"  was declared but never referenced
-        u8 i;
-..\..\User\user.c: 39 warnings, 0 errors
-linking...
-Program Size: Code=79448 RO-data=594152 RW-data=504 ZI-data=33160  
-FromELF: creating hex file...
 After Build - User command #1: E:\Keil_v5\ARM\ARMCC\bin\fromelf.exe --bin -o ..\..\Output\update.bin ..\..\Output\Template.axf
-"..\..\Output\Template.axf" - 0 Error(s), 39 Warning(s).
+"..\..\Output\Template.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -121,11 +38,10 @@ Package Vendor: Keil
                 STMicroelectronics STM32F4 Series Device Support, Drivers and Examples
 
 <h2>Collection of Component include folders:</h2>
-  .\RTE\_________
-  D:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
+  D:/Keil_v5/ARM/PACK/Keil/STM32F4xx_DFP/2.13.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:03
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

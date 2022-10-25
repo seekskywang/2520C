@@ -246,6 +246,22 @@ const uint8_t Test_Compvalue[][6+1]=
 	{"打开"}
 
 };
+
+const uint8_t Test_VCompvalue[][6+1]=
+{
+	{"关闭"},
+	{"打开"},
+	{"绝对值"}
+};
+
+const uint8_t Test_VCompvalue_E[][6+1]=
+{
+	{"CLOSE"},
+	{"OPEN"},
+	{"ABS"}
+
+};
+
 const uint8_t Test_Compvalue_E[][6+1]=
 {
 	{"CLOSE"},
@@ -383,7 +399,7 @@ const uint8_t BiasButton_Tip[][7+1]=  //频率选择时候的下面的提示符号
 const uint8_t Sys_Sys[][20+1]=
 {
 	{"仪器型号  JK2520C"},
-	{"软件版本  Ver:2.7"},
+	{"软件版本  Ver:2.8"},
 	{"硬件版本  Ver:1.1"},
 	{"仪器编号"},
 //	{"账号    "},
@@ -394,7 +410,7 @@ const uint8_t Sys_Sys[][20+1]=
 const uint8_t Sys_Sys_E[][20+1]=
 {
 	{"INST MODEL  JK2520C"},
-	{"SOFT VER   Ver:2.7"},
+	{"SOFT VER   Ver:2.8"},
 	{"HARD VER   Ver:1.1"},
 	{"SERIALNO"},
 //	{"账号    "},
@@ -405,7 +421,7 @@ const uint8_t Sys_Sys_E[][20+1]=
 const uint8_t Sys_Sys1[][20+1]=
 {
 	{"仪器型号  2520C"},
-	{"软件版本  Ver:2.7"},
+	{"软件版本  Ver:2.8"},
 	{"硬件版本  Ver:1.1"},
 	{"仪器编号"},
 //	{"账号    "},
@@ -416,7 +432,7 @@ const uint8_t Sys_Sys1[][20+1]=
 const uint8_t Sys_Sys_E1[][20+1]=
 {
 	{"INST MODEL  2520C"},
-	{"SOFT VER   Ver:2.7"},
+	{"SOFT VER   Ver:2.8"},
 	{"HARD VER   Ver:1.1"},
 	{"SERIALNO"},
 //	{"账号    "},
@@ -633,7 +649,7 @@ void Parameter_valuecomp(void)
         Jk516save.Set_Data.Range_Set=0;
     if(Jk516save.Set_Data.beep>3)
         Jk516save.Set_Data.beep=0;
-    if(Jk516save.Set_Data.V_comp>1)
+    if(Jk516save.Set_Data.V_comp>2)
         Jk516save.Set_Data.V_comp=0;
     
     if(Jk516save.Set_Data.Nominal_Res.Dot>5)
@@ -2213,7 +2229,7 @@ void Disp_Open(void)
 		LCD_DrawFullRect(SORTING_XDISP, SORTING_Y_DISP, 60, 22);
 		LCD_ShowFontCN_40_55(60+40*6,92,40,55, (uint8_t*)Out_Assic+14*40*55/8);
 	}
-	if(Jk516save.Set_Data.V_comp==1 || Jk516save.Set_Data.Res_comp==1)
+	if(Jk516save.Set_Data.V_comp!=0 || Jk516save.Set_Data.Res_comp==1)
 	{
 		if(Jk516save.Set_Data.openbeep == 0)
 		{
@@ -3028,12 +3044,12 @@ void DispSet_value(u8 keynum)
 	}
     if(Jk516save.Sys_Setvalue.lanage)
     {
-        pt=Test_Compvalue_E;
+        pt=Test_VCompvalue_E;
     
     }
     else
     {
-        pt=Test_Compvalue;
+        pt=Test_VCompvalue;
     
     }
 	LCD_DrawFullRect(LIST1+88, FIRSTLINE+SPACE1*6, SELECT_1END-(LIST1+88), SPACE1-4);
@@ -3282,15 +3298,15 @@ void DispSet_value(u8 keynum)
 			Colour.black=LCD_COLOR_TEST_BUTON;
             if(Jk516save.Sys_Setvalue.lanage)
             {
-                pt=Test_Compvalue_E;
+                pt=Test_VCompvalue_E;
             
             }
             else
             {
-                pt=Test_Compvalue;
+                pt=Test_VCompvalue;
             
             }
-			for(i=0;i<2;i++)
+			for(i=0;i<3;i++)
 			{
 				
 				WriteString_16(BUTTOM_X_VALUE+i*BUTTOM_MID_VALUE, BUTTOM_Y_VALUE, pt[i],  0);
