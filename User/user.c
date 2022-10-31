@@ -238,6 +238,21 @@ const uint8_t Test_Compvalue_E[][6+1]=
 
 };
 
+const uint8_t Test_VCompvalue[][6+1]=
+{
+	{"关闭"},
+	{"打开"},
+	{"绝对值"}
+
+};
+const uint8_t Test_VCompvalue_E[][6+1]=
+{
+	{"CLOSE"},
+	{"OPEN"},
+	{"ABS"}
+};
+
+
 const uint8_t Setup_Beep[][6+1]=
 {
 	"关闭  ",
@@ -618,7 +633,7 @@ void Parameter_valuecomp(void)
         Jk516save.Set_Data.Range_Set=0;
     if(Jk516save.Set_Data.beep>3)
         Jk516save.Set_Data.beep=0;
-    if(Jk516save.Set_Data.V_comp>1)
+    if(Jk516save.Set_Data.V_comp>2)
         Jk516save.Set_Data.V_comp=0;
     
     if(Jk516save.Set_Data.Nominal_Res.Dot>5)
@@ -2862,12 +2877,12 @@ void DispSet_value(u8 keynum)
 	}
     if(Jk516save.Sys_Setvalue.lanage)
     {
-        pt=Test_Compvalue_E;
+        pt=Test_VCompvalue_E;
     
     }
     else
     {
-        pt=Test_Compvalue;
+        pt=Test_VCompvalue;
     
     }
 	LCD_DrawFullRect(LIST1+88, FIRSTLINE+SPACE1*6, SELECT_1END-(LIST1+88), SPACE1-4);
@@ -3116,15 +3131,15 @@ void DispSet_value(u8 keynum)
 			Colour.black=LCD_COLOR_TEST_BUTON;
             if(Jk516save.Sys_Setvalue.lanage)
             {
-                pt=Test_Compvalue_E;
+                pt=Test_VCompvalue_E;
             
             }
             else
             {
-                pt=Test_Compvalue;
+                pt=Test_VCompvalue;
             
             }
-			for(i=0;i<2;i++)
+			for(i=0;i<3;i++)
 			{
 				
 				WriteString_16(BUTTOM_X_VALUE+i*BUTTOM_MID_VALUE, BUTTOM_Y_VALUE, pt[i],  0);

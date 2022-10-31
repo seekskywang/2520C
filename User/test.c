@@ -591,6 +591,7 @@ void Setup_Process(void)
 
 							break;
 						case 5:
+							Jk516save.Set_Data.V_comp=2;
 							break;
 						case 6:
 
