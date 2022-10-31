@@ -383,7 +383,7 @@ const uint8_t BiasButton_Tip[][7+1]=  //频率选择时候的下面的提示符号
 const uint8_t Sys_Sys[][20+1]=
 {
 	{"仪器型号  JK2520C"},
-	{"软件版本  Ver:2.5"},
+	{"软件版本  Ver:2.6"},
 	{"硬件版本  Ver:1.1"},
 	{"仪器编号"},
 //	{"账号    "},
@@ -394,7 +394,7 @@ const uint8_t Sys_Sys[][20+1]=
 const uint8_t Sys_Sys_E[][20+1]=
 {
 	{"INST MODEL  JK2520C"},
-	{"SOFT VER   Ver:2.5"},
+	{"SOFT VER   Ver:2.6"},
 	{"HARD VER   Ver:1.1"},
 	{"SERIALNO"},
 //	{"账号    "},
@@ -405,7 +405,7 @@ const uint8_t Sys_Sys_E[][20+1]=
 const uint8_t Sys_Sys1[][20+1]=
 {
 	{"仪器型号  2520C"},
-	{"软件版本  Ver:2.5"},
+	{"软件版本  Ver:2.6"},
 	{"硬件版本  Ver:1.1"},
 	{"仪器编号"},
 //	{"账号    "},
@@ -416,7 +416,7 @@ const uint8_t Sys_Sys1[][20+1]=
 const uint8_t Sys_Sys_E1[][20+1]=
 {
 	{"INST MODEL  2520C"},
-	{"SOFT VER   Ver:2.5"},
+	{"SOFT VER   Ver:2.6"},
 	{"HARD VER   Ver:1.1"},
 	{"SERIALNO"},
 //	{"账号    "},
@@ -2062,7 +2062,7 @@ void Disp_Open(void)
 		LCD_DrawFullRect(SORTING_XDISP, SORTING_Y_DISP, 60, 22);
 		LCD_ShowFontCN_40_55(60+40*6,92,40,55, (uint8_t*)Out_Assic+14*40*55/8);
 	}
-	if(Jk516save.Set_Data.V_comp==1 || Jk516save.Set_Data.Res_comp==1)
+	if(Jk516save.Set_Data.V_comp!=0 || Jk516save.Set_Data.Res_comp==1)
 	{
 		if(Jk516save.Set_Data.openbeep == 0)
 		{
@@ -2221,7 +2221,10 @@ void Disp_Testvalue(Test_ValueTypedef value,Test_ValueTypedef value_v,u8 speed)
      {
          Send_ComBuff.send_V[0]='-';
          Send_To_U.Send_V[0]='-';
-         V_NEG();
+				 if(Jk516save.Set_Data.V_comp==2)
+					  V_POS();
+				 else
+					V_NEG();
      }
      Send_ComBuff.send_res[6]=Test_Value.uint;
          

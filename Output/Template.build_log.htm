@@ -107,27 +107,11 @@ compiling user.c...
 ..\..\User\user.c(1402): warning:  #177-D: variable "i"  was declared but never referenced
         u8 i;
 ..\..\User\user.c: 39 warnings, 0 errors
-compiling test.c...
-..\..\User\test.c(902): warning:  #223-D: function "Read_ExtTrig" declared implicitly
-                Extrigflag = Read_ExtTrig();
-..\..\User\test.c(1172): warning:  #223-D: function "uart1SendChars" declared implicitly
-                                        uart1SendChars("OPEN",4);
-..\..\User\test.c(1211): warning:  #223-D: function "uart1SendChars" declared implicitly
-                                                  uart1SendChars("OPEN",4);
-..\..\User\test.c(1258): warning:  #68-D: integer conversion resulted in a change of sign
-                                                                sendE = -3;
-..\..\User\test.c(1271): warning:  #223-D: function "uart1SendChars" declared implicitly
-                                                        uart1SendChars(sendbuf,sizeof(sendbuf));
-..\..\User\test.c(809): warning:  #177-D: variable "oldskip"  was declared but never referenced
-        static u32 oldskip;
-..\..\User\test.c(812): warning:  #177-D: variable "csendlen"  was declared but never referenced
-        u8 csendlen;
-..\..\User\test.c: 7 warnings, 0 errors
 linking...
-Program Size: Code=77808 RO-data=594112 RW-data=496 ZI-data=32904  
+Program Size: Code=77832 RO-data=594112 RW-data=496 ZI-data=32904  
 FromELF: creating hex file...
 After Build - User command #1: E:\Keil_v5\ARM\ARMCC\bin\fromelf.exe --bin -o ..\..\Output\update.bin ..\..\Output\Template.axf
-"..\..\Output\Template.axf" - 0 Error(s), 46 Warning(s).
+"..\..\Output\Template.axf" - 0 Error(s), 39 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -140,7 +124,7 @@ Package Vendor: Keil
   D:/Keil_v5/ARM/PACK/Keil/STM32F4xx_DFP/2.16.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:09
+Build Time Elapsed:  00:00:05
 </pre>
 </body>
 </html>
