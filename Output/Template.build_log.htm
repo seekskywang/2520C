@@ -3,66 +3,56 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: ¦ÌVision V5.25.3.0
-Copyright (C) 2018 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: 1 Microsoft, Microsoft, LIC=S5ITG-V5G2Q-BXVUY-I5T0J-4HUEL-MI8C5
+IDE-Version: ¦ÌVision V5.37.0.0
+Copyright (C) 2022 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: 1 Microsoft, Microsoft, LIC=03C6R-KIDXE-2Z1W4-FI5SL-E8BHU-R7F4D
  
 Tool Versions:
-Toolchain:       MDK-ARM Professional  Version: 5.25.2.0
-Toolchain Path:  D:\Keil_v5\ARM\ARMCC\Bin
+Toolchain:       MDK-ARM Plus  Version: 5.37.0.0
+Toolchain Path:  E:\Keil_v5\ARM\ARMCC\Bin
 C Compiler:      Armcc.exe V5.06 update 6 (build 750)
 Assembler:       Armasm.exe V5.06 update 6 (build 750)
 Linker/Locator:  ArmLink.exe V5.06 update 6 (build 750)
 Library Manager: ArmAr.exe V5.06 update 6 (build 750)
 Hex Converter:   FromElf.exe V5.06 update 6 (build 750)
-CPU DLL:         SARMCM3.DLL V5.25.2.0
-Dialog DLL:      DCM.DLL V1.17.1.0
-Target DLL:      Segger\JL2CM3.dll V2.99.29.0
-Dialog DLL:      TCM.DLL V1.35.1.0
+CPU DLL:         SARMCM3.DLL V5.37.0.0
+Dialog DLL:      DCM.DLL V1.17.5.0
+Target DLL:      Segger\JL2CM3.dll V2.99.42.0
+Dialog DLL:      TCM.DLL V1.56.1.0
  
 <h2>Project:</h2>
 F:\2520C\Project\RVMDK£¨uv5£©\BH-F429.uvprojx
-Project File Date:  07/26/2019
+Project File Date:  10/31/2022
 
 <h2>Output:</h2>
-*** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
+*** Using Compiler 'V5.06 update 6 (build 750)', folder: 'E:\Keil_v5\ARM\ARMCC\Bin'
 Build target '¹¤³ÌÄ£°å'
-compiling system_stm32f4xx.c...
-compiling misc.c...
-compiling stm32f4xx_adc.c...
-compiling stm32f4xx_can.c...
-compiling stm32f4xx_cec.c...
-compiling stm32f4xx_crc.c...
-compiling stm32f4xx_cryp.c...
-compiling stm32f4xx_cryp_aes.c...
-compiling stm32f4xx_cryp_des.c...
-compiling stm32f4xx_cryp_tdes.c...
-compiling stm32f4xx_dac.c...
-compiling stm32f4xx_dbgmcu.c...
-compiling stm32f4xx_dcmi.c...
-compiling stm32f4xx_dma.c...
-compiling stm32f4xx_dma2d.c...
-compiling stm32f4xx_exti.c...
-compiling stm32f4xx_flash.c...
-compiling stm32f4xx_flash_ramfunc.c...
-compiling stm32f4xx_fmc.c...
-compiling stm32f4xx_fmpi2c.c...
-compiling stm32f4xx_gpio.c...
+compiling bsp_basic_tim.c...
+..\..\HARDWARE\tim\bsp_basic_tim.c(157): warning:  #223-D: function "RecHandle" declared implicitly
+          RecHandle();
+..\..\HARDWARE\tim\bsp_basic_tim.c(89): warning:  #177-D: variable "addr"  was declared but never referenced
+        uint16_t addr;
+..\..\HARDWARE\tim\bsp_basic_tim.c(90): warning:  #177-D: variable "crc1"  was declared but never referenced
+        static uint16_t crc1;
+..\..\HARDWARE\tim\bsp_basic_tim.c: 3 warnings, 0 errors
+linking...
+Program Size: Code=77800 RO-data=594072 RW-data=496 ZI-data=32904  
+FromELF: creating hex file...
+After Build - User command #1: E:\Keil_v5\ARM\ARMCC\bin\fromelf.exe --bin -o ..\..\Output\update.bin ..\..\Output\Template.axf
+"..\..\Output\Template.axf" - 0 Error(s), 3 Warning(s).
 
 <h2>Software Packages used:</h2>
 
 Package Vendor: Keil
-                http://www.keil.com/pack/Keil.STM32F4xx_DFP.2.12.0.pack
-                Keil.STM32F4xx_DFP.2.12.0
+                http://www.keil.com/pack/Keil.STM32F4xx_DFP.2.16.0.pack
+                Keil.STM32F4xx_DFP.2.16.0
                 STMicroelectronics STM32F4 Series Device Support, Drivers and Examples
 
 <h2>Collection of Component include folders:</h2>
-  .\RTE\_________
-  D:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.12.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
+  D:/Keil_v5/ARM/PACK/Keil/STM32F4xx_DFP/2.16.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include
 
 <h2>Collection of Component Files used:</h2>
-Project build/rebuild aborted.
-Build Time Elapsed:  00:00:23
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>
