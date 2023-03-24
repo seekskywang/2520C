@@ -404,7 +404,7 @@ const uint8_t Sys_Sys_E[][20+1]=
 };
 const uint8_t Sys_Sys1[][20+1]=
 {
-	{"ÒÇÆ÷ÐÍºÅ  2520C"},
+	{""},
 	{"Èí¼þ°æ±¾  Ver:2.6"},
 	{"Ó²¼þ°æ±¾  Ver:1.1"},
 	{"ÒÇÆ÷±àºÅ"},
@@ -415,7 +415,7 @@ const uint8_t Sys_Sys1[][20+1]=
 };
 const uint8_t Sys_Sys_E1[][20+1]=
 {
-	{"INST MODEL  2520C"},
+	{""},
 	{"SOFT VER   Ver:2.6"},
 	{"HARD VER   Ver:1.1"},
 	{"SERIALNO"},
