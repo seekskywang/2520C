@@ -380,10 +380,11 @@ const uint8_t BiasButton_Tip[][7+1]=  //频率选择时候的下面的提示符号
 
 };
 //2.6增加绝对值分选2022/12/02
+//2.7修改电压固定量程跳档bug和上位机电压bug 2023/04/17
 const uint8_t Sys_Sys[][20+1]=
 {
 	{"仪器型号  JK2520C"},
-	{"软件版本  Ver:2.6"},
+	{"软件版本  Ver:2.7"},
 	{"硬件版本  Ver:1.1"},
 	{"仪器编号"},
 //	{"账号    "},
@@ -394,7 +395,7 @@ const uint8_t Sys_Sys[][20+1]=
 const uint8_t Sys_Sys_E[][20+1]=
 {
 	{"INST MODEL  JK2520C"},
-	{"SOFT VER   Ver:2.6"},
+	{"SOFT VER   Ver:2.7"},
 	{"HARD VER   Ver:1.1"},
 	{"SERIALNO"},
 //	{"账号    "},
@@ -405,7 +406,7 @@ const uint8_t Sys_Sys_E[][20+1]=
 const uint8_t Sys_Sys1[][20+1]=
 {
 	{""},
-	{"软件版本  Ver:2.6"},
+	{"软件版本  Ver:2.7"},
 	{"硬件版本  Ver:1.1"},
 	{"仪器编号"},
 //	{"账号    "},
@@ -416,7 +417,7 @@ const uint8_t Sys_Sys1[][20+1]=
 const uint8_t Sys_Sys_E1[][20+1]=
 {
 	{""},
-	{"SOFT VER   Ver:2.6"},
+	{"SOFT VER   Ver:2.7"},
 	{"HARD VER   Ver:1.1"},
 	{"SERIALNO"},
 //	{"账号    "},
@@ -1422,8 +1423,8 @@ void VRange_Changecomp(void)
 //	}
 //	f_switch=FALSE;//量程切换标志
 	//f_switch=TRUE;
-	if(Jk516save.Set_Data.Range_Set==0)
-	{
+//	if(Jk516save.Set_Data.Range_Set==0)
+//	{
 //		if((Range<RANGE_MAX)&&(f_upper==TRUE))//量程非最高且低压
 //		{
 //			Range++;
@@ -1475,7 +1476,7 @@ void VRange_Changecomp(void)
             V_switch=TRUE;//量程切换标志
            
         }
-    }
+//    }
 	if((f_switch==TRUE)||(V_switch==TRUE))//量程切换标志
 	{
         range_over=1;//增加不换档标志，用于查看是否在稳定的量程测量的

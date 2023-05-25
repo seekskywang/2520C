@@ -176,7 +176,7 @@ err_ret:
   */
 void TIM6_Configuration(void)
 {
-	TIM6_NVIC_Configuration();	
+	TIM6_NVIC_Configuration();	 
   
     TIM_Mode_Config();
 }
