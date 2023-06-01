@@ -2,7 +2,7 @@
 ..\..\output\cpld.o: ..\..\HARDWARE\cpld.h
 ..\..\output\cpld.o: ..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h
 ..\..\output\cpld.o: ..\..\Libraries\CMSIS\Include\core_cm4.h
-..\..\output\cpld.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\..\output\cpld.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\..\output\cpld.o: ..\..\Libraries\CMSIS\Include\core_cmInstr.h
 ..\..\output\cpld.o: ..\..\Libraries\CMSIS\Include\core_cmFunc.h
 ..\..\output\cpld.o: ..\..\Libraries\CMSIS\Include\core_cmSimd.h

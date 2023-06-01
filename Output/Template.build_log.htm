@@ -3,128 +3,310 @@
 <pre>
 <h1>礦ision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: μVision V5.37.0.0
+IDE-Version: μVision V5.38.0.0
 Copyright (C) 2022 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: 1 Microsoft, Microsoft, LIC=03C6R-KIDXE-2Z1W4-FI5SL-E8BHU-R7F4D
+License Information: lj Administrator, JK, LIC=WHYH9-4ZW6G-TG17T-R739D-ZWPZ5-PK2TP
  
 Tool Versions:
-Toolchain:       MDK-ARM Plus  Version: 5.37.0.0
-Toolchain Path:  E:\Keil_v5\ARM\ARMCC\Bin
-C Compiler:      Armcc.exe V5.06 update 6 (build 750)
-Assembler:       Armasm.exe V5.06 update 6 (build 750)
-Linker/Locator:  ArmLink.exe V5.06 update 6 (build 750)
-Library Manager: ArmAr.exe V5.06 update 6 (build 750)
-Hex Converter:   FromElf.exe V5.06 update 6 (build 750)
-CPU DLL:         SARMCM3.DLL V5.37.0.0
+Toolchain:       MDK-ARM Plus  Version: 5.38.0.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 4 (build 422)
+Assembler:       Armasm.exe V5.06 update 4 (build 422)
+Linker/Locator:  ArmLink.exe V5.06 update 4 (build 422)
+Library Manager: ArmAr.exe V5.06 update 4 (build 422)
+Hex Converter:   FromElf.exe V5.06 update 4 (build 422)
+CPU DLL:         SARMCM3.DLL V5.38.0.0
 Dialog DLL:      DCM.DLL V1.17.5.0
 Target DLL:      Segger\JL2CM3.dll V2.99.42.0
-Dialog DLL:      TCM.DLL V1.56.1.0
+Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
-F:\2520C\Project\RVMDK（uv5）\BH-F429.uvprojx
-Project File Date:  03/13/2023
+H:\2520C\Project\RVMDK（uv5）\BH-F429.uvprojx
+Project File Date:  05/25/2023
 
 <h2>Output:</h2>
-*** Using Compiler 'V5.06 update 6 (build 750)', folder: 'E:\Keil_v5\ARM\ARMCC\Bin'
+*** Using Compiler 'V5.06 update 4 (build 422)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target '工程模板'
+assembling startup_stm32f429_439xx.s...
+compiling stm32f4xx_cec.c...
+compiling stm32f4xx_crc.c...
+compiling misc.c...
+compiling system_stm32f4xx.c...
+compiling stm32f4xx_cryp.c...
+compiling stm32f4xx_adc.c...
+compiling stm32f4xx_can.c...
+compiling stm32f4xx_cryp_aes.c...
+compiling stm32f4xx_dbgmcu.c...
+compiling stm32f4xx_dcmi.c...
+compiling stm32f4xx_cryp_des.c...
+compiling stm32f4xx_exti.c...
+compiling stm32f4xx_dma2d.c...
+compiling stm32f4xx_dac.c...
+compiling stm32f4xx_cryp_tdes.c...
+compiling stm32f4xx_dma.c...
+compiling stm32f4xx_gpio.c...
+compiling stm32f4xx_fmpi2c.c...
+compiling stm32f4xx_flash_ramfunc.c...
+compiling stm32f4xx_flash.c...
+compiling stm32f4xx_hash.c...
+compiling stm32f4xx_hash_md5.c...
+compiling stm32f4xx_hash_sha1.c...
+compiling stm32f4xx_fmc.c...
+compiling stm32f4xx_iwdg.c...
+compiling stm32f4xx_pwr.c...
+compiling stm32f4xx_i2c.c...
+compiling stm32f4xx_qspi.c...
+compiling stm32f4xx_rng.c...
+compiling stm32f4xx_ltdc.c...
+compiling stm32f4xx_rtc.c...
+compiling stm32f4xx_rcc.c...
+compiling stm32f4xx_sdio.c...
+compiling stm32f4xx_spdifrx.c...
+compiling stm32f4xx_sai.c...
+compiling stm32f4xx_syscfg.c...
+compiling stm32f4xx_wwdg.c...
+compiling stm32f4xx_spi.c...
+compiling stm32f4xx_usart.c...
+compiling stm32f4xx_tim.c...
+compiling main.c...
+compiling 4094.C...
+compiling pbdata.c...
+compiling GPIO.C...
+compiling AD7706.C...
+compiling stm32f4xx_it.c...
+..\..\User\stm32f4xx_it.c(335): warning:  #177-D: variable "dat"  was declared but never referenced
+  	u8 dat;
+..\..\User\stm32f4xx_it.c(985): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+  		uart1SendChars(scpisendbuf,scpisendcount);
+..\..\User\stm32f4xx_it.c(1014): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+  		uart1SendChars(scpisendbuf,scpisendcount);
+..\..\User\stm32f4xx_it.c(1059): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+  		uart1SendChars(scpisendbuf,scpisendcount);
+..\..\User\stm32f4xx_it.c(1089): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "u8 *"
+  		uart1SendChars(scpisendbuf,scpisendcount);
+..\..\User\stm32f4xx_it.c(1126): warning:  #223-D: function "Disp_Sys_value" declared implicitly
+  			Disp_Sys_value(2);
+..\..\User\stm32f4xx_it.c(1131): warning:  #223-D: function "Disp_Sys_value" declared implicitly
+  			Disp_Sys_value(2);
+..\..\User\stm32f4xx_it.c(1136): warning:  #223-D: function "Disp_Sys_value" declared implicitly
+  			Disp_Sys_value(2);
+..\..\User\stm32f4xx_it.c(1141): warning:  #223-D: function "Disp_Sys_value" declared implicitly
+  			Disp_Sys_value(2);
+..\..\User\stm32f4xx_it.c(1146): warning:  #223-D: function "Disp_Sys_value" declared implicitly
+  			Disp_Sys_value(2);
+..\..\User\stm32f4xx_it.c(1156): warning:  #223-D: function "Disp_Sys_value" declared implicitly
+  			Disp_Sys_value(3);
+..\..\User\stm32f4xx_it.c(1161): warning:  #223-D: function "Disp_Sys_value" declared implicitly
+  			Disp_Sys_value(3);
+..\..\User\stm32f4xx_it.c(504): warning:  #177-D: variable "crec"  was declared but never referenced
+      u8 crec[6];
+..\..\User\stm32f4xx_it.c(505): warning:  #177-D: variable "csend"  was declared but never referenced
+      u8 *csend;
+..\..\User\stm32f4xx_it.c(506): warning:  #177-D: variable "sendbuf"  was declared but never referenced
+      static u8 *sendbuf;
+..\..\User\stm32f4xx_it.c(507): warning:  #177-D: variable "sendlen"  was declared but never referenced
+      u8 sendlen;
+..\..\User\stm32f4xx_it.c(508): warning:  #177-D: variable "recrc"  was declared but never referenced
+      static u16 recrc;
+..\..\User\stm32f4xx_it.c(509): warning:  #177-D: variable "scrc"  was declared but never referenced
+      static u16 scrc;
+..\..\User\stm32f4xx_it.c(1463): warning:  #223-D: function "MODS_Poll" declared implicitly
+          MODS_Poll();
+..\..\User\stm32f4xx_it.c(179): warning:  #177-D: function "MODS_SendAckErr"  was declared but never referenced
+  static void MODS_SendAckErr(uint8_t _ucErrCode)
+..\..\User\stm32f4xx_it.c(199): warning:  #177-D: function "MODS_SendAckOk"  was declared but never referenced
+  static void MODS_SendAckOk(void)
+..\..\User\stm32f4xx_it.c: 21 warnings, 0 errors
 compiling user.c...
 ..\..\User\user.c(1288): warning:  #188-D: enumerated type mixed with another type
-        bool f_upper=FALSE;//量程过压标志
+  	bool f_upper=
+ALSE;//量程过压标志
 ..\..\User\user.c(1289): warning:  #188-D: enumerated type mixed with another type
-        bool f_below=FALSE;//量程欠压标志
+  	bool f_below=
+ALSE;//量程欠压标志
 ..\..\User\user.c(1290): warning:  #188-D: enumerated type mixed with another type
-        bool f_switch=FALSE;//量程切换标志
+  	bool f_switch=
+ALSE;//量程切换标志
 ..\..\User\user.c(1291): warning:  #188-D: enumerated type mixed with another type
-      bool V_upper=FALSE;//量程过压标志
+      bool V_upper=
+ALSE;//量程过压标志
 ..\..\User\user.c(1292): warning:  #188-D: enumerated type mixed with another type
-        bool V_below=FALSE;//量程欠压标志
+  	bool V_below=
+ALSE;//量程欠压标志
 ..\..\User\user.c(1293): warning:  #188-D: enumerated type mixed with another type
-        bool V_switch=FALSE;//量程切换标志
+  	bool V_switch=
+ALSE;//量程切换标志
 ..\..\User\user.c(1298): warning:  #188-D: enumerated type mixed with another type
-                f_upper=TRUE;//量程过压标志
+  		f_upper=
+RUE;//量程过压标志
 ..\..\User\user.c(1299): warning:  #188-D: enumerated type mixed with another type
-                f_below=FALSE;//量程欠压标志
+  		f_below=
+ALSE;//量程欠压标志
 ..\..\User\user.c(1307): warning:  #188-D: enumerated type mixed with another type
-                f_below=TRUE;//量程低压标志
+  		f_below=
+RUE;//量程低压标志
 ..\..\User\user.c(1308): warning:  #188-D: enumerated type mixed with another type
-                f_upper=FALSE;//量程欠压标志
+  		f_upper=
+ALSE;//量程欠压标志
 ..\..\User\user.c(1312): warning:  #188-D: enumerated type mixed with another type
-                f_upper=FALSE;//量程过压标志
+  		f_upper=
+ALSE;//量程过压标志
 ..\..\User\user.c(1313): warning:  #188-D: enumerated type mixed with another type
-                f_below=FALSE;//量程欠压标志
+  		f_below=
+ALSE;//量程欠压标志
 ..\..\User\user.c(1315): warning:  #188-D: enumerated type mixed with another type
-        f_switch=FALSE;//量程切换标志
+  	f_switch=
+ALSE;//量程切换标志
 ..\..\User\user.c(1322): warning:  #188-D: enumerated type mixed with another type
-                        f_switch=TRUE;//量程切换标志
+  			f_switch=
+RUE;//量程切换标志
 ..\..\User\user.c(1332): warning:  #188-D: enumerated type mixed with another type
-                        f_switch=TRUE;//量程切换标志
+  			f_switch=
+RUE;//量程切换标志
 ..\..\User\user.c(1376): warning:  #188-D: enumerated type mixed with another type
-          f_switch=FALSE;
+          f_switch=
+ALSE;
 ..\..\User\user.c(1377): warning:  #188-D: enumerated type mixed with another type
-          V_switch=FALSE;
+          V_switch=
+ALSE;
 ..\..\User\user.c(1291): warning:  #177-D: variable "V_upper"  was declared but never referenced
       bool V_upper=FALSE;//量程过压标志
 ..\..\User\user.c(1292): warning:  #177-D: variable "V_below"  was declared but never referenced
-        bool V_below=FALSE;//量程欠压标志
+  	bool V_below=FALSE;//量程欠压标志
 ..\..\User\user.c(1397): warning:  #188-D: enumerated type mixed with another type
-        bool f_upper=FALSE;//量程过压标志
+  	bool f_upper=
+ALSE;//量程过压标志
 ..\..\User\user.c(1398): warning:  #188-D: enumerated type mixed with another type
-        bool f_below=FALSE;//量程欠压标志
+  	bool f_below=
+ALSE;//量程欠压标志
 ..\..\User\user.c(1399): warning:  #188-D: enumerated type mixed with another type
-        bool f_switch=FALSE;//量程切换标志
+  	bool f_switch=
+ALSE;//量程切换标志
 ..\..\User\user.c(1400): warning:  #188-D: enumerated type mixed with another type
-      bool V_upper=FALSE;//量程过压标志
+      bool V_upper=
+ALSE;//量程过压标志
 ..\..\User\user.c(1401): warning:  #188-D: enumerated type mixed with another type
-        bool V_below=FALSE;//量程欠压标志
+  	bool V_below=
+ALSE;//量程欠压标志
 ..\..\User\user.c(1402): warning:  #188-D: enumerated type mixed with another type
-        bool V_switch=FALSE;//量程切换标志
+  	bool V_switch=
+ALSE;//量程切换标志
 ..\..\User\user.c(1449): warning:  #188-D: enumerated type mixed with another type
-              V_upper=TRUE;//量程过压标志
+              V_upper=
+RUE;//量程过压标志
 ..\..\User\user.c(1450): warning:  #188-D: enumerated type mixed with another type
-              V_below=FALSE;//量程欠压标志
+              V_below=
+ALSE;//量程欠压标志
 ..\..\User\user.c(1455): warning:  #188-D: enumerated type mixed with another type
-              V_below=TRUE;//量程低压标志
+              V_below=
+RUE;//量程低压标志
 ..\..\User\user.c(1456): warning:  #188-D: enumerated type mixed with another type
-              V_upper=FALSE;//量程欠压标志
+              V_upper=
+ALSE;//量程欠压标志
 ..\..\User\user.c(1460): warning:  #188-D: enumerated type mixed with another type
-              V_upper=FALSE;//量程过压标志
+              V_upper=
+ALSE;//量程过压标志
 ..\..\User\user.c(1461): warning:  #188-D: enumerated type mixed with another type
-              V_below=FALSE;//量程欠压标志
+              V_below=
+ALSE;//量程欠压标志
 ..\..\User\user.c(1463): warning:  #188-D: enumerated type mixed with another type
-          V_switch=FALSE;//量程切换标志
+          V_switch=
+ALSE;//量程切换标志
 ..\..\User\user.c(1469): warning:  #188-D: enumerated type mixed with another type
-              V_switch=TRUE;//量程切换标志
+              V_switch=
+RUE;//量程切换标志
 ..\..\User\user.c(1476): warning:  #188-D: enumerated type mixed with another type
-              V_switch=TRUE;//量程切换标志
+              V_switch=
+RUE;//量程切换标志
 ..\..\User\user.c(1485): warning:  #188-D: enumerated type mixed with another type
-          f_switch=FALSE;
+          f_switch=
+ALSE;
 ..\..\User\user.c(1486): warning:  #188-D: enumerated type mixed with another type
-          V_switch=FALSE;
+          V_switch=
+ALSE;
 ..\..\User\user.c(1397): warning:  #177-D: variable "f_upper"  was declared but never referenced
-        bool f_upper=FALSE;//量程过压标志
+  	bool f_upper=FALSE;//量程过压标志
 ..\..\User\user.c(1398): warning:  #177-D: variable "f_below"  was declared but never referenced
-        bool f_below=FALSE;//量程欠压标志
+  	bool f_below=FALSE;//量程欠压标志
 ..\..\User\user.c(1403): warning:  #177-D: variable "i"  was declared but never referenced
-        u8 i;
+  	u8 i;
 ..\..\User\user.c: 39 warnings, 0 errors
+compiling test.c...
+..\..\User\test.c(902): warning:  #223-D: function "Read_ExtTrig" declared implicitly
+  		Extrigflag = Read_ExtTrig();
+..\..\User\test.c(1172): warning:  #223-D: function "uart1SendChars" declared implicitly
+  					uart1SendChars("OPEN",4);
+..\..\User\test.c(1211): warning:  #223-D: function "uart1SendChars" declared implicitly
+  						  uart1SendChars("OPEN",4);
+..\..\User\test.c(1258): warning:  #68-D: integer conversion resulted in a change of sign
+  								sendE = -3;
+..\..\User\test.c(1271): warning:  #223-D: function "uart1SendChars" declared implicitly
+  							uart1SendChars(sendbuf,sizeof(sendbuf));
+..\..\User\test.c(809): warning:  #177-D: variable "oldskip"  was declared but never referenced
+  	static u32 oldskip;
+..\..\User\test.c(812): warning:  #177-D: variable "csendlen"  was declared but never referenced
+  	u8 csendlen;
+..\..\User\test.c: 7 warnings, 0 errors
+compiling fonts.c...
+compiling bsp_spi_flash.c...
+compiling bsp_sdram.c...
+compiling keyboard.c...
+compiling bsp_basic_tim.c...
+..\..\HARDWARE\tim\bsp_basic_tim.c(157): warning:  #223-D: function "RecHandle" declared implicitly
+          RecHandle();
+..\..\HARDWARE\tim\bsp_basic_tim.c(89): warning:  #177-D: variable "addr"  was declared but never referenced
+  	uint16_t addr;
+..\..\HARDWARE\tim\bsp_basic_tim.c(90): warning:  #177-D: variable "crc1"  was declared but never referenced
+  	static uint16_t crc1;
+..\..\HARDWARE\tim\bsp_basic_tim.c: 3 warnings, 0 errors
+compiling bsp_lcd.c...
+..\..\User\hzk.h(1100): warning:  #375-D: declaration requires a typedef name
+  };
+..\..\HARDWARE\lcd\bsp_lcd.c: 1 warning, 0 errors
+compiling bsp_debug_usart.c...
+compiling bsp_general_tim.c...
+compiling bsp_SysTick.c...
+compiling cpld.c...
+compiling bsp_adc.c...
+compiling ff.c...
+compiling bsp_exti.c...
+compiling flash_eerom.c...
+compiling bsp_rtc.c...
+compiling cc936.c...
+compiling diskio.c...
+compiling usb_bsp.c...
+compiling flash_if.c...
+compiling usb_hcd.c...
+compiling usb_hcd_int.c...
+compiling usb_core.c...
+compiling usbh_core.c...
+compiling usbh_usr.c...
+compiling usbh_hcs.c...
+compiling usbh_ioreq.c...
+compiling usbh_stdreq.c...
+compiling usbh_msc_bot.c...
+compiling usbh_msc_core.c...
+compiling usbh_msc_scsi.c...
 linking...
 Program Size: Code=77840 RO-data=594112 RW-data=496 ZI-data=32904  
 FromELF: creating hex file...
 After Build - User command #1: E:\Keil_v5\ARM\ARMCC\bin\fromelf.exe --bin -o ..\..\Output\update.bin ..\..\Output\Template.axf
-"..\..\Output\Template.axf" - 0 Error(s), 39 Warning(s).
+*** Error: CreateProcess failed, Command: 'E:\Keil_v5\ARM\ARMCC\bin\fromelf.exe --bin -o ..\..\Output\update.bin ..\..\Output\Template.axf'
+"..\..\Output\Template.axf" - 1 Error(s), 71 Warning(s).
 
 <h2>Software Packages used:</h2>
 
 Package Vendor: Keil
-                http://www.keil.com/pack/Keil.STM32F4xx_DFP.2.16.0.pack
-                Keil.STM32F4xx_DFP.2.16.0
+                https://www.keil.com/pack/Keil.STM32F4xx_DFP.2.17.0.pack
+                Keil.STM32F4xx_DFP.2.17.0
                 STMicroelectronics STM32F4 Series Device Support, Drivers and Examples
 
 <h2>Collection of Component include folders:</h2>
-  D:/Keil_v5/ARM/PACK/Keil/STM32F4xx_DFP/2.16.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+  C:/Keil_v5/ARM/PACK/Keil/STM32F4xx_DFP/2.17.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:04
+Target not created.
+Build Time Elapsed:  00:00:13
 </pre>
 </body>
 </html>
